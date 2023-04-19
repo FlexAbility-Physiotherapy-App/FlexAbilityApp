@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FlexAbility</string>
+    <string name="register">Εγγραφή</string>
+    <string name="login">Σύνδεση</string>
+    <string name="back">Πίσω</string>
+</resources>
