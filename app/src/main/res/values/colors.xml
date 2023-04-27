@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="buttons">#2DA661</color>
     <color name="backgroundMainColor">#F0FCF6</color>
+    <color name="greenButton">#24874F</color>
+    <color name="titleDark">#292D3D</color>
+    <color name="gray">#5F626E</color>
 </resources>

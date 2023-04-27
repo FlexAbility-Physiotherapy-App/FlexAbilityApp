@@ -3,4 +3,12 @@
     <string name="register">Εγγραφή</string>
     <string name="login">Σύνδεση</string>
     <string name="back">Πίσω</string>
+    <string name="physios">Φυσικοθεραπευτήρια (6)</string>
+    <string name="amenities">Παροχές</string>
+    <string name="create">Δημιουργία</string>
+    <string name="showAll"><u>Προβολή όλων ></u></string>
+    <string name="massagexperts">MassageXperts</string>
+    <string name="vat">123456789</string>
+    <string name="phone">2310444442</string>
+    <string name="address">Εγνατία 156, Θεσσαλονίκη, 54636</string>
 </resources>
