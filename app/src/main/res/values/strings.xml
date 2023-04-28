@@ -11,4 +11,11 @@
     <string name="vat">123456789</string>
     <string name="phone">2310444442</string>
     <string name="address">Εγνατία 156, Θεσσαλονίκη, 54636</string>
+    <string name="sportsMassage">Αθλητική Μάλαξη</string>
+    <string name="id01">ΜΞ001</string>
+    <string name="cost">45 / συνεδρία</string>
+    <string name="cost2">65 / συνεδρία</string>
+    <string name="acupuncture">Βελονισμός</string>
+    <string name="desc2">Θεραπευτική μέθοδος που βασίζεται στην παραδοσιακή κινέζικη ιατρική. Ο βελονισμός είναι ένα θεωρητικό, σύνθετο και ολοκληρωμένο σύστημα θεραπείας που η ιστορία του χάνεται στην νύκτα των χρόνων.</string>
+    <string name="desc">Είδος θεραπευτικού μασάζ που απευθύνεται σε αθλητές. Τα είδη αθλητικής μάλαξης που έχουν καθιερωθεί είναι τέσσερα.</string>
 </resources>
