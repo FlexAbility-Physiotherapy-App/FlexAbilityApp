@@ -14,13 +14,12 @@ import java.util.Calendar;
 
 public class DoctorAppointmentsScreen extends AppCompatActivity {
 
-    String amkaList[] = {"18920365429", "01629354107", "01918273026", "92829372430"};
-    String nameList[] = {"Γιάννης Ράφτης", "Γιώργος Ψωμάς", "Ντάλια Βεντάλια", "Ορέστης Παυλόπουλος"};
-    String timeList[] = {"14:00-15:00", "15:00-16:00", "16:00-18:00", "18:00-19:00"};
-
+    String amkaList[] = {"18920365429", "01629354107", "01918273026"};
+    String nameList[] = {"Γιάννης Ράφτης", "Γιώργος Ψωμάς", "Ντάλια Βεντάλια"};
+    String timeList[] = {"14:00-15:00", "15:00-16:00", "16:00-18:00"};
     ListView listView1, listView2, listView3, listView4, listView5, listView6,listView7;
     TextView textView;
-    ConstraintLayout constraintLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

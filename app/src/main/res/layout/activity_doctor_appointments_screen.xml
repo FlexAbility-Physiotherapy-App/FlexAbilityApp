@@ -26,7 +26,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topPart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp">
 
                 <TextView
                     android:id="@+id/appointment"
@@ -55,6 +56,7 @@
                 android:id="@+id/part1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
                 android:layout_marginTop="25dp">
 
                 <TextView
@@ -120,7 +122,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow2"
@@ -186,7 +190,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow3"
@@ -252,7 +258,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow4"
@@ -318,7 +326,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow5"
@@ -384,7 +394,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow6"
@@ -450,7 +462,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/part7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/arrow7"
