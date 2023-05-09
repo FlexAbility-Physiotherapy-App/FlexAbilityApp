@@ -36,6 +36,7 @@
                 android:fontFamily="@font/manrope_extra_light"
                 android:text="@string/physios"
                 android:textAlignment="textStart"
+                android:textColor="@color/titleDark"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +107,7 @@
                         android:id="@+id/constraintLayout5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/buttons"
+                        android:background="@color/titleDark"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -243,6 +244,7 @@
                 android:fontFamily="@font/manrope_extra_light"
                 android:text="@string/amenities"
                 android:textAlignment="textStart"
+                android:textColor="@color/titleDark"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -307,7 +309,7 @@
                     android:id="@+id/constraintLayout7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/buttons"
+                    android:background="@color/titleDark"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -443,7 +445,7 @@
                     android:id="@+id/constraintLayout6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/buttons"
+                    android:background="@color/titleDark"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
