@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:fillViewport="true"
-    tools:context=".CustomListView">
+    tools:context=".CustomListOrangeActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -31,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/appointment_card"
+                android:paddingTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -41,9 +41,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
                     android:layout_marginTop="2dp"
-                    android:text="Ώρα"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/time"
                     android:textColor="@color/titleDark"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -53,8 +54,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="00:00-00:00"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/manrope_regular"
+                    android:text="@string/date"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -64,10 +66,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="2dp"
-                    android:text="Όνομα Ασθενή"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/patientsname"
                     android:textColor="@color/titleDark"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -76,8 +78,9 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Όνομα Επώνυμο"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/manrope_regular"
+                    android:text="@string/nameandsurname"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintStart_toStartOf="@+id/textView8" />
 
@@ -85,10 +88,11 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:text="ΑΜΚΑ"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/amka"
                     android:textColor="@color/titleDark"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -99,7 +103,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
-                    android:text="###########"
+                    android:fontFamily="@font/manrope_regular"
+                    android:text="@string/amkanumbers"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView10"

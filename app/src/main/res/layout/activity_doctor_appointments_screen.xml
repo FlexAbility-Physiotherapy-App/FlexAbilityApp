@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMainColor">
+    android:background="@color/backgroundMainColor"
+    tools:context=".DoctorAppointmentsScreenActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,14 +28,16 @@
                 android:id="@+id/topPart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp">
+                android:layout_marginStart="7dp">
 
                 <TextView
                     android:id="@+id/appointment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ραντεβού"
+                    android:text="@string/appointments"
                     android:textSize="40sp"
+                    android:textColor="@color/titleDark"
+                    android:fontFamily="@font/manrope_extra_light"
                     app:layout_constraintBottom_toBottomOf="@+id/backButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +45,11 @@
 
                 <Button
                     android:id="@+id/backButton"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:backgroundTint="@color/buttons"
-                    android:padding="14dp"
+                    android:layout_marginTop="2dp"
+                    android:backgroundTint="@color/greenButton"
+                    android:padding="19dp"
                     app:icon="@drawable/angle_left_solid"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -56,19 +60,20 @@
                 android:id="@+id/part1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="25dp">
+                android:layout_marginEnd="7dp"
+                android:layout_marginTop="25dp"
+                android:clickable="false">
 
                 <TextView
                     android:id="@+id/day1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Σήμερα"
+                    android:text="@string/today"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow1"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,6 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,22 +95,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day1"
-                    app:layout_constraintStart_toEndOf="@+id/day1" />
+                    app:layout_constraintStart_toEndOf="@+id/day1"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date1"
                     app:layout_constraintStart_toEndOf="@+id/date1"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -123,8 +132,8 @@
                 android:id="@+id/part2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow2"
@@ -132,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day2"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,12 +152,12 @@
                     android:id="@+id/day2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Αύριο"
+                    android:text="@string/tomorrow"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow2"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -156,22 +166,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day2"
-                    app:layout_constraintStart_toEndOf="@+id/day2" />
+                    app:layout_constraintStart_toEndOf="@+id/day2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date2"
                     app:layout_constraintStart_toEndOf="@+id/date2"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -191,8 +204,8 @@
                 android:id="@+id/part3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow3"
@@ -200,6 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day3"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,12 +224,12 @@
                     android:id="@+id/day3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Ημέρα"
+                    android:text="@string/day"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow3"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,22 +238,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day3"
-                    app:layout_constraintStart_toEndOf="@+id/day3" />
+                    app:layout_constraintStart_toEndOf="@+id/day3"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date3"
                     app:layout_constraintStart_toEndOf="@+id/date3"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -259,8 +276,8 @@
                 android:id="@+id/part4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow4"
@@ -268,6 +285,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="1dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day4"
                     app:layout_constraintStart_toStartOf="parent"
@@ -278,12 +296,12 @@
                     android:id="@+id/day4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Ημέρα"
+                    android:text="@string/day"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow4"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -292,22 +310,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day4"
-                    app:layout_constraintStart_toEndOf="@+id/day4" />
+                    app:layout_constraintStart_toEndOf="@+id/day4"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date4"
                     app:layout_constraintStart_toEndOf="@+id/date4"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -327,8 +348,8 @@
                 android:id="@+id/part5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow5"
@@ -336,6 +357,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -346,12 +368,12 @@
                     android:id="@+id/day5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Ημέρα"
+                    android:text="@string/day"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow5"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -360,22 +382,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day5"
-                    app:layout_constraintStart_toEndOf="@+id/day5" />
+                    app:layout_constraintStart_toEndOf="@+id/day5"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date5"
                     app:layout_constraintStart_toEndOf="@+id/date5"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -395,8 +420,8 @@
                 android:id="@+id/part6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow6"
@@ -404,6 +429,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day6"
                     app:layout_constraintStart_toStartOf="parent"
@@ -414,12 +440,12 @@
                     android:id="@+id/day6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Ημέρα"
+                    android:text="@string/day"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow6"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -428,22 +454,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day6"
-                    app:layout_constraintStart_toEndOf="@+id/day6" />
+                    app:layout_constraintStart_toEndOf="@+id/day6"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date6"
                     app:layout_constraintStart_toEndOf="@+id/date6"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -463,8 +492,8 @@
                 android:id="@+id/part7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="10dp">
 
                 <ImageView
                     android:id="@+id/arrow7"
@@ -472,6 +501,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/day7"
                     app:layout_constraintStart_toStartOf="parent"
@@ -482,12 +512,12 @@
                     android:id="@+id/day7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="Ημέρα"
+                    android:text="@string/day"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/arrow7"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -496,22 +526,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/manrope_regular"
                     android:paddingBottom="10dp"
-                    android:text="00/00/0000"
-                    android:textSize="20sp"
+                    android:text="@string/date"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/day7"
-                    app:layout_constraintStart_toEndOf="@+id/day7" />
+                    app:layout_constraintStart_toEndOf="@+id/day7"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/counter7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="@+id/date7"
                     app:layout_constraintStart_toEndOf="@+id/date7"
                     app:layout_constraintTop_toTopOf="parent" />

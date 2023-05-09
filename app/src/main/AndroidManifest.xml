@@ -12,11 +12,8 @@
         android:theme="@style/Theme.FlexAbility"
         tools:targetApi="31">
         <activity
-            android:name=".CustomListView"
-            android:exported="false" />
-        <activity
-            android:name=".DoctorAppointmentsScreen"
-            android:exported="true">
+            android:name=".DoctorAppointmentsScreenActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +21,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginScreen"
-            android:exported="true" />
+            android:name=".DoctorMainScreenActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".CustomListViewBlackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CustomListViewGreenActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

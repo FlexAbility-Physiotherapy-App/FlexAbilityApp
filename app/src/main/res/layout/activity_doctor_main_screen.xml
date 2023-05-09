@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".DoctorMainScreenActivity"
     android:background="@color/backgroundMainColor">
 
     <ScrollView
@@ -17,21 +18,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="25dp">
+            android:paddingLeft="18dp"
+            android:paddingTop="25dp"
+            android:paddingRight="18dp"
+            android:paddingBottom="25dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topPart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginRight="7dp">
+                android:layout_marginStart="7dp">
 
                 <TextView
                     android:id="@+id/appointment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ραντεβού"
+                    android:fontFamily="@font/manrope_extra_light"
+                    android:text="@string/appointments"
                     android:textSize="40sp"
+                    android:textColor="@color/titleDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +44,10 @@
                     android:id="@+id/counter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="(#)"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/manrope_extra_light"
+                    android:text="@string/counter"
+                    android:textColor="@color/titleDark"
                     android:textSize="40sp"
                     app:layout_constraintStart_toEndOf="@+id/appointment"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -51,20 +58,19 @@
                 android:id="@+id/part1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="7dp">
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="0dp">
 
                 <TextView
                     android:id="@+id/day1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:text="Σήμερα"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/today"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,69 +78,29 @@
                     android:id="@+id/counter1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="(#)"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/counter"
                     android:textColor="@color/titleDark"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    android:textSize="22sp"
                     app:layout_constraintStart_toEndOf="@+id/day1"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/subpart"
+                <TextView
+                    android:id="@+id/changeScreen"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:ellipsize="end"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/showAll"
+                    android:textAllCaps="false"
+                    android:textColor="@color/greenButton"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/changeScreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="10dp"
-                        android:text="Προβολή όλων "
-                        android:textColor="@color/buttons"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/arrow3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:ellipsize="end"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/changeScreen"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/angle_right_green" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/subpart2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:background="@drawable/textline"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/arrow2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/angle_right_helper" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

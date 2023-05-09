@@ -18,4 +18,17 @@
     <string name="acupuncture">Βελονισμός</string>
     <string name="desc2">Θεραπευτική μέθοδος που βασίζεται στην παραδοσιακή κινέζικη ιατρική. Ο βελονισμός είναι ένα θεωρητικό, σύνθετο και ολοκληρωμένο σύστημα θεραπείας που η ιστορία του χάνεται στην νύκτα των χρόνων.</string>
     <string name="desc">Είδος θεραπευτικού μασάζ που απευθύνεται σε αθλητές. Τα είδη αθλητικής μάλαξης που έχουν καθιερωθεί είναι τέσσερα.</string>
+    <string name="appointments">Ραντεβού</string>
+    <string name="counter">(#)</string>
+    <string name="start">Έναρξη</string>
+    <string name="date">00/00/0000</string>
+    <string name="today">Σήμερα</string>
+    <string name="tomorrow">Αύριο</string>
+    <string name="day">Ημέρα</string>
+    <string name="arrow">Arrow</string>
+    <string name="time">Ώρα</string>
+    <string name="patientsname">Όνομα Ασθενή</string>
+    <string name="nameandsurname">Όνομα Επώνυμο</string>
+    <string name="amka">ΑΜΚΑ</string>
+    <string name="amkanumbers">###########</string>
 </resources>
