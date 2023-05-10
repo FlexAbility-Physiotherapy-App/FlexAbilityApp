@@ -58,7 +58,6 @@
     <string name="amenityPriceExample">π.χ. 45</string>
     <string name="amenityDescriptionExample">π.χ. Είδος θεραπευτικού μασάζ…</string>
     <string name="amenityDescriptionTitle">Περιγραφή</string>
-    <string name="cancel">Ακύρωση</string>
     <string name="amenitiesTitle">Παροχές</string>
     <string name="title">Τίτλος</string>
     <string name="IDCode">Κωδικός</string>
