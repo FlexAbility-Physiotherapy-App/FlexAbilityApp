@@ -29,6 +29,23 @@
     <string name="time">Ώρα</string>
     <string name="patientsname">Όνομα Ασθενή</string>
     <string name="nameandsurname">Όνομα Επώνυμο</string>
-    <string name="amka">ΑΜΚΑ</string>
     <string name="amkanumbers">###########</string>
+    <string name="newPhysio">Νέο Φυσιοθεραπευτήριο</string>
+    <string name="physioNameHint">π.χ. Body Care ||</string>
+    <string name="physioName">Όνομα Φυσιοθεραπευτηρίου</string>
+    <string name="addressHint">π.χ. Εγραντία 111</string>
+    <string name="addressPrompt">Διεύθυνση</string>
+    <string name="cancel">Ακύρωση</string>
+    <string name="newPatient">Νέος Ασθενής</string>
+    <string name="fullName">Ονοματεπώνυμο</string>
+    <string name="fullNameHint">π.χ. Γιάννης Παπαδόπουλος</string>
+    <string name="phoneNumber">Τηλέφωνο</string>
+    <string name="phoneNumberHint">π.χ. 2310552222</string>
+    <string name="amka">ΑΜΚΑ</string>
+    <string name="amkaHint">π.χ. 012345678901</string>
+    <string name="male">Άρρεν</string>
+    <string name="female">Θύλη</string>
+    <string name="gender">Φύλο</string>
+    <string name="afm">ΑΦΜ</string>
+    <string name="afmHint">π.χ. 123456789</string>
 </resources>
