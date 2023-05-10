@@ -2,7 +2,9 @@ package com.android.flexability;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +28,14 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.counter1);
         textView.setText("("+ listView1.getAdapter().getCount()+")");
+
+        TextView changeScreenBtn = (TextView) findViewById(R.id.changeScreen);
+        changeScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorMainScreenActivity.this, DoctorAppointmentsScreenActivity.class));
+            }
+        });
     }
 
 }

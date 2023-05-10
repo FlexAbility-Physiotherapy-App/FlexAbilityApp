@@ -3,8 +3,10 @@ package com.android.flexability;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -222,6 +224,14 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         constraintLayout5.setOnClickListener(onClickListener);
         constraintLayout6.setOnClickListener(onClickListener);
         constraintLayout7.setOnClickListener(onClickListener);
+
+        Button backBtn = (Button)findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorAppointmentsScreenActivity.this, DoctorMainScreenActivity.class));
+            }
+        });
     }
 
 }

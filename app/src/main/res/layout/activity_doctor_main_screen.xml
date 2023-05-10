@@ -18,9 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="18dp"
+            android:paddingLeft="25dp"
             android:paddingTop="25dp"
-            android:paddingRight="18dp"
+            android:paddingRight="25dp"
             android:paddingBottom="25dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
