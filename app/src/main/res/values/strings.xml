@@ -4,7 +4,7 @@
     <string name="login">Σύνδεση</string>
     <string name="back">Πίσω</string>
     <string name="physios">Φυσιοθεραπευτήρια (6)</string>
-    <string name="amenities">Παροχές</string>
+    <string name="amenities">Παροχές (%1$d)</string>
     <string name="create">Δημιουργία</string>
     <string name="showAll"><u>Προβολή όλων ></u></string>
     <string name="massagexperts">MassageXperts</string>
@@ -48,4 +48,19 @@
     <string name="gender">Φύλο</string>
     <string name="afm">ΑΦΜ</string>
     <string name="afmHint">π.χ. 123456789</string>
+    <string name="createNewAmenity">Νέα Παροχή</string>
+    <string name="amenityNameTitle">Όνομα Παροχής</string>
+    <string name="backButtonDescription">Back</string>
+    <string name="amenityNameExample">π.χ. Αθλητική Μάλαξη</string>
+    <string name="amenityIDTitle">Κωδικός</string>
+    <string name="amenityPriceTitle">Τιμή (€)</string>
+    <string name="amenityIDExample">π.χ. ΜΞ001</string>
+    <string name="amenityPriceExample">π.χ. 45</string>
+    <string name="amenityDescriptionExample">π.χ. Είδος θεραπευτικού μασάζ…</string>
+    <string name="amenityDescriptionTitle">Περιγραφή</string>
+    <string name="amenitiesTitle">Παροχές</string>
+    <string name="title">Τίτλος</string>
+    <string name="IDCode">Κωδικός</string>
+    <string name="costPerSession">%1$d / συνεδρία</string>
+    <string name="description">Περιγραφή</string>
 </resources>

@@ -13,4 +13,6 @@
     <color name="titleDark">#292D3D</color>
     <color name="gray">#5F626E</color>
     <color name="orange">#FAA809</color>
+    <color name="green_ripple">#3328DA75</color>
+    <color name="white_ripple">#33FFFFFF</color>
 </resources>
