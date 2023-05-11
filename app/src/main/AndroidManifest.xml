@@ -18,8 +18,12 @@
             android:name=".DoctorAppointmentsScreenActivity"
             android:exported="false">
         </activity>
+        <activity android:name=".CreateAmenityActivity"
+            android:exported="false" />
+        <activity android:name=".DisplayAmenitiesScreenActivity"
+            android:exported="false" />
         <activity
-            android:name=".DoctorMainScreenActivity"
+            android:name=".PhysioMainScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,6 +3,8 @@ package com.android.flexability;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
@@ -40,5 +42,13 @@ public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.amenitiesList);
         AmenityCardAdapter adapter = new AmenityCardAdapter(getApplicationContext(), json_response);
         listView.setAdapter(adapter);
+
+        Button btnBack = findViewById(R.id.backButton);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
