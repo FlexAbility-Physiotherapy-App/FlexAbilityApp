@@ -63,7 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            android:listSelector="@android:color/transparent" />
+            android:listSelector="@android:color/transparent"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

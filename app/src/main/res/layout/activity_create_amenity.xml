@@ -236,7 +236,7 @@
                     app:strokeColor="@color/greenButton" />
 
                 <Button
-                    android:id="@+id/button7"
+                    android:id="@+id/btnCreate"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
