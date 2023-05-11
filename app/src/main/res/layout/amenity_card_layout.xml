@@ -7,14 +7,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="25dp"
+            android:layout_marginEnd="4dp"
             android:layout_marginBottom="6dp"
             app:cardCornerRadius="8dp">
 
@@ -23,6 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/titleDark"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,6 +34,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:background="@drawable/appointment_card"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
                     android:padding="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +45,8 @@
                         android:id="@+id/constraintLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayoutID"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_editor_absoluteX="15dp">
@@ -61,7 +69,6 @@
                             android:layout_height="50dp"
                             android:backgroundTint="@color/greenButton"
                             android:padding="20dp"
-                            app:icon="@drawable/angle_right_solid"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -159,8 +166,8 @@
                             android:layout_marginStart="10dp"
                             android:ellipsize="end"
                             android:fontFamily="@font/manrope_regular"
-                            android:minLines="3"
                             android:maxLines="3"
+                            android:minLines="3"
                             android:text="@string/description"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
