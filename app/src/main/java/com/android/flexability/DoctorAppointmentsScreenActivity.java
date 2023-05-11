@@ -36,8 +36,8 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         listView6 = (ListView) findViewById(R.id.appointmentsList6);
         listView7 = (ListView) findViewById(R.id.appointmentsList7);
 
-        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(getApplicationContext(), nameList, amkaList, timeList, 1);
-        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(getApplicationContext(), nameList, amkaList, timeList, 2);
+        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, nameList, amkaList, timeList, 1);
+        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, nameList, amkaList, timeList, 2);
 
         listView1.setAdapter(customBasedAdapter1);
         listView2.setAdapter(customBasedAdapter2);

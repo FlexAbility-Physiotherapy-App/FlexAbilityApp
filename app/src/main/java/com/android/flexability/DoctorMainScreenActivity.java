@@ -22,7 +22,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_main_screen);
 
         listView1 = (ListView) findViewById(R.id.appointmentsList1);
-        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(getApplicationContext(), nameList, amkaList, timeList, 1);
+        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, nameList, amkaList, timeList, 1);
         listView1.setAdapter(customBasedAdapter1);
         Utility.setListViewHeightBasedOnChildren(listView1);
 
