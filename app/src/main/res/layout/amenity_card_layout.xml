@@ -70,7 +70,8 @@
                             android:backgroundTint="@color/greenButton"
                             android:padding="20dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:contentDescription="@string/expand_contract_card_description"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

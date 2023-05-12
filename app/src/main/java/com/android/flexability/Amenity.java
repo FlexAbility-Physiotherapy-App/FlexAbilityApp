@@ -1,10 +1,10 @@
 package com.android.flexability;
 
 public class Amenity {
-    private String title;
-    private String code;
-    private int price;
-    private String description;
+    private final String title;
+    private final String code;
+    private final int price;
+    private final String description;
 
     public Amenity(String title, String code, int price, String description) {
         this.title = title;
