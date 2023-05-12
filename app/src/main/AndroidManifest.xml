@@ -36,6 +36,9 @@
             android:name=".DisplayAmenitiesScreenActivity"
             android:exported="false" />
         <activity
+            android:name=".RequestedAppointments"
+            android:exported="false" />
+        <activity
             android:name=".PhysioMainScreen"
             android:exported="true">
             <intent-filter>
