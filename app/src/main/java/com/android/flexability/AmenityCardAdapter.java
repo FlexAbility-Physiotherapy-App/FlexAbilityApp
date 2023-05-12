@@ -31,21 +31,20 @@ public class AmenityCardAdapter extends BaseAdapter {
     }
 
     // Function that will parse the json string and populate the amenities arraylist
-    // with the amenities that are available for the current room
     public static ArrayList<Amenity> parseJson(String response) {
         ArrayList<Amenity> amenities = new ArrayList<>();
         try{
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray amenitiesArray = jsonObject.getJSONArray("amenities");
+            JSONArray amenitiesArray = jsonObject.getJSONArray("provisions");
 
             for (int i = 0; i < amenitiesArray.length(); i++) {
                 JSONObject amenityObject = amenitiesArray.getJSONObject(i);
 
-                String title = amenityObject.getString("title");
+                String name = amenityObject.getString("name");
                 String code = amenityObject.getString("code");
                 int cost = amenityObject.getInt("cost");
                 String description = amenityObject.getString("description");
-                Amenity amenity = new Amenity(title, code, cost, description);
+                Amenity amenity = new Amenity(name, code, cost, description);
 
                 amenities.add(amenity);
             }
@@ -75,10 +74,9 @@ public class AmenityCardAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.amenity_card_layout, null);
-
-            Amenity amenity = amenities.get(position);
-            setCardData(amenity, convertView, this.context);
         }
+        Amenity amenity = amenities.get(position);
+        setCardData(amenity, convertView, this.context);
         return convertView;
     }
 
