@@ -44,6 +44,9 @@
         <activity
             android:name=".CustomListViewGreenActivity"
             android:exported="false" />
+        <activity
+            android:name=".PatientNotFound"
+            android:exported="false" />
     </application>
 
 </manifest>
