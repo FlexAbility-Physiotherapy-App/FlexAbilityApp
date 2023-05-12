@@ -3,10 +3,8 @@ package com.android.flexability;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
 
@@ -20,14 +18,9 @@ public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_amenities_screen);
 
         Button btnBack = findViewById(R.id.backButton);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btnBack.setOnClickListener(view -> finish());
 
-        listView = (ListView)findViewById(R.id.amenitiesList);
+        listView = findViewById(R.id.amenitiesList);
         try {
             json_response = new OkHttpHandler().getAmenities();
             System.out.println("HTTP Response received successfully");

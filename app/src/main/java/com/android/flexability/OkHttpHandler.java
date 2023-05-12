@@ -14,18 +14,18 @@ public class OkHttpHandler {
         StrictMode.setThreadPolicy(policy);
     }
 
-    public String getAmenities() throws Exception {
+    public String getAmenities() {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PROVISIONS;
         return apiRequest(url, "GET");
     }
 
-    public String getAmenities(int limit) throws Exception {
+    public String getAmenities(int limit) {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PROVISIONS + "?" +
                 "limit=" + limit;
         return apiRequest(url, "GET");
     }
 
-    public int getAmenitiesCount() throws Exception {
+    public int getAmenitiesCount() {
         String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PROVISION_COUNT;
         String response = apiRequest(url, "GET");
         try{
@@ -38,7 +38,7 @@ public class OkHttpHandler {
         return 0;
     }
 
-    public void createAmenity(String name, String code, String price, String desc) throws Exception {
+    public void createAmenity(String name, String code, String price, String desc) {
         String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_CREATE_PROVISION + "?" +
                 "name=" + name +
                 "&id=" + code +
@@ -48,7 +48,7 @@ public class OkHttpHandler {
         System.out.println("Amenity created successfully. Response: " + response);
     }
 
-    private String apiRequest(String url, String method) throws Exception {
+    private String apiRequest(String url, String method) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody requestBody = RequestBody.create("", MediaType.parse("text/plain"));
         if (method.equals("GET")) {

@@ -1,7 +1,6 @@
 package com.android.flexability;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,45 +81,42 @@ public class AmenityCardAdapter extends BaseAdapter {
 
     public static void setCardData(Amenity amenity, View convertView, Context context) {
         // Set values to the card's text fields
-        TextView title = (TextView) convertView.findViewById(R.id.txtAmenityTitle);
+        TextView title = convertView.findViewById(R.id.txtAmenityTitle);
         title.setText(amenity.getTitle());
-        TextView code = (TextView) convertView.findViewById(R.id.txtViewID);
+        TextView code = convertView.findViewById(R.id.txtViewID);
         code.setText(amenity.getCode());
-        TextView price = (TextView) convertView.findViewById(R.id.txtViewPrice);
+        TextView price = convertView.findViewById(R.id.txtViewPrice);
         price.setText(context.getResources().getString(R.string.costPerSession, amenity.getPrice()));
-        TextView description = (TextView) convertView.findViewById(R.id.txtViewDescription);
+        TextView description = convertView.findViewById(R.id.txtViewDescription);
         description.setText(amenity.getDescription());
 
-        // Set the carc's icons
-        ImageView IDView = (ImageView) convertView.findViewById(R.id.imgID);
+        // Set the card's icons
+        ImageView IDView = convertView.findViewById(R.id.imgID);
         IDView.setImageResource(R.drawable.hashtag);
-        ImageView priceView = (ImageView) convertView.findViewById(R.id.imgPrice);
+        ImageView priceView = convertView.findViewById(R.id.imgPrice);
         priceView.setImageResource(R.drawable.euro);
-        ImageView descriptionView = (ImageView) convertView.findViewById(R.id.imgDescription);
+        ImageView descriptionView = convertView.findViewById(R.id.imgDescription);
         descriptionView.setImageResource(R.drawable.info);
 
         // Set the expand button's icon
-        Button expandButton = (Button) convertView.findViewById(R.id.expandButton);
+        Button expandButton = convertView.findViewById(R.id.expandButton);
         expandButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.angle_right_solid, 0, 0, 0);
         Drawable drawable = expandButton.getCompoundDrawables()[0];
         drawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(drawable, context.getResources().getColor(R.color.white, null));
         expandButton.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
-        expandButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (description.getMaxLines() == 3) {
-                    description.setMaxLines(Integer.MAX_VALUE);
-                    expandButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.angle_down_solid, 0, 0, 0);
-                } else {
-                    description.setMaxLines(3);
-                    expandButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.angle_right_solid, 0, 0, 0);
-                }
-                Drawable drawable = expandButton.getCompoundDrawables()[0];
-                drawable = DrawableCompat.wrap(drawable);
-                DrawableCompat.setTint(drawable, context.getResources().getColor(R.color.white, null));
-                expandButton.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
+        expandButton.setOnClickListener(view -> {
+            if (description.getMaxLines() == 3) {
+                description.setMaxLines(Integer.MAX_VALUE);
+                expandButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.angle_down_solid, 0, 0, 0);
+            } else {
+                description.setMaxLines(3);
+                expandButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.angle_right_solid, 0, 0, 0);
             }
+            Drawable drawable1 = expandButton.getCompoundDrawables()[0];
+            drawable1 = DrawableCompat.wrap(drawable1);
+            DrawableCompat.setTint(drawable1, context.getResources().getColor(R.color.white, null));
+            expandButton.setCompoundDrawablesWithIntrinsicBounds(drawable1, null, null, null);
         });
     }
 }

@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PhysioMainScreen extends AppCompatActivity {
 
     String json_response;
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +26,15 @@ public class PhysioMainScreen extends AppCompatActivity {
         updateAmenityCount();
 
         Button btnCreateAmenity = findViewById(R.id.btnCreateAmenity);
-        btnCreateAmenity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PhysioMainScreen.this, CreateAmenityActivity.class);
-                startActivity(intent);
-            }
+        btnCreateAmenity.setOnClickListener(view -> {
+            Intent intent = new Intent(PhysioMainScreen.this, CreateAmenityActivity.class);
+            startActivity(intent);
         });
 
         Button btnShowAllAmenities = findViewById(R.id.btnShowAllAmenities);
-        btnShowAllAmenities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PhysioMainScreen.this, DisplayAmenitiesScreenActivity.class);
-                startActivity(intent);
-            }
+        btnShowAllAmenities.setOnClickListener(view -> {
+            Intent intent = new Intent(PhysioMainScreen.this, DisplayAmenitiesScreenActivity.class);
+            startActivity(intent);
         });
 
         // Load 2 amenities for the preview list
