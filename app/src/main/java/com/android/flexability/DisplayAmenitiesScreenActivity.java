@@ -28,13 +28,9 @@ public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
         });
 
         listView = (ListView)findViewById(R.id.amenitiesList);
-        String url = "example.com"; // TODO: Replace with the API URL
         try {
-            json_response = new OkHttpHandler().getAmenitiesJSON(url);
+            json_response = new OkHttpHandler().getAmenities();
             System.out.println("HTTP Response received successfully");
-            // TODO: Remove toast
-            Toast.makeText(getApplicationContext(), "Amenities loaded successfully",
-                    Toast.LENGTH_SHORT).show();
         }
         catch (Exception e) {
             e.printStackTrace();

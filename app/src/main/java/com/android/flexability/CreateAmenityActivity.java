@@ -55,17 +55,10 @@ public class CreateAmenityActivity extends AppCompatActivity {
                     && price.length() > 0
                     && description.length() > 0) {
 
-                    String myIP = "example.com"; // TODO: Replace with the API URL
-                    String url= "http://"+myIP+"/amenityServices/createAmenity.php?" +
-                            "name=" + name +
-                            "&code=" + code +
-                            "&price=" + price +
-                            "&description=" + description;
                     try {
                         OkHttpHandler okHttpHandler = new OkHttpHandler();
-                        okHttpHandler.createAmenity(url);
-                        // TODO: Remove toast
-                        Toast.makeText(getApplicationContext(), "Amenity created successfully",
+                        okHttpHandler.createAmenity(name, code, price, description);
+                        Toast.makeText(getApplicationContext(), "Δημιουργήθηκε νέα παροχή",
                                 Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
