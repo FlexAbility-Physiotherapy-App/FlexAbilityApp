@@ -56,11 +56,11 @@
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/searchConfirmButton"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/searchIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/searchIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="4dp"
@@ -132,7 +132,7 @@
         app:tint="@color/black" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/patientFoundText"
         android:layout_width="280dp"
         android:layout_height="140dp"
         android:text="@string/amkaNotFound"

@@ -31,6 +31,9 @@
     <string name="nameandsurname">Όνομα Επώνυμο</string>
     <string name="amkanumbers">###########</string>
     <string name="amkaNotFound">Δεν βρέθηκε ασθενής με το δοσμένο ΑΜΚΑ.</string>
+    <string name="amkaFound">Βρέθηκε ασθενής που να αντιστοιχεί στο δοσμένο ΑΜΚΑ:</string>
+    <string name="showHistory">Προβολή Ιστορικού</string>
+    <string name="fatherName">Πατρώνυμο</string>
     <string name="newPhysio">Νέο Φυσιοθεραπευτήριο</string>
     <string name="physioNameHint">π.χ. Body Care ||</string>
     <string name="physioName">Όνομα Φυσιοθεραπευτηρίου</string>
