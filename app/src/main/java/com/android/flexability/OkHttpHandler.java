@@ -1,5 +1,6 @@
 package com.android.flexability;
 
+import android.net.Uri;
 import android.os.*;
 
 import org.json.JSONObject;
@@ -46,6 +47,29 @@ public class OkHttpHandler {
                 "&description=" + desc;
         String response = apiRequest(url, "POST");
         System.out.println("Amenity created successfully. Response: " + response);
+    }
+
+    public String getAppointments(int id, String date){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENTS + "?" + "date=" + date + "&id=" + id;
+        return apiRequest(url, "GET");
+    }
+
+    public String getAppointments(int id, String date, int limit){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENTS + "?" + "date=" + date + "&id=" + id + "&limit=" + limit;
+        return apiRequest(url, "GET");
+    }
+
+    public int getAppointmentsCount(int id, String date) {
+        String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENT_COUNT + "?" + "date=" + date + "&id=" + id;
+        String response = apiRequest(url, "GET");
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            return jsonObject.getInt("totalAppointments");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     private String apiRequest(String url, String method) {

@@ -9,27 +9,71 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class CustomBasedAdapter extends BaseAdapter {
 
     Context context;
-    String nameList[];
-    String amkaList[];
-    String timeList[];
-    int type; //type 1 creates all 3 colors cards, while type 2 creates only black cards
+    ArrayList<Appointment> appointments;
+    int type; //type 1 creates all 3 colors of cards, while type 2 creates only black cards
     LayoutInflater inflater;
 
-    public CustomBasedAdapter(Context ctx, String nameList[], String amkaList[], String timeList[], int type){
+    public CustomBasedAdapter(Context ctx, String response, int type){
         this.context = ctx;
-        this.nameList = nameList;
-        this.amkaList = amkaList;
-        this.timeList = timeList;
+        this.appointments = parseJson(response);
         this.type = type;
         inflater = LayoutInflater.from(ctx);
     }
 
+    public static ArrayList<Appointment> parseJson(String response) {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray appointmentsArray = jsonObject.getJSONArray("appointments");
+
+            for (int i = 0; i < appointmentsArray.length(); i++) {
+                JSONObject appointmentObject = appointmentsArray.getJSONObject(i);
+
+                String name = appointmentObject.getString("name");
+                String surname = appointmentObject.getString("surname");
+                String amka = appointmentObject.getString("amka");
+                String timestamp = appointmentObject.getString("timestamp").replace(" ", "T");
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    LocalDateTime ldt = LocalDateTime.parse( timestamp );
+                    OffsetDateTime odt = ldt.atOffset( ZoneOffset.UTC );
+                    //LocalDate ld = odt.toLocalDate();
+                    LocalTime beginTime = odt.toLocalTime();
+                    LocalTime endTime = beginTime.plus(1, ChronoUnit.HOURS);
+                    String beginTimeString = beginTime.toString();
+                    String endTimeString = endTime.toString();
+                    String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
+                    Appointment appointment = new Appointment(name, surname, amka, time);
+                    appointments.add(appointment);
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return appointments;
+    }
+
     @Override
     public int getCount() {
-        return amkaList.length;
+        return appointments.size();
     }
 
     @Override
@@ -69,11 +113,11 @@ public class CustomBasedAdapter extends BaseAdapter {
         }
 
         TextView txtView = (TextView)row.findViewById(R.id.textView9);
-        txtView.setText(nameList[position]);
+        txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
         txtView = (TextView)row.findViewById(R.id.textView11);
-        txtView.setText(amkaList[position]);
+        txtView.setText(appointments.get(position).getAmka());
         txtView = (TextView)row.findViewById(R.id.textView7);
-        txtView.setText(timeList[position]);
+        txtView.setText(appointments.get(position).getDate());
 
         return row;
     }
