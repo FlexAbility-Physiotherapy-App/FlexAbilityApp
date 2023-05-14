@@ -69,6 +69,10 @@
     <string name="description">Περιγραφή</string>
     <string name="expand_contract_card_description">expand/contract card description</string>
     <string name="searchBtnText">Αναζήτηση ραντεβού</string>
+    <string name="comments">Παρατηρήσεις</string>
+    <string name="complete">Ολοκλήρωση Ραντεβού</string>
+    <string name="commentsExample">π.χ: Εντόπιση: Πού είναι; Ακτινοβολεί; Ποιότητα: Πώς είναι; Πώς το αισθάνεται; Ποσότητα/Σοβαρότητα: Πόσο σοβαρό είναι (πόνος 1-10) Χρονολογία: Πότε άρχισε; Πόσο διαρκεί; Πόσο συχνά; Συνθήκες πρόκλησης: Περιβαλλοντικοί παράγοντες, άσκηση, συγκινησιακή φόρτιση Παράγοντες που το υφίουν/επιδεινώνουν: Τί το βελτιώνει ή τί το επιδεινώνει; Συνοδά συμπτώματα: Μήπως έχετε παρατηρήσει άλλα συνοδά συμπτώματα;</string>
+    <string name="currentAppointment">Τρέχον Ραντεβού</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>
