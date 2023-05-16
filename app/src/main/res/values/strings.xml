@@ -73,6 +73,10 @@
     <string name="complete">Ολοκλήρωση Ραντεβού</string>
     <string name="commentsExample">π.χ: Εντόπιση: Πού είναι; Ακτινοβολεί; Ποιότητα: Πώς είναι; Πώς το αισθάνεται; Ποσότητα/Σοβαρότητα: Πόσο σοβαρό είναι (πόνος 1-10) Χρονολογία: Πότε άρχισε; Πόσο διαρκεί; Πόσο συχνά; Συνθήκες πρόκλησης: Περιβαλλοντικοί παράγοντες, άσκηση, συγκινησιακή φόρτιση Παράγοντες που το υφίουν/επιδεινώνουν: Τί το βελτιώνει ή τί το επιδεινώνει; Συνοδά συμπτώματα: Μήπως έχετε παρατηρήσει άλλα συνοδά συμπτώματα;</string>
     <string name="currentAppointment">Τρέχον Ραντεβού</string>
+    <string name="price_txt">- € 25.00</string>
+    <string name="physio_name">Physio Name</string>
+    <string name="title_activity_financial_moves">Κινήσεις</string>
+    <string name="show_graph_txt">Προβολή Γράφων</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>
