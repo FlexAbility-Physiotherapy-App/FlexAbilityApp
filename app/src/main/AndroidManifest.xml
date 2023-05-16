@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Transactions"
+            android:exported="false" />
+        <activity
             android:name=".PatientFound"
             android:exported="false" />
         <activity
@@ -29,7 +32,6 @@
         <activity
             android:name=".CurrentAppointmentScreenActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,14 +49,13 @@
             android:exported="false" />
         <activity
             android:name=".DoctorMainScreenActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".RequestedAppointments"
             android:exported="false" />
         <activity
             android:name=".PhysioMainScreen"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".CustomListViewBlackActivity"
             android:exported="false" />
