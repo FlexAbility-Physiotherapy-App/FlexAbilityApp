@@ -23,25 +23,15 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout6"
                 android:layout_width="255dp"
                 android:layout_height="40dp"
                 android:background="@drawable/search_bar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/add_new_pat"
-                app:layout_constraintHorizontal_bias="0.541"
-                app:layout_constraintStart_toEndOf="@+id/btnBack"
+                app:layout_constraintEnd_toStartOf="@+id/addPat"
+                app:layout_constraintStart_toEndOf="@+id/backButtonToMain"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
-
-                <ImageView
-                    android:id="@+id/searchConfirmButton"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/search_confirm_button" />
 
                 <EditText
                     android:id="@+id/amka_input"
@@ -55,7 +45,7 @@
                     android:textColorHint="@color/gray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/searchConfirmButton"
+                    app:layout_constraintEnd_toStartOf="@+id/searchPatientButton"
                     app:layout_constraintStart_toEndOf="@+id/searchIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,51 +58,42 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/search_button" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RelativeLayout
-                android:id="@+id/add_new_pat"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/add_new_pat"
-                android:clipToOutline="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="7dp"
-                    android:src="@drawable/add_person"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <ImageButton
+                    android:id="@+id/searchPatientButton"
+                    android:layout_width="30dp"
+                    android:layout_height="22dp"
+                    android:background="@null"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </RelativeLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/back_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="7dp"
-                    android:src="@drawable/angle_left_solid"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/search_confirm_button" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/addPat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/greenButton"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="9dp"
+                app:icon="@drawable/add_person"
+                app:iconPadding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/backButtonToMain"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/greenButton"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:padding="14dp"
+                app:icon="@drawable/angle_left_solid"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -135,6 +116,7 @@
         android:id="@+id/patientFoundText"
         android:layout_width="280dp"
         android:layout_height="140dp"
+        android:fontFamily="@font/manrope"
         android:text="@string/amkaNotFound"
         android:textAlignment="center"
         android:textColor="@color/black"

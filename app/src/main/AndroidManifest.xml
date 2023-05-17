@@ -31,13 +31,7 @@
 
         <activity
             android:name=".CurrentAppointmentScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".DoctorAppointmentsScreenActivity"
             android:exported="false" />
@@ -49,13 +43,19 @@
             android:exported="false" />
         <activity
             android:name=".DoctorMainScreenActivity"
-            android:exported="true" />
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity
             android:name=".RequestedAppointments"
             android:exported="false" />
         <activity
             android:name=".PhysioMainScreen"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".CustomListViewBlackActivity"
             android:exported="false" />
@@ -64,7 +64,10 @@
             android:exported="false" />
         <activity
             android:name=".PatientNotFound"
-            android:exported="false" />
+            android:exported="false"/>
+        <activity
+            android:name=".CreateNewPatient"
+            android:exported="false"/>
     </application>
 
 </manifest>

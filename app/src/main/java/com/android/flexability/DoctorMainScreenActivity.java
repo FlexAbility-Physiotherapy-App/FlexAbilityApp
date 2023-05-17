@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -20,6 +24,10 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
     TextView textView;
     String json_response;
     int json_response1;
+
+    ImageButton btnSearchPatient;
+    EditText inputAMKA;
+    Button btnAddPatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,55 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(DoctorMainScreenActivity.this, DoctorAppointmentsScreenActivity.class));
             }
         });
+
+        btnSearchPatient = findViewById(R.id.searchPatientButton);
+        inputAMKA = findViewById(R.id.amka_input);
+        createSearchButton();
+
+        btnAddPatient = findViewById(R.id.addPat);
+        btnAddPatient.setOnClickListener(view -> {
+            startActivity(new Intent(DoctorMainScreenActivity.this, CreateNewPatient.class));
+        });
+
     }
+
+    private void createSearchButton(){
+
+        btnSearchPatient.setOnClickListener(view -> {
+            String amka = inputAMKA.getText().toString();
+
+            if(amka.length() > 0){
+                try{
+                    OkHttpHandler okHttpHandler = new OkHttpHandler();
+                    String jsonString = okHttpHandler.getPatientFromAMKA(amka);
+                    Intent newIntent;
+                    if(jsonString == ""){
+                        newIntent = new Intent(this, PatientNotFound.class);
+                        newIntent.putExtra("AMKA", amka);
+                        finish();
+                        startActivity(newIntent);
+                    }
+                    else{
+                        newIntent = new Intent(this, PatientFound.class);
+                        newIntent.putExtra("AMKA", amka);
+                        newIntent.putExtra("PATIENT_JSON", jsonString);
+                        finish();
+                        startActivity(newIntent);
+                    }
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "AMKA is empty",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+    }
+
+
 
 }

@@ -100,4 +100,18 @@ public class OkHttpHandler {
         }
     }
 
+    public String getPatientFromAMKA(String amka){
+        String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_SEARCH_PATIENT + "?" + "amka=" + amka;
+
+        String response = apiRequest(url, "GET");
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            return jsonObject.toString();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }
