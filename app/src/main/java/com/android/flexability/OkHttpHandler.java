@@ -77,6 +77,12 @@ public class OkHttpHandler {
         return 0;
     }
 
+    public void completeAppointment(int physio_id, int patient_id, String timestamp, String comment) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_POST_COMPLETE_APPOINTMENT + "?comment=" + comment;
+        String response = apiRequest(url, "POST");
+        System.out.println("Appointment completed and DB was updated. Response: " + response);
+    }
+
     private String apiRequest(String url, String method) {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody requestBody = RequestBody.create("", MediaType.parse("text/plain"));
