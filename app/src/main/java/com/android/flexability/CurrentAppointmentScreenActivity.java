@@ -3,6 +3,7 @@ package com.android.flexability;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,10 +19,10 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_appointment_screen);
 
-        // Variables to get through the Intent once it is created
-        int physio_id = 1;
-        int patient_id = 3;
-        String timestamp = "2023-05-17 16:05:35";
+        Intent intent = getIntent();
+        int physio_id = Integer.parseInt(intent.getStringExtra("physioId"));
+        int patient_id = Integer.parseInt(intent.getStringExtra("patientId"));
+        String timestamp = intent.getStringExtra("timestamp");
 
         btnBack = findViewById(R.id.btnBack);
         editTextComments = findViewById(R.id.editTextComments);
@@ -41,6 +42,7 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             finish();
+            startActivity(new Intent(CurrentAppointmentScreenActivity.this, DoctorMainScreenActivity.class));
         });
     }
 }
