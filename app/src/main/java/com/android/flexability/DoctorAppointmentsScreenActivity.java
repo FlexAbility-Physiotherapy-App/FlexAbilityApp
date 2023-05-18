@@ -50,7 +50,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, json_response, 1);
+        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, json_response, 1, id);
         listView1.setAdapter(customBasedAdapter1);
         Utility.setListViewHeightBasedOnChildren(listView1);
 
@@ -66,7 +66,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, json_response, 2, id);
         listView2.setAdapter(customBasedAdapter2);
         Utility.setListViewHeightBasedOnChildren(listView2);
 
@@ -87,7 +87,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter3 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter3 = new CustomBasedAdapter(this, json_response, 2, id);
         listView3.setAdapter(customBasedAdapter3);
         Utility.setListViewHeightBasedOnChildren(listView3);
 
@@ -106,7 +106,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter4 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter4 = new CustomBasedAdapter(this, json_response, 2, id);
         listView4.setAdapter(customBasedAdapter4);
         Utility.setListViewHeightBasedOnChildren(listView4);
 
@@ -125,7 +125,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter5 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter5 = new CustomBasedAdapter(this, json_response, 2, id);
         listView5.setAdapter(customBasedAdapter5);
         Utility.setListViewHeightBasedOnChildren(listView5);
 
@@ -144,7 +144,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter6 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter6 = new CustomBasedAdapter(this, json_response, 2, id);
         listView6.setAdapter(customBasedAdapter6);
         Utility.setListViewHeightBasedOnChildren(listView6);
 
@@ -163,7 +163,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        CustomBasedAdapter customBasedAdapter7 = new CustomBasedAdapter(this, json_response, 2);
+        CustomBasedAdapter customBasedAdapter7 = new CustomBasedAdapter(this, json_response, 2, id);
         listView7.setAdapter(customBasedAdapter7);
         Utility.setListViewHeightBasedOnChildren(listView7);
 

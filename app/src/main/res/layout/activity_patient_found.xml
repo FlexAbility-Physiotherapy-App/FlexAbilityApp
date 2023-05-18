@@ -33,12 +33,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
 
-                <ImageView
-                    android:id="@+id/searchConfirmButton"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <ImageButton
+                    android:id="@+id/searchPatientButton"
+                    android:layout_width="30dp"
+                    android:layout_height="22dp"
+                    android:background="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/search_confirm_button" />
@@ -48,6 +47,8 @@
                     android:layout_width="160dp"
                     android:layout_height="35dp"
                     android:background="@null"
+                    android:fontFamily="@font/manrope"
+                    android:fontFeatureSettings="m"
                     android:hint="@string/amkaHint"
                     android:inputType="text"
                     android:textColor="@color/black"
@@ -55,7 +56,7 @@
                     android:textColorHint="@color/gray"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/searchConfirmButton"
+                    app:layout_constraintEnd_toStartOf="@+id/searchPatientButton"
                     app:layout_constraintStart_toEndOf="@+id/searchIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,17 +81,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:id="@+id/addPatientButton"
+                <Button
+                    android:id="@+id/addPat"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:padding="7dp"
-                    android:src="@drawable/add_person"
-                    android:tint="@color/white"
+                    android:backgroundTint="@color/greenButton"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="9dp"
+                    app:icon="@drawable/add_person"
+                    app:iconPadding="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </RelativeLayout>
 
@@ -104,16 +106,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:id="@+id/backButton"
+                <Button
+                    android:id="@+id/backButtonToMain"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:padding="7dp"
-                    android:src="@drawable/angle_left_solid"
-                    android:tint="@color/white"
+                    android:backgroundTint="@color/greenButton"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="14dp"
+                    app:icon="@drawable/angle_left_solid"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -127,6 +130,7 @@
         android:layout_width="360dp"
         android:layout_height="60dp"
         android:layout_marginTop="70dp"
+        android:fontFamily="@font/manrope"
         android:text="@string/amkaFound"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -180,7 +184,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/constraintLayout9"
                             android:layout_width="170dp"
-                            android:layout_height="100dp"
+                            android:layout_height="112dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -190,7 +194,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="40dp"
+                                android:layout_height="56dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -198,7 +202,8 @@
                                 <TextView
                                     android:id="@+id/textView12"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="28dp"
+                                    android:fontFamily="@font/manrope"
                                     android:text="@string/patientsname"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -209,7 +214,8 @@
                                 <TextView
                                     android:id="@+id/patientName"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="28dp"
+                                    android:fontFamily="@font/manrope"
                                     android:text="Νεκτάριος Νεκταρίου"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -219,7 +225,7 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="45dp"
+                                android:layout_height="55dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent">
@@ -227,7 +233,8 @@
                                 <TextView
                                     android:id="@+id/textView14"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="28dp"
+                                    android:fontFamily="@font/manrope"
                                     android:text="@string/fatherName"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
@@ -238,7 +245,8 @@
                                 <TextView
                                     android:id="@+id/patientFatherName"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="28dp"
+                                    android:fontFamily="@font/manrope"
                                     android:text="Δημήτριος"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"

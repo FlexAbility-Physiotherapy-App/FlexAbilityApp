@@ -30,11 +30,13 @@ public class CustomBasedAdapter extends BaseAdapter {
     ArrayList<Appointment> appointments;
     int type; //type 1 creates all 3 colors of cards, while type 2 creates only black cards
     LayoutInflater inflater;
+    int physioId;
 
-    public CustomBasedAdapter(Context ctx, String response, int type){
+    public CustomBasedAdapter(Context ctx, String response, int type, int id){
         this.context = ctx;
         this.appointments = parseJson(response);
         this.type = type;
+        this.physioId = id;
         inflater = LayoutInflater.from(ctx);
     }
 
@@ -50,17 +52,10 @@ public class CustomBasedAdapter extends BaseAdapter {
                 String name = appointmentObject.getString("name");
                 String surname = appointmentObject.getString("surname");
                 String amka = appointmentObject.getString("amka");
-                String timestamp = appointmentObject.getString("timestamp").replace(" ", "T");
+                String timestamp = appointmentObject.getString("timestamp");
+                int patientId = appointmentObject.getInt("patientId");
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    LocalDateTime ldt = LocalDateTime.parse( timestamp );
-                    OffsetDateTime odt = ldt.atOffset( ZoneOffset.UTC );
-                    //LocalDate ld = odt.toLocalDate();
-                    LocalTime beginTime = odt.toLocalTime();
-                    LocalTime endTime = beginTime.plus(1, ChronoUnit.HOURS);
-                    String beginTimeString = beginTime.toString();
-                    String endTimeString = endTime.toString();
-                    String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
-                    Appointment appointment = new Appointment(name, surname, amka, time);
+                    Appointment appointment = new Appointment(name, surname, amka, timestamp, patientId);
                     appointments.add(appointment);
                 }
             }
@@ -99,6 +94,9 @@ public class CustomBasedAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, CurrentAppointmentScreenActivity.class);
+                    intent.putExtra("physioId", physioId);
+                    intent.putExtra("patientId", appointments.get(position).getPatientId());
+                    intent.putExtra("timestamp", appointments.get(position).getTimestamp());
                     context.startActivity(intent);
                 }
             });
@@ -112,12 +110,23 @@ public class CustomBasedAdapter extends BaseAdapter {
             row = layoutInflater.inflate(R.layout.activity_custom_list_view_black, parent, false);
         }
 
-        TextView txtView = (TextView)row.findViewById(R.id.textView9);
-        txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
-        txtView = (TextView)row.findViewById(R.id.textView11);
-        txtView.setText(appointments.get(position).getAmka());
-        txtView = (TextView)row.findViewById(R.id.textView7);
-        txtView.setText(appointments.get(position).getDate());
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDateTime ldt = LocalDateTime.parse(appointments.get(position).getTimestamp().replace(" ", "T"));
+            OffsetDateTime odt = ldt.atOffset( ZoneOffset.UTC );
+            LocalTime beginTime = odt.toLocalTime();
+            LocalTime endTime = beginTime.plus(1, ChronoUnit.HOURS);
+            String beginTimeString = beginTime.toString();
+            String endTimeString = endTime.toString();
+            String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
+
+            TextView txtView = (TextView)row.findViewById(R.id.textView9);
+            txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
+            txtView = (TextView)row.findViewById(R.id.textView11);
+            txtView.setText(appointments.get(position).getAmka());
+            txtView = (TextView)row.findViewById(R.id.textView7);
+            txtView.setText(time);
+        }
 
         return row;
     }
