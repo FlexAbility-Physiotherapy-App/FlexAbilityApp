@@ -64,6 +64,11 @@ public class OkHttpHandler {
         return apiRequest(url, "GET");
     }
 
+    public String getRequestedAppointments(int id, String date){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_REQUESTED_APPOINTMENTS + "?" + "date=" + date + "&id=" + id;
+        return apiRequest(url, "GET");
+    }
+
     public int getAppointmentsCount(int id, String date) {
         String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENT_COUNT + "?" + "date=" + date + "&id=" + id;
         String response = apiRequest(url, "GET");
@@ -114,5 +119,4 @@ public class OkHttpHandler {
         }
         return "";
     }
-
 }

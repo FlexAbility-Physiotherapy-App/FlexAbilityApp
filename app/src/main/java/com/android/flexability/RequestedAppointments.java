@@ -1,9 +1,5 @@
 package com.android.flexability;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -14,16 +10,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
 
 public class RequestedAppointments extends AppCompatActivity {
-    // TODO Replace.
-    ArrayList<String> amkaList = new ArrayList<>(Arrays.asList("18920365429", "01629354107", "01918273026"));
-    ArrayList<String> nameList = new ArrayList<>(Arrays.asList("Μανος Ξεςποιοςμανος", "Ampa los", "Αλεξης τσιπρας"));
-    ArrayList<String> timeList = new ArrayList<>(Arrays.asList("14:00-15:00", "15:00-16:00", "16:00-18:00"));
-
     LinearLayout reqAppointmentList;
+
+    int TEMP_PHYSIO_ID = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,13 @@ public class RequestedAppointments extends AppCompatActivity {
         reqAppointmentList = this.findViewById(R.id.reqAppointmentList);
 
         // For x amount of days ahead.
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 7; i++){
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.DATE, i);
+
+            String day = new SimpleDateFormat("EEEE").format(c.getTime());
+            String date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+
             ImageView arrowImg = new ImageView(this);
             TextView dayLabel = new TextView(this);
             TextView dateLabel = new TextView(this);
@@ -51,7 +58,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // dayLabel Parameters.
-            dayLabel.setText("Ημερα " + i); // TODO Add call to DB.
+            dayLabel.setText(day);
             dayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             dayLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
             dayLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
@@ -64,7 +71,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // dateLabel Parameters.
-            dateLabel.setText("00/00/000" + i); // TODO Add call to DB.
+            dateLabel.setText(date);
             dateLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 //            dateLabel.setTextColor(getResources().getColor(R.color.titleDark));
             dateLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_regular));
@@ -77,7 +84,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // counterLabel Parameters.
-            counterLabel.setText("(" + i + ")"); // TODO Add call to DB.
+            counterLabel.setText("(#)"); // Default value. Changes when appointments are loaded.
             counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             counterLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
             counterLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
@@ -94,22 +101,31 @@ public class RequestedAppointments extends AppCompatActivity {
             list.setOrientation(LinearLayout.VERTICAL);
             list.setVisibility(View.GONE);
 
+
             // Loads all given appointment requests for the given day.
-            for(int position = 0; position < amkaList.size(); position++){ // TODO Add call to DB.
+            ArrayList<Appointment> appointments = appointmentsParser(new OkHttpHandler().getRequestedAppointments(TEMP_PHYSIO_ID, date));
+
+
+            // Updates Counter value.
+            counterLabel.setText("(" + appointments.size() + ")");
+
+
+            // Loads all appointments of the day.
+            for(Appointment a : appointments){
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
-
                 TextView txtView = appointmentRequest.findViewById(R.id.amkaTextView);
-                txtView.setText(amkaList.get(position)); // Updates AMKA.
+                txtView.setText(a.getAmka()); // Updates AMKA.
 
                 txtView = appointmentRequest.findViewById(R.id.nameTextView);
-                txtView.setText(nameList.get(position)); // Updates Name.
+                txtView.setText(a.getName_()); // Updates Name.
 
                 txtView = appointmentRequest.findViewById(R.id.timeTextView);
-                txtView.setText(timeList.get(position)); // Updates Time.
+                txtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
 
                 list.addView(appointmentRequest);
             }
+
 
             // Container that holds date, counter and arrow down.
             LinearLayout listDataContainer = new LinearLayout(this);
@@ -134,6 +150,7 @@ public class RequestedAppointments extends AppCompatActivity {
                 }
             });
 
+
             // Holds date and all appointments.
             LinearLayout dayContainer = new LinearLayout(this);
             dayContainer.setOrientation(LinearLayout.VERTICAL);
@@ -143,5 +160,31 @@ public class RequestedAppointments extends AppCompatActivity {
 
             reqAppointmentList.addView(dayContainer);
         }
+    }
+
+    private ArrayList<Appointment> appointmentsParser(String json) {
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        try{
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray appointmentsArray = jsonObject.getJSONArray("appointments");
+
+            for (int i = 0; i < appointmentsArray.length(); i++) {
+                JSONObject appointmentObject = appointmentsArray.getJSONObject(i);
+
+                String name = appointmentObject.getString("name");
+                String surname = appointmentObject.getString("surname");
+                String amka = appointmentObject.getString("amka");
+                String timestamp = appointmentObject.getString("timestamp");
+                int patientId = appointmentObject.getInt("patientId");
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    Appointment appointment = new Appointment(name, surname, amka, timestamp, patientId);
+                    appointments.add(appointment);
+                }
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return appointments;
     }
 }
