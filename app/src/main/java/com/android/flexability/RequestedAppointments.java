@@ -1,6 +1,7 @@
 package com.android.flexability;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
@@ -11,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,19 +22,15 @@ public class RequestedAppointments extends AppCompatActivity {
     ArrayList<String> amkaList = new ArrayList<>(Arrays.asList("18920365429", "01629354107", "01918273026"));
     ArrayList<String> nameList = new ArrayList<>(Arrays.asList("Μανος Ξεςποιοςμανος", "Ampa los", "Αλεξης τσιπρας"));
     ArrayList<String> timeList = new ArrayList<>(Arrays.asList("14:00-15:00", "15:00-16:00", "16:00-18:00"));
-    ArrayList<String> descList = new ArrayList<>(Arrays.asList("Septemvrhs", "Tsakalakos", "persefonh"));
+
+    LinearLayout reqAppointmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_appointments);
 
-        // Main container.
-        ScrollView scrollableMain = new ScrollView(this);
-
-        // Container to hold all appointments.
-        LinearLayout appointments = new LinearLayout(this);
-        appointments.setOrientation(LinearLayout.VERTICAL);
+        reqAppointmentList = this.findViewById(R.id.reqAppointmentList);
 
         // For x amount of days ahead.
         for(int i = 0; i < 5; i++){
@@ -46,15 +42,25 @@ public class RequestedAppointments extends AppCompatActivity {
 
             // arrowImg Parameters.
             arrowImg.setImageResource(R.drawable.angle_right_solid);
-            arrowImg.setPadding(100,25,15,25);
+            arrowImg.setPadding(
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density),
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density)
+            );
 
 
             // dayLabel Parameters.
             dayLabel.setText("Ημερα " + i); // TODO Add call to DB.
             dayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-            dayLabel.setTextColor(getResources().getColor(R.color.titleDark));
+            dayLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
             dayLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-            dayLabel.setPadding(15,25,15,25);
+            dayLabel.setPadding(
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density),
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density)
+            );
 
 
             // dateLabel Parameters.
@@ -62,15 +68,25 @@ public class RequestedAppointments extends AppCompatActivity {
             dateLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 //            dateLabel.setTextColor(getResources().getColor(R.color.titleDark));
             dateLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_regular));
-            dateLabel.setPadding(15,25,15,25);
+            dateLabel.setPadding(
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density),
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density)
+            );
 
 
             // counterLabel Parameters.
             counterLabel.setText("(" + i + ")"); // TODO Add call to DB.
             counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-            counterLabel.setTextColor(getResources().getColor(R.color.titleDark));
+            counterLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
             counterLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-            counterLabel.setPadding(15,25,15,25);
+            counterLabel.setPadding(
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density),
+                    (int) (7 * this.getResources().getDisplayMetrics().density),
+                    (int) (10 * this.getResources().getDisplayMetrics().density)
+            );
 
 
             // LinearLayout list for requested appointments.
@@ -84,16 +100,13 @@ public class RequestedAppointments extends AppCompatActivity {
                 View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
 
                 TextView txtView = appointmentRequest.findViewById(R.id.amkaTextView);
-                txtView.setText(amkaList.get(position));
+                txtView.setText(amkaList.get(position)); // Updates AMKA.
 
                 txtView = appointmentRequest.findViewById(R.id.nameTextView);
-                txtView.setText(nameList.get(position));
+                txtView.setText(nameList.get(position)); // Updates Name.
 
                 txtView = appointmentRequest.findViewById(R.id.timeTextView);
-                txtView.setText(timeList.get(position));
-
-                txtView = appointmentRequest.findViewById(R.id.descriptionTextView);
-                txtView.setText(descList.get(position));
+                txtView.setText(timeList.get(position)); // Updates Time.
 
                 list.addView(appointmentRequest);
             }
@@ -128,12 +141,7 @@ public class RequestedAppointments extends AppCompatActivity {
             dayContainer.addView(listDataContainer);
             dayContainer.addView(list);
 
-            appointments.addView(dayContainer);
+            reqAppointmentList.addView(dayContainer);
         }
-
-        scrollableMain.addView(appointments);
-
-        ScrollView.LayoutParams layoutParams = new ScrollView.LayoutParams(ScrollView.LayoutParams.MATCH_PARENT, ScrollView.LayoutParams.MATCH_PARENT);
-        this.addContentView(scrollableMain, layoutParams);
     }
 }
