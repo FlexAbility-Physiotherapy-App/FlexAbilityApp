@@ -9,6 +9,7 @@ public class AppConfig {
     public static final String API_GET_APPOINTMENTS = "/getAppointments.php";
     public static final String API_GET_REQUESTED_APPOINTMENTS = "/getRequestedAppointments.php";
     public static final String API_GET_APPOINTMENT_COUNT = "/getAppointmentsCount.php";
+    public static final String API_GET_TRANSACTIONS = "getTransactions.php";
     public static final String API_POST_COMPLETE_APPOINTMENT = "/completeAppointment.php";
     public static final String API_SEARCH_PATIENT = "/searchPatient.php";
 

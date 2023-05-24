@@ -21,6 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class Transactions extends AppCompatActivity {
 
     @Override
@@ -35,9 +41,11 @@ public class Transactions extends AppCompatActivity {
         // if any info exists in the db:
         LinearLayout outerLL = (LinearLayout)findViewById(R.id.contentsFinancialMoves);
 
-        // Create the contents. They are CardView objects.
+        // Extract JSON data, from the database, concerning user transactions:
+        ArrayList<TransactionInfo> transactionsData = transactionsParser(new OkHttpHandler().getTransactions());
 
-        for(int i = 0; i < 8; i++) {
+        // Create the contents. They are CardView objects.
+        for(TransactionInfo ti: transactionsData) {
             // The card view
             CardView cv = new CardView(this);
 
@@ -51,6 +59,7 @@ public class Transactions extends AppCompatActivity {
             GradientDrawable gd = new GradientDrawable();
             gd.setCornerRadius(12);
 
+            //cv.setId(ti.getPhysioId());
             cv.setBackground(gd);
             cv.setCardElevation(5);
             cv.setLayoutParams(cvParams);
@@ -93,7 +102,7 @@ public class Transactions extends AppCompatActivity {
                     "font/manrope_extra_bold.ttf"
             );
 
-            phName.setText(getText(R.string.physio_name));
+            phName.setText(ti.getPhysioName());
             phName.setTextSize(18);
             phName.setTypeface(fontName);
 
@@ -103,7 +112,7 @@ public class Transactions extends AppCompatActivity {
             );
 
             date.setTextSize(14);
-            date.setText(getText(R.string.date));
+            date.setText(ti.getDate());
             date.setTypeface(fontDate);
 
             Typeface fontPrice = Typeface.createFromAsset(
@@ -111,7 +120,7 @@ public class Transactions extends AppCompatActivity {
                     "font/manrope_regular.ttf"
             );
 
-            price.setText(getText(R.string.price_txt));
+            price.setText(Double.toString(ti.getCost()));
             price.setTextSize(20);
             price.setTypeface(fontPrice);
 
@@ -154,5 +163,31 @@ public class Transactions extends AppCompatActivity {
 
             outerLL.addView(cv, LinearLayout.FOCUS_BACKWARD);
         }
+    }
+
+    private ArrayList<TransactionInfo> transactionsParser(String json) {
+        ArrayList<TransactionInfo> transactionData = new ArrayList<>();
+
+        try {
+            JSONObject transactionsJSONObj = new JSONObject(json);
+            JSONArray transactionsJSONArray = transactionsJSONObj.getJSONArray("transactions");
+
+            for(int i = 0; i < transactionsJSONArray.length(); ++i) {
+                JSONObject elmObj = transactionsJSONArray.getJSONObject(i);
+
+                String name = elmObj.getString("name");
+                String date = elmObj.getString("date");
+                double cost = elmObj.getDouble("cost");
+                int id = elmObj.getInt("id");
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
+                    transactionData.add(new TransactionInfo(date, name, id, cost));
+            }
+        }
+        catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return transactionData;
     }
 }
