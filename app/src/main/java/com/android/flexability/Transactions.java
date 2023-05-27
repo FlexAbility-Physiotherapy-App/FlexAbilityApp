@@ -120,7 +120,7 @@ public class Transactions extends AppCompatActivity {
                     "font/manrope_regular.ttf"
             );
 
-            price.setText(Double.toString(ti.getCost()));
+            price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));
             price.setTextSize(20);
             price.setTypeface(fontPrice);
 
