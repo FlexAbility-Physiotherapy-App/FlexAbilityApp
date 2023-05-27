@@ -31,7 +31,13 @@
 
         <activity
             android:name=".CurrentAppointmentScreenActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DoctorAppointmentsScreenActivity"
             android:exported="false" />
@@ -43,15 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".DoctorMainScreenActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".RequestedAppointments"
             android:exported="false" />
