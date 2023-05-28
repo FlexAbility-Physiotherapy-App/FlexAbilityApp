@@ -6,6 +6,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,8 +24,8 @@ import java.util.Calendar;
 
 public class RequestedAppointments extends AppCompatActivity {
     LinearLayout reqAppointmentList;
-
     int TEMP_PHYSIO_ID = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +115,20 @@ public class RequestedAppointments extends AppCompatActivity {
             for(Appointment a : appointments){
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
+
+                Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
+                Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
+
+                rejectButton.setOnClickListener(v -> {
+                    new OkHttpHandler().rejectAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp());
+                    recreate();
+                });
+
+                acceptButton.setOnClickListener(v -> {
+                    new OkHttpHandler().acceptAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp());
+                    recreate();
+                });
+
                 TextView txtView = appointmentRequest.findViewById(R.id.amkaTextView);
                 txtView.setText(a.getAmka()); // Updates AMKA.
 

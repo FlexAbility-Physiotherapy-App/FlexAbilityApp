@@ -69,6 +69,18 @@ public class OkHttpHandler {
         return apiRequest(url, "GET");
     }
 
+    public String rejectAppointment(int physio_id, int patient_id, String timestamp) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_POST_REJECT_APPOINTMENT +
+                "?physio_id=" + physio_id + "&patient_id=" + patient_id + "&timestamp=" + timestamp;
+        return apiRequest(url, "GET");
+    }
+
+    public String acceptAppointment(int physio_id, int patient_id, String timestamp) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_POST_ACCEPT_APPOINTMENT +
+                "?physio_id=" + physio_id + "&patient_id=" + patient_id + "&timestamp=" + timestamp;
+        return apiRequest(url, "GET");
+    }
+
     public int getAppointmentsCount(int id, String date) {
         String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENT_COUNT + "?" + "date=" + date + "&id=" + id;
         String response = apiRequest(url, "GET");
