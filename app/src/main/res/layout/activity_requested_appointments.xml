@@ -34,13 +34,13 @@
                     android:text="@string/appointments"
                     android:textColor="@color/titleDark"
                     android:textSize="40sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/backButton"
+                    app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/backButton"
+                    android:id="@+id/backBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="2dp"

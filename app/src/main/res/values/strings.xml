@@ -77,6 +77,9 @@
     <string name="price_mark">- € </string>
     <string name="title_activity_transactions">Κινήσεις</string>
     <string name="show_graph_txt">Προβολή Γράφων</string>
+    <string name="dayHeader">Ημέρα</string>
+    <string name="physioHeader">Φυσιοθεραπευτήριο</string>
+    <string name="phoneHeader">Τηλέφωνο</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

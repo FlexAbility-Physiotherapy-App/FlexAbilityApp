@@ -17,7 +17,7 @@ public class DisplayAmenitiesScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_amenities_screen);
 
-        Button btnBack = findViewById(R.id.backButton);
+        Button btnBack = findViewById(R.id.backBtn);
         btnBack.setOnClickListener(view -> finish());
 
         listView = findViewById(R.id.amenitiesList);

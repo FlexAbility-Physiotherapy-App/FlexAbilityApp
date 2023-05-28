@@ -12,17 +12,12 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class CustomBasedAdapter extends BaseAdapter {
 
@@ -120,11 +115,11 @@ public class CustomBasedAdapter extends BaseAdapter {
             String endTimeString = endTime.toString();
             String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
 
-            TextView txtView = (TextView)row.findViewById(R.id.textView9);
+            TextView txtView = (TextView)row.findViewById(R.id.nameText);
             txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
-            txtView = (TextView)row.findViewById(R.id.textView11);
+            txtView = (TextView)row.findViewById(R.id.phoneText);
             txtView.setText(appointments.get(position).getAmka());
-            txtView = (TextView)row.findViewById(R.id.textView7);
+            txtView = (TextView)row.findViewById(R.id.hourText);
             txtView.setText(time);
         }
 

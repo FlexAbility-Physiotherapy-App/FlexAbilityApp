@@ -278,7 +278,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         constraintLayout6.setOnClickListener(onClickListener);
         constraintLayout7.setOnClickListener(onClickListener);
 
-        Button backBtn = (Button)findViewById(R.id.backButton);
+        Button backBtn = (Button)findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

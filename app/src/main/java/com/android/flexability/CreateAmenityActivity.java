@@ -16,7 +16,7 @@ public class CreateAmenityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_amenity);
 
-        Button btnBack = findViewById(R.id.backButton);
+        Button btnBack = findViewById(R.id.backBtn);
         Button btnCancel = findViewById(R.id.btnCancel);
         Button btnCreate = findViewById(R.id.btnCreate);
 
