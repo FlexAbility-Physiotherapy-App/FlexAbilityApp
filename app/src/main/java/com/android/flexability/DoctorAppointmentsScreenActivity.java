@@ -34,7 +34,12 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         listView6 = (ListView) findViewById(R.id.appointmentsList6);
         listView7 = (ListView) findViewById(R.id.appointmentsList7);
 
-        int id = 8; //WILL CHANGE
+        int id = -1;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            id = bundle.getInt("id");
+        }
 
         //today
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
@@ -282,7 +287,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DoctorAppointmentsScreenActivity.this, DoctorMainScreenActivity.class));
+                finish();
             }
         });
     }

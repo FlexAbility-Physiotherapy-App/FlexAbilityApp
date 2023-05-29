@@ -34,7 +34,12 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_main_screen);
 
-        int id = 8; //WILL CHANGE
+        int id = -1;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null){
+            id = bundle.getInt("id");
+        }
         int limit = 3;
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.US);
@@ -65,10 +70,13 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         textView.setText("("+ json_response1 +")");
 
         TextView changeScreenBtn = (TextView) findViewById(R.id.changeScreen);
+        int finalId = id;
         changeScreenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DoctorMainScreenActivity.this, DoctorAppointmentsScreenActivity.class));
+                Intent intent = new Intent(DoctorMainScreenActivity.this, DoctorAppointmentsScreenActivity.class);
+                intent.putExtra("id", finalId);
+                startActivity(intent);
             }
         });
 

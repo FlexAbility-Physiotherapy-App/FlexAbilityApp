@@ -16,6 +16,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".PatientMainScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".SearchAppointmentResults"
             android:exported="false" />
         <activity
@@ -26,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".SearchAppointment"
-            android:exported="true" />
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"
@@ -34,13 +46,7 @@
 
         <activity
             android:name=".CurrentAppointmentScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".DoctorAppointmentsScreenActivity"
             android:exported="false" />
@@ -52,13 +58,13 @@
             android:exported="false" />
         <activity
             android:name=".DoctorMainScreenActivity"
-            android:exported="true" />
+            android:exported="false"></activity>
         <activity
             android:name=".RequestedAppointments"
             android:exported="false" />
         <activity
             android:name=".PhysioMainScreen"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".CustomListViewBlackActivity"
             android:exported="false" />

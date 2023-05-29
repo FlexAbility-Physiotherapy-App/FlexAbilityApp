@@ -136,4 +136,9 @@ public class OkHttpHandler {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_TRANSACTIONS;
         return apiRequest(url, "GET");
     }
+
+    public String getUser(String username, String password){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_USER + "?" + "username=" + username + "&password=" + password;
+        return apiRequest(url, "GET");
+    }
 }

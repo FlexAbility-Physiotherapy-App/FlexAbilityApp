@@ -1,9 +1,9 @@
 package com.android.flexability;
 
 public class Physio {
-    private Integer physioId;
     private String name;
     private String phone;
+    private int physioId;
 
     public Physio(Integer physioId, String name, String phone) {
         this.physioId = physioId;
