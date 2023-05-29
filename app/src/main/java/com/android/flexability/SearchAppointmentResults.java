@@ -1,7 +1,6 @@
 package com.android.flexability;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +56,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
                 requestBtn.setBackgroundColor(ContextCompat.getColor(container.getContext(), R.color.titleDark));
                 requestBtn.setText("Το αίτημα στάλθηκε!");
                 requestBtn.setEnabled(false);
-                requestBtn.setTextColor(getResources().getColor(R.color.white));
+                requestBtn.setTextColor(ContextCompat.getColor(this, R.color.white));
 
             });
 
