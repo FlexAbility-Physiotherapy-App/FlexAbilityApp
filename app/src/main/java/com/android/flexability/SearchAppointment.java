@@ -12,8 +12,6 @@ public class SearchAppointment extends AppCompatActivity {
 
     private Spinner daysSpinner;
     private Spinner hoursSpinner;
-    private Button searchBtn;
-    private Button backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,18 +20,16 @@ public class SearchAppointment extends AppCompatActivity {
 
         daysSpinner = findViewById(R.id.daysSpinner);
         hoursSpinner = findViewById(R.id.hoursSpinner);
-        searchBtn = findViewById(R.id.searchBtn);
-        backBtn = findViewById(R.id.backBtn);
+        Button searchBtn = findViewById(R.id.searchBtn);
+        Button backBtn = findViewById(R.id.backBtn);
 
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String day = daysSpinner.getSelectedItem().toString();
-                String hour = hoursSpinner.getSelectedItem().toString();
-                Intent intent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
-                intent.putExtra("day", day);
-                intent.putExtra("hour", hour);
-                startActivity(intent);
-            }
+        searchBtn.setOnClickListener(v -> {
+            String day = daysSpinner.getSelectedItem().toString();
+            String hour = hoursSpinner.getSelectedItem().toString();
+            Intent intent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
+            intent.putExtra("day", day);
+            intent.putExtra("hour", hour);
+            startActivity(intent);
         });
 
         //TO-DO: Add Intent for previous activity when backBtn is pressed

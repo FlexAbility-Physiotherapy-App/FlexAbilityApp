@@ -56,6 +56,8 @@ public class SearchAppointmentResults extends AppCompatActivity {
             requestBtn.setOnClickListener(v -> {
                 requestBtn.setBackgroundColor(ContextCompat.getColor(container.getContext(), R.color.titleDark));
                 requestBtn.setText("Το αίτημα στάλθηκε!");
+                requestBtn.setEnabled(false);
+                requestBtn.setTextColor(getResources().getColor(R.color.white));
 
             });
 
