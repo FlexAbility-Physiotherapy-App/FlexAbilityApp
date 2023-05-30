@@ -67,8 +67,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="339dp"
+                android:layout_width="0dp"
                 android:layout_height="284dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,11 +78,11 @@
 
                 <Spinner
                     android:id="@+id/daysSpinner"
-                    android:layout_width="300dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_background"
                     android:entries="@array/availableDays"
                     android:minHeight="48dp"
-                    android:background="@drawable/spinner_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,11 +90,11 @@
 
                 <Spinner
                     android:id="@+id/hoursSpinner"
-                    android:layout_width="300dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/spinner_background"
                     android:entries="@array/availableHours"
                     android:minHeight="48dp"
-                    android:background="@drawable/spinner_background"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +103,13 @@
 
             <Button
                 android:id="@+id/searchBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/greenButton"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:text="@string/searchBtnText"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"

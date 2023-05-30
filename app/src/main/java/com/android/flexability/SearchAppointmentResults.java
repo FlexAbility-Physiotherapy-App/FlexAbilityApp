@@ -2,6 +2,7 @@ package com.android.flexability;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,19 +25,13 @@ public class SearchAppointmentResults extends AppCompatActivity {
 
         Intent intent = getIntent();
         String day = intent.getStringExtra("day");
+        String date = intent.getStringExtra("date");
         String hour = intent.getStringExtra("hour");
+        String timestamp = date + " " + hour;
 
         LinearLayout container = findViewById(R.id.requestsLayout);
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
         Button backBtn = findViewById(R.id.backBtn);
-
-        //ONLY FOR TEST PURPOSES
-        availablePhysios.add(new Physio(1, "Physio 1", "Phone 1"));
-        availablePhysios.add(new Physio(2, "Physio 2", "Phone 2"));
-        availablePhysios.add(new Physio(3, "Physio 3", "Phone 3"));
-        availablePhysios.add(new Physio(4, "Physio 4", "Phone 4"));
-        availablePhysios.add(new Physio(5, "Physio 5", "Phone 5"));
-        availablePhysios.add(new Physio(6, "Physio 6", "Phone 6"));
 
         for (Physio physio : availablePhysios) {
             View cardView = inflater.inflate(R.layout.appointment_request_card, container, false);
@@ -64,8 +59,8 @@ public class SearchAppointmentResults extends AppCompatActivity {
         }
 
         backBtn.setOnClickListener(v -> {
-            Intent intent1 = new Intent(SearchAppointmentResults.this, SearchAppointment.class);
-            startActivity(intent1);
+            Intent backIntent = new Intent(SearchAppointmentResults.this, SearchAppointment.class);
+            startActivity(backIntent);
         });
     }
 }
