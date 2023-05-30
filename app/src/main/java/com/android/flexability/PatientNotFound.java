@@ -38,7 +38,7 @@ public class PatientNotFound extends AppCompatActivity {
 
         // Assign Button Events
         btnBack.setOnClickListener(view -> {
-            startActivity(new Intent(this, DoctorMainScreenActivity.class));
+            finish();
         });
 
         btnAddPatient.setOnClickListener(view -> {
@@ -46,8 +46,6 @@ public class PatientNotFound extends AppCompatActivity {
         });
 
         createSearchButton();
-
-
     }
 
     private void createSearchButton(){
@@ -73,16 +71,9 @@ public class PatientNotFound extends AppCompatActivity {
                         finish();
                         startActivity(newIntent);
                     }
-
-
-
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "AMKA is empty",
-                        Toast.LENGTH_SHORT).show();
             }
 
         });

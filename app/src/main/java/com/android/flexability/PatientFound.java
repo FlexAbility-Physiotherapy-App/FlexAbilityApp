@@ -58,7 +58,7 @@ public class PatientFound extends AppCompatActivity {
 
         // Assign Button Events
         btnBack.setOnClickListener(view -> {
-            startActivity(new Intent(this, DoctorMainScreenActivity.class));
+            finish();
         });
 
         btnAddPatient.setOnClickListener(view -> {

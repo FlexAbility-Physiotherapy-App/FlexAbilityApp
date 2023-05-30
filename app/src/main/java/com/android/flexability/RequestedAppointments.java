@@ -28,7 +28,6 @@ import java.util.Calendar;
 public class RequestedAppointments extends AppCompatActivity {
     LinearLayout reqAppointmentList;
     ImageFilterView backButton;
-    int TEMP_PHYSIO_ID = 2;
 
 
     @Override
@@ -36,7 +35,16 @@ public class RequestedAppointments extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requested_appointments);
 
+
+        // Retrieves userID.
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle == null)
+            return;
+        int userID = bundle.getInt("id");
+
         reqAppointmentList = this.findViewById(R.id.reqAppointmentList);
+
 
         // For x amount of days ahead.
         for(int i = 0; i < 7; i++){
@@ -78,7 +86,6 @@ public class RequestedAppointments extends AppCompatActivity {
             // dateLabel Parameters.
             dateLabel.setText(date);
             dateLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-//            dateLabel.setTextColor(getResources().getColor(R.color.titleDark));
             dateLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_regular));
             dateLabel.setPadding(
                     (int) (7 * this.getResources().getDisplayMetrics().density),
@@ -108,7 +115,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // Loads all given appointment requests for the given day.
-            ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(TEMP_PHYSIO_ID, date));
+            ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(userID, date));
 
 
             // Updates Counter value.
@@ -116,20 +123,21 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // Loads all appointments of the day.
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             for(Appointment a : appointments){
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
 
                 Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
                 Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
 
                 rejectButton.setOnClickListener(v -> {
-                    new OkHttpHandler().rejectAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp());
+                    new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
                     recreate();
                 });
 
                 acceptButton.setOnClickListener(v -> {
-                    new OkHttpHandler().acceptAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp());
+                    new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
                     recreate();
                 });
 
@@ -183,9 +191,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
         // Sets back button to return to the physios main screen.
         backButton = findViewById(R.id.backButtonView);
-        backButton.setOnClickListener(v -> startActivity(
-                new Intent(RequestedAppointments.this, DoctorMainScreenActivity.class)
-        ));
+        backButton.setOnClickListener(v -> finish());
     }
 
     public static ArrayList<Appointment> reqAppointmentsParser(String json) {

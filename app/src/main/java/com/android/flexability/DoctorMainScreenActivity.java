@@ -114,17 +114,15 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
                     OkHttpHandler okHttpHandler = new OkHttpHandler();
                     String jsonString = okHttpHandler.getPatientFromAMKA(amka);
                     Intent newIntent;
-                    if(jsonString == ""){
+                    if(jsonString.equals("")){
                         newIntent = new Intent(this, PatientNotFound.class);
                         newIntent.putExtra("AMKA", amka);
-                        finish();
                         startActivity(newIntent);
                     }
                     else{
                         newIntent = new Intent(this, PatientFound.class);
                         newIntent.putExtra("AMKA", amka);
                         newIntent.putExtra("PATIENT_JSON", jsonString);
-                        finish();
                         startActivity(newIntent);
                     }
 
@@ -140,7 +138,14 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
     }
 
     private void loadRequestedAppointments(){
-        int TEMP_PHYSIO_ID = 2; // TODO Remove.
+
+        // Retrieves userID.
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle == null)
+            return;
+        int userID = bundle.getInt("id");
+
         LinearLayout reqAppointmentsLayout = findViewById(R.id.reqAppointmentsLayout);
 
         // Appointments Header.
@@ -196,26 +201,31 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
                 (int) (10 * this.getResources().getDisplayMetrics().density)
         );
 
-        viewAllLabel.setOnClickListener(v -> startActivity(
-                new Intent(DoctorMainScreenActivity.this, RequestedAppointments.class)
-        ));
+        viewAllLabel.setOnClickListener(v ->{
+            Intent navToReqAppointments = new Intent(DoctorMainScreenActivity.this, RequestedAppointments.class);
+            navToReqAppointments.putExtra("id", userID);
+            startActivity(navToReqAppointments);
+        });
 
 
         listDataContainer.addView(appointmentsLabel);
         listDataContainer.addView(counterLabel);
         listDataContainer.addView(viewAllLabel);
 
+        reqAppointmentsLayout.addView(listDataContainer);
+
 
         // Loads all appointments.
-        ArrayList<Appointment> appointments = RequestedAppointments.reqAppointmentsParser(new OkHttpHandler().getAllRequestedAppointments(TEMP_PHYSIO_ID));
-
-        // Stop execution if no appointment is found.
-        if(appointments.size() == 0)
-            return;
+        ArrayList<Appointment> appointments = RequestedAppointments.reqAppointmentsParser(new OkHttpHandler().getAllRequestedAppointments(userID));
 
 
         // Updates Counter value.
         counterLabel.setText("(" + appointments.size() + ")");
+
+
+        // Stop execution if no appointment is found.
+        if(appointments.size() == 0)
+            return;
 
 
         // Gets first appointment.
@@ -228,12 +238,12 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
 
         rejectButton.setOnClickListener(v -> {
-            new OkHttpHandler().rejectAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
+            new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
             recreate();
         });
 
         acceptButton.setOnClickListener(v -> {
-            new OkHttpHandler().acceptAppointment(TEMP_PHYSIO_ID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
+            new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
             recreate();
         });
 
@@ -247,7 +257,6 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         txtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
 
 
-        reqAppointmentsLayout.addView(listDataContainer);
         reqAppointmentsLayout.addView(appointmentRequest);
     }
 }
