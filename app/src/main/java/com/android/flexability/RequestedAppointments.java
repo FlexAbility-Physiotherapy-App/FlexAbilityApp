@@ -1,7 +1,9 @@
 package com.android.flexability;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -24,6 +27,7 @@ import java.util.Calendar;
 
 public class RequestedAppointments extends AppCompatActivity {
     LinearLayout reqAppointmentList;
+    ImageFilterView backButton;
     int TEMP_PHYSIO_ID = 2;
 
 
@@ -59,7 +63,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // dayLabel Parameters.
-            dayLabel.setText(day);
+            dayLabel.setText(DayConverter.convertToGreek(day));
             dayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             dayLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
             dayLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
@@ -104,7 +108,7 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
             // Loads all given appointment requests for the given day.
-            ArrayList<Appointment> appointments = appointmentsParser(new OkHttpHandler().getRequestedAppointments(TEMP_PHYSIO_ID, date));
+            ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(TEMP_PHYSIO_ID, date));
 
 
             // Updates Counter value.
@@ -175,9 +179,16 @@ public class RequestedAppointments extends AppCompatActivity {
 
             reqAppointmentList.addView(dayContainer);
         }
+
+
+        // Sets back button to return to the physios main screen.
+        backButton = findViewById(R.id.backButtonView);
+        backButton.setOnClickListener(v -> startActivity(
+                new Intent(RequestedAppointments.this, DoctorMainScreenActivity.class)
+        ));
     }
 
-    private ArrayList<Appointment> appointmentsParser(String json) {
+    public static ArrayList<Appointment> reqAppointmentsParser(String json) {
         ArrayList<Appointment> appointments = new ArrayList<>();
         try{
             JSONObject jsonObject = new JSONObject(json);
@@ -193,6 +204,7 @@ public class RequestedAppointments extends AppCompatActivity {
                 int patientId = appointmentObject.getInt("patientId");
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     Appointment appointment = new Appointment(name, surname, amka, timestamp, patientId);
+                    Log.d("AppointmentTest", appointment.toString());
                     appointments.add(appointment);
                 }
             }

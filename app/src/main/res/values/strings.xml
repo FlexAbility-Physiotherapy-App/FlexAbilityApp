@@ -80,6 +80,7 @@
     <string name="dayHeader">Ημέρα</string>
     <string name="physioHeader">Φυσιοθεραπευτήριο</string>
     <string name="phoneHeader">Τηλέφωνο</string>
+    <string name="requestedAppointments">Αιτήματα Ραντεβού</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

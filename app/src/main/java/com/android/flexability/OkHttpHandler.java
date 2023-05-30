@@ -67,6 +67,10 @@ public class OkHttpHandler {
     public String getRequestedAppointments(int id, String date){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_REQUESTED_APPOINTMENTS + "?" + "date=" + date + "&id=" + id;
         return apiRequest(url, "GET");
+
+    }public String getAllRequestedAppointments(int id){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_ALL_REQUESTED_APPOINTMENTS + "?" + "id=" + id;
+        return apiRequest(url, "GET");
     }
 
     public String rejectAppointment(int physio_id, int patient_id, String timestamp) {

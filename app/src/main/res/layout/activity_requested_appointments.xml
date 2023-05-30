@@ -23,32 +23,41 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topPart"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="7dp">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/appointment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/manrope_extra_light"
-                    android:text="@string/appointments"
-                    android:textColor="@color/titleDark"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/backBtn"
+                    android:text="@string/requestedAppointments"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/backButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/backButton" />
 
-                <Button
-                    android:id="@+id/backBtn"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="2dp"
-                    android:backgroundTint="@color/greenButton"
-                    android:padding="19dp"
-                    app:icon="@drawable/angle_left_solid"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/back_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/backButtonView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:padding="7dp"
+                        android:src="@drawable/angle_left_solid"
+                        android:tint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
