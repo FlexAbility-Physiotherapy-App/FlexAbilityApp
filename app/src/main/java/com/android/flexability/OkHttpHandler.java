@@ -3,7 +3,11 @@ package com.android.flexability;
 import android.net.Uri;
 import android.os.*;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -144,5 +148,28 @@ public class OkHttpHandler {
     public String getUser(String username, String password){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_USER + "?" + "username=" + username + "&password=" + password;
         return apiRequest(url, "GET");
+    }
+
+    public ArrayList<Physio> getAvailablePhysios(String timestamp) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_AVAILABLE_PHYSIOS + "?" + "timestamp=" + timestamp;
+        String response = apiRequest(url, "GET");
+
+        ArrayList<Physio> physios = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                int id = jsonObject.getInt("id");
+                String name = jsonObject.getString("name");
+                String phone = jsonObject.getString("phone_number");
+                Physio physio = new Physio(id, name, phone);
+                physios.add(physio);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return physios;
     }
 }

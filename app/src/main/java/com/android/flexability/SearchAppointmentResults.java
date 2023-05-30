@@ -2,7 +2,6 @@ package com.android.flexability;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +27,12 @@ public class SearchAppointmentResults extends AppCompatActivity {
         String date = intent.getStringExtra("date");
         String hour = intent.getStringExtra("hour");
         String timestamp = date + " " + hour;
+        try {
+            OkHttpHandler okHttpHandler = new OkHttpHandler();
+            availablePhysios = okHttpHandler.getAvailablePhysios(timestamp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         LinearLayout container = findViewById(R.id.requestsLayout);
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
