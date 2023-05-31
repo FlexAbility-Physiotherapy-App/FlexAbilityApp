@@ -7,17 +7,14 @@ package com.android.flexability;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -29,23 +26,26 @@ import java.util.ArrayList;
 
 public class Transactions extends AppCompatActivity {
 
+    private ArrayList<TransactionInfo> transactionsData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
 
         // Get the scroll view layout:
-        ScrollView sv =  (ScrollView)findViewById(R.id.mainFinancialMoves);
+        ScrollView sv = (ScrollView) findViewById(R.id.mainFinancialMoves);
 
         // Get the outer Linear Layout. Here new boxes will be added
         // if any info exists in the db:
-        LinearLayout outerLL = (LinearLayout)findViewById(R.id.contentsFinancialMoves);
+        LinearLayout outerLL = (LinearLayout) findViewById(R.id.contentsFinancialMoves);
 
         // Extract JSON data, from the database, concerning user transactions:
-        ArrayList<TransactionInfo> transactionsData = transactionsParser(new OkHttpHandler().getTransactions());
+        transactionsData = transactionsParser(new OkHttpHandler().getTransactions());
+
 
         // Create the contents. They are CardView objects.
-        for(TransactionInfo ti: transactionsData) {
+        for (TransactionInfo ti : transactionsData) {
             // The card view
             CardView cv = new CardView(this);
 
@@ -172,22 +172,28 @@ public class Transactions extends AppCompatActivity {
             JSONObject transactionsJSONObj = new JSONObject(json);
             JSONArray transactionsJSONArray = transactionsJSONObj.getJSONArray("transactions");
 
-            for(int i = 0; i < transactionsJSONArray.length(); ++i) {
+            for (int i = 0; i < transactionsJSONArray.length(); ++i) {
                 JSONObject elmObj = transactionsJSONArray.getJSONObject(i);
 
-                String name = elmObj.getString("name");
+                String phName = elmObj.getString("ph_name");
                 String date = elmObj.getString("date");
+                String prName = elmObj.getString("pr_name");
                 double cost = elmObj.getDouble("cost");
                 int id = elmObj.getInt("id");
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                    transactionData.add(new TransactionInfo(date, name, id, cost));
+                    transactionData.add(new TransactionInfo(date, phName, prName, id, (float) cost));
             }
-        }
-        catch (JSONException e) {
-            throw new RuntimeException(e);
+        } catch (JSONException e) {
         }
 
         return transactionData;
+    }
+
+    public void OnClickShowGraph(View v) {
+        Intent newActivity = new Intent(Transactions.this, GraphView.class);
+        newActivity.putExtra("TransactionData", transactionsData);
+
+        startActivity(newActivity);
     }
 }

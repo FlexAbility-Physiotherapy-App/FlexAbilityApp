@@ -81,6 +81,9 @@
     <string name="physioHeader">Φυσιοθεραπευτήριο</string>
     <string name="phoneHeader">Τηλέφωνο</string>
     <string name="requestedAppointments">Αιτήματα Ραντεβού</string>
+    <string name="euro_sign">€</string>
+    <string name="physio_graph_title">Έξοδα / Φυσιοθεραπευτήριο</string>
+    <string name="provision_graph_title">Έξοδα / Παροχή</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

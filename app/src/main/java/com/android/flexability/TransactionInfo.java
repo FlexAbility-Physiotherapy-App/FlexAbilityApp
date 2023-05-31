@@ -1,17 +1,20 @@
 package com.android.flexability;
 
-public class TransactionInfo {
+import java.io.Serializable;
+
+public class TransactionInfo implements Serializable {
 
     private final String date;
     private final String physioName;
+    private final String provisionName;
     private final int physioId;
+    private final float cost;
 
-    private final double cost;
-
-    public TransactionInfo(String date, String physioName, int physioId, double cost) {
+    public TransactionInfo(String date, String physioName, String provisionName, int physioId, float cost) {
 
         this.date = date;
         this.physioName = physioName;
+        this.provisionName = provisionName;
         this.physioId = physioId;
         this.cost = cost;
     }
@@ -28,8 +31,12 @@ public class TransactionInfo {
         return physioId;
     }
 
-    public double getCost() {
+    public float getCost() {
         return cost;
+    }
+
+    public String getProvisionName() {
+        return provisionName;
     }
 
 }
