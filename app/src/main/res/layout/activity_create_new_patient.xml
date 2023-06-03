@@ -40,6 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/backButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="7dp"
@@ -69,13 +70,14 @@
 
 
             <EditText
+                android:id="@+id/fullNameBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/input_textview"
                 android:hint="@string/fullNameHint"
                 android:inputType="text"
-                android:background="@drawable/input_textview"
-                android:layout_marginBottom="15dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                tools:layout_editor_absoluteY="27dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,13 +88,14 @@
                 android:textSize="16sp"/>
 
             <EditText
+                android:id="@+id/addressBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/input_textview"
                 android:hint="@string/addressHint"
                 android:inputType="text"
-                android:background="@drawable/input_textview"
-                android:layout_marginBottom="15dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                tools:layout_editor_absoluteY="95dp" />
 
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
@@ -114,12 +117,14 @@
                         android:textSize="16sp"/>
 
                     <EditText
+                        android:id="@+id/phoneBox"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/input_textview"
                         android:hint="@string/phoneNumberHint"
                         android:inputType="text"
-                        android:background="@drawable/input_textview"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:layout_editor_absoluteY="27dp" />
                 </com.google.android.flexbox.FlexboxLayout>
 
 
@@ -137,12 +142,14 @@
                         android:textSize="16sp"/>
 
                     <EditText
+                        android:id="@+id/amkaBox"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/input_textview"
                         android:hint="@string/amkaHint"
                         android:inputType="text"
-                        android:background="@drawable/input_textview"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        tools:layout_editor_absoluteY="27dp" />
 
                 </com.google.android.flexbox.FlexboxLayout>
 
@@ -154,10 +161,13 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:text="@string/gender"/>
+
             <RadioGroup
+                android:id="@+id/genderRG"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:layout_editor_absoluteY="241dp">
 
                 <RadioButton
                     android:id="@+id/radioMale"
@@ -181,7 +191,7 @@
             app:justifyContent="space_between">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnCreatePhysio"
+                android:id="@+id/cancelButton"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/green_border_button"
@@ -207,7 +217,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnCreateNewPhysio"
+                android:id="@+id/createButton"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_create"
