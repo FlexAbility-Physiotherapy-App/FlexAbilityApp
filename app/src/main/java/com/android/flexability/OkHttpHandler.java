@@ -58,6 +58,16 @@ public class OkHttpHandler {
         System.out.println("Amenity created successfully. Response: " + response);
     }
 
+     public void createPatient(String name, String surname, String address, String phone, String amka, String sex) {
+        String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_CREATE_PATIENT + "?" +
+                "name=" + name +
+                "&surname=" + surname +
+                "&address=" + address +
+                "&phone=" + phone +
+                "&amka=" + amka +
+                "&sex=" + sex;
+        String response = apiRequest(url, "POST");
+    }
     public String getAppointments(int id, String date){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENTS + "?" + "date=" + date + "&id=" + id;
         return apiRequest(url, "GET");
