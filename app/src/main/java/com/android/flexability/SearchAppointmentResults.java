@@ -58,6 +58,8 @@ public class SearchAppointmentResults extends AppCompatActivity {
                 requestBtn.setEnabled(false);
                 requestBtn.setTextColor(ContextCompat.getColor(this, R.color.white));
 
+                //TO-DO: Make a new patient_physio record in db
+
             });
 
             container.addView(cardView);
