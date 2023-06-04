@@ -41,7 +41,8 @@ public class Transactions extends AppCompatActivity {
         LinearLayout outerLL = (LinearLayout) findViewById(R.id.contentsFinancialMoves);
 
         // Extract JSON data, from the database, concerning user transactions:
-        transactionsData = new ArrayList<>();//transactionsParser(new OkHttpHandler().getTransactions());
+        transactionsData = (ArrayList<TransactionInfo>) getIntent()
+                .getSerializableExtra("transactionData");
 
 
         // Create the contents. They are CardView objects.
@@ -166,9 +167,15 @@ public class Transactions extends AppCompatActivity {
     }
 
     public void OnClickShowGraph(View v) {
-        Intent newActivity = new Intent(Transactions.this, GraphView.class);
-        newActivity.putExtra("TransactionData", transactionsData);
+        if(transactionsData != null) {
+            Intent newActivity = new Intent(Transactions.this, GraphView.class);
+            newActivity.putExtra("TransactionData", transactionsData);
 
-        startActivity(newActivity);
+            startActivity(newActivity);
+        }
+    }
+
+    public void OnClickBackToMain(View view) {
+        finish();
     }
 }

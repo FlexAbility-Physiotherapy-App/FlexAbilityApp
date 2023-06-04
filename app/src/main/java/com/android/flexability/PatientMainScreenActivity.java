@@ -87,8 +87,20 @@ public class PatientMainScreenActivity extends AppCompatActivity {
     }
 
     public void OnClickShowAppointments(View view) {
-        Intent intent = new Intent(PatientMainScreenActivity.this, SearchAppointment.class);
-        startActivity(intent);
+        Intent appointments = new Intent(PatientMainScreenActivity.this,
+                SearchAppointment.class
+        );
+        startActivity(appointments);
+    }
+
+    public void OnClickShowTransactions(View view) {
+         if(transactionsData != null) {
+             Intent transactions = new Intent(PatientMainScreenActivity.this,
+                     Transactions.class
+             );
+             transactions.putExtra("transactionData", transactionsData);
+             startActivity(transactions);
+         }
     }
 
     private void createTransaction(int pid) {
@@ -101,6 +113,11 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // This is for the transactions part:
         // Extract JSON data, from the database, concerning user transactions:
         transactionsData = transactionsParser(new OkHttpHandler().getTransactions(pid));
+
+        TextView title = (TextView) findViewById(R.id.transactionTitle);
+        title.append(" " + getString(R.string.l_par)
+                + transactionsData.size()
+                + getString(R.string.r_par));
 
         // Create the contents. They are CardView objects.
         if(transactionsData.size() != 0) {
