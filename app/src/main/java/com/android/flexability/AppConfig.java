@@ -17,6 +17,7 @@ public class AppConfig {
     public static final String API_POST_COMPLETE_APPOINTMENT = "/completeAppointment.php";
     public static final String API_SEARCH_PATIENT = "/searchPatient.php";
     public static final String API_GET_USER = "/getUser.php";
+    public static final String API_ALREADY_USED_TIMESTAMP = "/alreadyUsedTimestamp.php";
     public static final String API_GET_AVAILABLE_PHYSIOS = "/getAvailablePhysios.php";
 
 }

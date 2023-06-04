@@ -2,6 +2,7 @@ package com.android.flexability;
 
 import android.net.Uri;
 import android.os.*;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -158,6 +159,13 @@ public class OkHttpHandler {
     public String getUser(String username, String password){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_USER + "?" + "username=" + username + "&password=" + password;
         return apiRequest(url, "GET");
+    }
+
+    public boolean alreadyUsedTimestamp(int patientId, String timestamp){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_ALREADY_USED_TIMESTAMP + "?" + "patient_id=" + patientId + "&timestamp=" + timestamp;
+        String response = apiRequest(url, "GET");
+
+        return Boolean.parseBoolean(response);
     }
 
     public ArrayList<Physio> getAvailablePhysios(String timestamp) {

@@ -2,9 +2,11 @@ package com.android.flexability;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +29,9 @@ public class SearchAppointment extends AppCompatActivity {
         hoursSpinner = findViewById(R.id.hoursSpinner);
         Button searchBtn = findViewById(R.id.searchBtn);
         Button backBtn = findViewById(R.id.backBtn);
+
+        //TO-DO: CHANGE PATIENT_ID WITH ACTUAL VALUE FROM DB.
+        int patient_id = 3;
 
         class FullDate {
             String day;
@@ -77,11 +82,26 @@ public class SearchAppointment extends AppCompatActivity {
             }
             String hour = hoursSpinner.getSelectedItem().toString();
             hour += ":00";
-            Intent intent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
-            intent.putExtra("day", day);
-            intent.putExtra("date", date);
-            intent.putExtra("hour", hour);
-            startActivity(intent);
+
+            String timestamp = date + " " + hour;
+            boolean isUsedTimestamp = false;
+            try {
+                OkHttpHandler okHttpHandler = new OkHttpHandler();
+                isUsedTimestamp = okHttpHandler.alreadyUsedTimestamp(patient_id, timestamp);
+                if (isUsedTimestamp) {
+                    String toastMsg = "Έχετε κάνει ήδη προγραμματίσει ή κάνει αίτηση για ραντεβού για " + day + " στις " + hour.substring(0, 5) + "!";
+                    Toast usedToast = Toast.makeText(this, toastMsg, Toast.LENGTH_LONG);
+                    usedToast.show();
+                } else {
+                    Intent intent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
+                    intent.putExtra("day", day);
+                    intent.putExtra("date", date);
+                    intent.putExtra("hour", hour);
+                    startActivity(intent);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         //TO-DO: Add Intent for previous activity when backBtn is pressed
