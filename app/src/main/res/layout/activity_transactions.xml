@@ -76,6 +76,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="32dp"
                     android:backgroundTint="@color/buttons"
+                    android:onClick="OnClickShowGraph"
                     android:text="@string/show_graph_txt"
                     app:cornerRadius="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
