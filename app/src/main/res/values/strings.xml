@@ -84,6 +84,9 @@
     <string name="euro_sign">€</string>
     <string name="physio_graph_title">Έξοδα / Φυσιοθεραπευτήριο</string>
     <string name="provision_graph_title">Έξοδα / Παροχή</string>
+    <string name="l_par">(</string>
+    <string name="r_par">)</string>
+    <string name="next">Επερχόμενο</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

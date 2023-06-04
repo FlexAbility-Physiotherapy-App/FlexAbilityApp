@@ -41,7 +41,7 @@ public class Transactions extends AppCompatActivity {
         LinearLayout outerLL = (LinearLayout) findViewById(R.id.contentsFinancialMoves);
 
         // Extract JSON data, from the database, concerning user transactions:
-        transactionsData = transactionsParser(new OkHttpHandler().getTransactions());
+        transactionsData = new ArrayList<>();//transactionsParser(new OkHttpHandler().getTransactions());
 
 
         // Create the contents. They are CardView objects.
@@ -163,31 +163,6 @@ public class Transactions extends AppCompatActivity {
 
             outerLL.addView(cv, LinearLayout.FOCUS_BACKWARD);
         }
-    }
-
-    private ArrayList<TransactionInfo> transactionsParser(String json) {
-        ArrayList<TransactionInfo> transactionData = new ArrayList<>();
-
-        try {
-            JSONObject transactionsJSONObj = new JSONObject(json);
-            JSONArray transactionsJSONArray = transactionsJSONObj.getJSONArray("transactions");
-
-            for (int i = 0; i < transactionsJSONArray.length(); ++i) {
-                JSONObject elmObj = transactionsJSONArray.getJSONObject(i);
-
-                String phName = elmObj.getString("ph_name");
-                String date = elmObj.getString("date");
-                String prName = elmObj.getString("pr_name");
-                double cost = elmObj.getDouble("cost");
-                int id = elmObj.getInt("id");
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                    transactionData.add(new TransactionInfo(date, phName, prName, id, (float) cost));
-            }
-        } catch (JSONException e) {
-        }
-
-        return transactionData;
     }
 
     public void OnClickShowGraph(View v) {

@@ -161,6 +161,11 @@ public class OkHttpHandler {
         return apiRequest(url, "GET");
     }
 
+    public String getUpcomingPatientAppointment(int id) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_UPCOMING_PATIENT_APPOINTMENT + "?" + "patient_id=" + id;
+        return apiRequest(url, "GET");
+    }
+
     public boolean alreadyUsedTimestamp(int patientId, String timestamp){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_ALREADY_USED_TIMESTAMP + "?" + "patient_id=" + patientId + "&timestamp=" + timestamp;
         String response = apiRequest(url, "GET");
