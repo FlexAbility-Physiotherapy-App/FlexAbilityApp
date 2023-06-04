@@ -33,16 +33,11 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_main_screen);
 
-        ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
-
-        // Get the outer Linear Layout.
-        LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
-
         // This is for the Appointments part:
         // Get the id from the login screen and fill the text views with
         // the data we got
-        int id = (Integer) getIntent().getSerializableExtra("id");
-        getUpcomingAppointment(id);
+        int pid = (Integer) getIntent().getSerializableExtra("id");
+        getUpcomingAppointment(pid);
 
         TextView titleApt = (TextView) findViewById(R.id.aptTitle);
         TextView nameTV = (TextView) findViewById(R.id.nameFieldTV);
@@ -54,131 +49,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         hourTV.setText(upcomingAptLst.get(1));
         nameTV.setText(upcomingAptLst.get(2));
 
-        // This is for the transactions part:
-        // Extract JSON data, from the database, concerning user transactions:
-        transactionsData = transactionsParser(new OkHttpHandler().getTransactions(id));
-
-        // Create the contents. They are CardView objects.
-        if(transactionsData.size() != 0) {
-            TransactionInfo ti = transactionsData.get(0);
-
-            // The card view
-            CardView cv = new CardView(this);
-
-            CardView.LayoutParams cvParams = new FrameLayout.LayoutParams(
-                    CardView.LayoutParams.MATCH_PARENT,
-                    CardView.LayoutParams.WRAP_CONTENT
-            );
-            cvParams.setMargins(7, 7, 7, 7);
-
-            // Change radius
-            GradientDrawable gd = new GradientDrawable();
-            gd.setCornerRadius(12);
-
-            //cv.setId(ti.getPhysioId());
-            cv.setBackground(gd);
-            cv.setCardElevation(5);
-            cv.setLayoutParams(cvParams);
-
-            // The two containers of card view
-            ConstraintLayout colorLayout = new ConstraintLayout(this);
-            ConstraintLayout infoLayout = new ConstraintLayout(this);
-            infoLayout.setId(View.generateViewId());
-
-            ConstraintLayout.LayoutParams clParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-            );
-
-            colorLayout.setLayoutParams(clParams);
-            colorLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_dark_background));
-
-            clParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    80
-            );
-            clParams.setMargins(7, 0, 0, 0);
-
-            infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
-            infoLayout.setLayoutParams(clParams);
-            infoLayout.setPadding(5, 5, 5, 5);
-
-            // Now insert the text views in the last layout:
-            TextView phName = new TextView(this);
-            phName.setId(View.generateViewId());
-
-            TextView date = new TextView(this);
-            date.setId(View.generateViewId());
-
-            TextView price = new TextView(this);
-            price.setId(View.generateViewId());
-
-            Typeface fontName = Typeface.createFromAsset(
-                    getAssets(),
-                    "font/manrope_extra_bold.ttf"
-            );
-
-            phName.setText(ti.getPhysioName());
-            phName.setTextSize(18);
-            phName.setTypeface(fontName);
-
-            Typeface fontDate = Typeface.createFromAsset(
-                    getAssets(),
-                    "font/manrope_extra_light.ttf"
-            );
-
-            date.setTextSize(14);
-            date.setText(ti.getDate());
-            date.setTypeface(fontDate);
-
-            Typeface fontPrice = Typeface.createFromAsset(
-                    getAssets(),
-                    "font/manrope_regular.ttf"
-            );
-
-            price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));
-            price.setTextSize(20);
-            price.setTypeface(fontPrice);
-
-            infoLayout.addView(phName);
-            infoLayout.addView(date);
-            infoLayout.addView(price);
-
-            clParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-            );
-
-            clParams.startToStart = infoLayout.getId();
-            clParams.topToTop = infoLayout.getId();
-
-            phName.setLayoutParams(clParams);
-
-            clParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-            );
-            clParams.bottomToBottom = infoLayout.getId();
-
-            date.setLayoutParams(clParams);
-
-            clParams = new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT
-            );
-            clParams.setMargins(0, 0, 24, 0);
-            clParams.topToTop = infoLayout.getId();
-            clParams.bottomToBottom = infoLayout.getId();
-            clParams.endToEnd = infoLayout.getId();
-
-            price.setLayoutParams(clParams);
-
-            colorLayout.addView(infoLayout);
-
-            cv.addView(colorLayout);
-
-            outerLL.addView(cv);
-        }
+        createTransaction(pid);
 
     }
 
@@ -218,5 +89,219 @@ public class PatientMainScreenActivity extends AppCompatActivity {
     public void OnClickShowAppointments(View view) {
         Intent intent = new Intent(PatientMainScreenActivity.this, SearchAppointment.class);
         startActivity(intent);
+    }
+
+    private void createTransaction(int pid) {
+
+        ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
+
+        // Get the outer Linear Layout.
+        LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
+
+        // This is for the transactions part:
+        // Extract JSON data, from the database, concerning user transactions:
+        transactionsData = transactionsParser(new OkHttpHandler().getTransactions(pid));
+
+        // Create the contents. They are CardView objects.
+        if(transactionsData.size() != 0) {
+            TransactionInfo ti = transactionsData.get(0);
+
+            // The card view
+            CardView cv = new CardView(this);
+
+            CardView.LayoutParams cvParams = new FrameLayout.LayoutParams(
+                    CardView.LayoutParams.MATCH_PARENT,
+                    CardView.LayoutParams.WRAP_CONTENT
+            );
+            cvParams.setMargins(7, 7, 7, 7);
+
+            // Change radius
+            GradientDrawable gd = new GradientDrawable();
+            gd.setCornerRadius(12);
+
+            //cv.setId(ti.getPhysioId());
+            cv.setBackground(gd);
+            cv.setCardElevation(5);
+            cv.setLayoutParams(cvParams);
+
+            // The two containers of card view
+            ConstraintLayout colorLayout = new ConstraintLayout(this);
+            ConstraintLayout infoLayout = new ConstraintLayout(this);
+            infoLayout.setId(View.generateViewId());
+
+            ConstraintLayout.LayoutParams clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+
+            colorLayout.setLayoutParams(clParams);
+            colorLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_dark_background));
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.setMargins(7, 0, 0, 0);
+
+            infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
+            infoLayout.setLayoutParams(clParams);
+            infoLayout.setPadding(5, 5, 5, 5);
+
+            // Now insert the text views in the last layout:
+            TextView phName = new TextView(this);
+            phName.setId(View.generateViewId());
+            TextView date = new TextView(this);
+            date.setId(View.generateViewId());
+            TextView price = new TextView(this);
+            price.setId(View.generateViewId());
+            TextView amenity = new TextView(this);
+            amenity.setId(View.generateViewId());
+
+            TextView phTitle = new TextView(this);
+            phTitle.setId(View.generateViewId());
+            TextView dateTitle = new TextView(this);
+            dateTitle.setId(View.generateViewId());
+            TextView priceTitle = new TextView(this);
+            priceTitle.setId(View.generateViewId());
+            TextView amenityTitle = new TextView(this);
+            amenityTitle.setId(View.generateViewId());
+
+            Typeface fontSub = Typeface.createFromAsset(
+                    getAssets(),
+                    "font/manrope_light.ttf"
+            );
+
+            phName.setText(ti.getPhysioName());
+            phName.setTextSize(15);
+            phName.setTypeface(fontSub);
+
+            date.setTextSize(15);
+            date.setText(ti.getDate());
+            date.setTypeface(fontSub);
+
+            price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));
+            price.setTextSize(15);
+            price.setTypeface(fontSub);
+
+            amenity.setText(ti.getProvisionName());
+            amenity.setTextSize(15);
+            amenity.setTypeface(fontSub);
+
+            Typeface fontTitle = Typeface.createFromAsset(
+                    getAssets(),
+                    "font/manrope_extra_bold.ttf"
+            );
+
+            phTitle.setText(getString(R.string.physioHeader));
+            phTitle.setTextSize(13);
+            phTitle.setTypeface(fontTitle);
+
+            dateTitle.setText(getString(R.string.dateHeader));
+            dateTitle.setTextSize(13);
+            dateTitle.setTypeface(fontTitle);
+
+            priceTitle.setText(getString(R.string.costHeader));
+            priceTitle.setTextSize(13);
+            priceTitle.setTypeface(fontTitle);
+
+            amenityTitle.setText(getString(R.string.amenityHeader));
+            amenityTitle.setTextSize(13);
+            amenityTitle.setTypeface(fontTitle);
+
+            infoLayout.addView(phName);
+            infoLayout.addView(date);
+            infoLayout.addView(price);
+            infoLayout.addView(amenity);
+
+            infoLayout.addView(phTitle);
+            infoLayout.addView(dateTitle);
+            infoLayout.addView(priceTitle);
+            infoLayout.addView(amenityTitle);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.setMargins( 0, 3, 0, 12);
+            clParams.topToBottom = phTitle.getId();
+            clParams.startToStart = infoLayout.getId();
+            clParams.bottomToTop = dateTitle.getId();
+
+            phName.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.startToStart = infoLayout.getId();
+            clParams.bottomToBottom = infoLayout.getId();
+
+            date.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.setMargins( 0, 3, 0, 12);
+            clParams.topToBottom = priceTitle.getId();
+            clParams.endToEnd = infoLayout.getId();
+
+            price.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.bottomToBottom = infoLayout.getId();
+            clParams.endToEnd = infoLayout.getId();
+
+            amenity.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.topToTop = infoLayout.getId();
+
+            phTitle.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.setMargins(0, 40, 0, 0);
+            clParams.topToTop = phName.getId();
+            clParams.startToStart = infoLayout.getId();
+            clParams.bottomToTop = date.getId();
+
+            dateTitle.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.topToTop = infoLayout.getId();
+            clParams.endToEnd = infoLayout.getId();
+            clParams.bottomToTop = price.getId();
+
+            priceTitle.setLayoutParams(clParams);
+
+            clParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            clParams.setMargins(0, 40, 0, 0);
+            clParams.topToTop = price.getId();
+            clParams.bottomToTop = amenity.getId();
+            clParams.endToEnd = infoLayout.getId();
+
+            amenityTitle.setLayoutParams(clParams);
+
+            colorLayout.addView(infoLayout);
+
+            cv.addView(colorLayout);
+
+            outerLL.addView(cv);
+        }
     }
 }

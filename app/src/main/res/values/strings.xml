@@ -84,6 +84,9 @@
     <string name="euro_sign">€</string>
     <string name="physio_graph_title">Έξοδα / Φυσιοθεραπευτήριο</string>
     <string name="provision_graph_title">Έξοδα / Παροχή</string>
+    <string name="costHeader">Κόστος</string>
+    <string name="dateHeader">Ημερομηνία</string>
+    <string name="amenityHeader">Παροχή</string>
     <string name="l_par">(</string>
     <string name="r_par">)</string>
     <string name="next">Επερχόμενο</string>
