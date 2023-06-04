@@ -151,8 +151,8 @@ public class OkHttpHandler {
         return "";
     }
 
-    public String getTransactions(){
-        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_TRANSACTIONS;
+    public String getTransactions(int pid){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_TRANSACTIONS + "?" + "pid=" + pid;
         return apiRequest(url, "GET");
     }
 

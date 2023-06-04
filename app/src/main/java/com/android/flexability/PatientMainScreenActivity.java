@@ -56,11 +56,11 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
         // This is for the transactions part:
         // Extract JSON data, from the database, concerning user transactions:
-        transactionsData = transactionsParser(new OkHttpHandler().getTransactions());
+        transactionsData = transactionsParser(new OkHttpHandler().getTransactions(id));
 
         // Create the contents. They are CardView objects.
-        for (int i = 0; i < 2; i++) {
-            TransactionInfo ti = transactionsData.get(i);
+        if(transactionsData.size() != 0) {
+            TransactionInfo ti = transactionsData.get(0);
 
             // The card view
             CardView cv = new CardView(this);
@@ -188,8 +188,6 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // Parse the json like object to a java ArrayList
         Gson gson = new Gson();
         upcomingAptLst = gson.fromJson(upcomingApt, ArrayList.class);
-
-        String hello;
     }
 
     private ArrayList<TransactionInfo> transactionsParser(String json) {
@@ -218,7 +216,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
     }
 
     public void OnClickShowAppointments(View view) {
-        Intent intent = new Intent(PatientMainScreenActivity.this, CurrentAppointmentScreenActivity.class);
+        Intent intent = new Intent(PatientMainScreenActivity.this, SearchAppointment.class);
         startActivity(intent);
     }
 }
