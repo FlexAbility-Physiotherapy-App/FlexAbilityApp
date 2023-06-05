@@ -161,6 +161,11 @@ public class OkHttpHandler {
         return apiRequest(url, "GET");
     }
 
+    public String getPatientAppointments(int id) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PATIENT_APPOINTMENTS + "?" + "patient_id=" + id;
+        return apiRequest(url, "GET");
+    }
+
     public String getUpcomingPatientAppointment(int id) {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_UPCOMING_PATIENT_APPOINTMENT + "?" + "patient_id=" + id;
         return apiRequest(url, "GET");

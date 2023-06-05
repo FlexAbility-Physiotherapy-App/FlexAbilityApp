@@ -20,4 +20,5 @@ public class AppConfig {
     public static final String API_ALREADY_USED_TIMESTAMP = "/alreadyUsedTimestamp.php";
     public static final String API_GET_AVAILABLE_PHYSIOS = "/getAvailablePhysios.php";
     public static final String API_GET_UPCOMING_PATIENT_APPOINTMENT = "/getUpcomingPatientAppointment.php";
+    public static final String API_GET_PATIENT_APPOINTMENTS = "/getPatientAppointments.php";
 }

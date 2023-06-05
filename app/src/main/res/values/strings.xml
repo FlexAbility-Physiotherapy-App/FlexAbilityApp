@@ -87,6 +87,7 @@
     <string name="costHeader">Κόστος</string>
     <string name="dateHeader">Ημερομηνία</string>
     <string name="amenityHeader">Παροχή</string>
+    <string name="amenitySearch">Αναζήτηση Παροχής</string>
     <string name="l_par">(</string>
     <string name="r_par">)</string>
     <string name="next">Επερχόμενο</string>

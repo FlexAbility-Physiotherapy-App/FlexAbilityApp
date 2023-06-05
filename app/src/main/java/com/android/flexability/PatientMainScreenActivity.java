@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -27,6 +29,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
     private ArrayList<String> upcomingAptLst;
     private ArrayList<TransactionInfo> transactionsData;
+    private ArrayList<String> patientAptsLst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +40,18 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // Get the id from the login screen and fill the text views with
         // the data we got
         int pid = (Integer) getIntent().getSerializableExtra("id");
-        getUpcomingAppointment(pid);
 
-        TextView titleApt = (TextView) findViewById(R.id.aptTitle);
-        TextView nameTV = (TextView) findViewById(R.id.nameFieldTV);
-        TextView hourTV = (TextView) findViewById(R.id.hourFieldTV);
-        TextView dateTV = (TextView) findViewById(R.id.dateFieldTV);
+        createUpcamingAppointmentView(pid);
+        createTransactionView(pid);
+        createAmenitySearchButton();
 
-        titleApt.append(" " + getString(R.string.l_par) + "1" + getString(R.string.r_par));
-        dateTV.setText(upcomingAptLst.get(0));
-        hourTV.setText(upcomingAptLst.get(1));
-        nameTV.setText(upcomingAptLst.get(2));
+    }
 
-        createTransaction(pid);
+    private void getPatientAppointments(int id) {
+        String patientApts = (new OkHttpHandler().getPatientAppointments(id));
 
+        Gson gson = new Gson();
+        patientAptsLst = gson.fromJson(patientApts, ArrayList.class);
     }
 
     private void getUpcomingAppointment(int id) {
@@ -103,7 +104,221 @@ public class PatientMainScreenActivity extends AppCompatActivity {
          }
     }
 
-    private void createTransaction(int pid) {
+    //@SuppressLint("ResourceAsColor")
+    private void createAmenitySearchButton() {
+        ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
+
+        // Get the outer Linear Layout.
+        LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
+
+        Button amntBtn = new Button(this);
+
+        LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
+                275,
+                60
+        );
+        llParams.setMargins(100, 25, 0, 100);
+
+        amntBtn.setLayoutParams(llParams);
+
+        amntBtn.setText(getString(R.string.amenitySearch));
+
+        GradientDrawable gd = new GradientDrawable();
+
+        gd.setCornerRadius(6);
+        gd.setColor(getColor(R.color.buttons));
+
+        amntBtn.setBackground(gd);
+        amntBtn.setTextColor(getColor(R.color.white));
+
+        outerLL.addView(amntBtn);
+    }
+
+    private void createUpcamingAppointmentView(int pid) {
+
+        getUpcomingAppointment(pid);
+        getPatientAppointments(pid);
+
+        ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
+
+        // Get the outer Linear Layout.
+        LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
+
+        // Get the appointment layout:
+        ConstraintLayout aptCL = (ConstraintLayout) findViewById(R.id.aptLayout);
+
+        // Create The card view
+        CardView cv = new CardView(this);
+
+        CardView.LayoutParams cvParams = new FrameLayout.LayoutParams(
+                CardView.LayoutParams.MATCH_PARENT,
+                CardView.LayoutParams.WRAP_CONTENT
+        );
+        cvParams.setMargins(7, 7, 7, 7);
+
+        // Change radius
+        GradientDrawable gd = new GradientDrawable();
+        gd.setCornerRadius(12);
+
+        //cv.setId(ti.getPhysioId());
+        cv.setBackground(gd);
+        cv.setCardElevation(5);
+        cv.setLayoutParams(cvParams);
+
+        // The two containers of card view
+        ConstraintLayout colorLayout = new ConstraintLayout(this);
+        ConstraintLayout infoLayout = new ConstraintLayout(this);
+        infoLayout.setId(View.generateViewId());
+
+        ConstraintLayout.LayoutParams clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        colorLayout.setLayoutParams(clParams);
+        colorLayout.setBackground(getDrawable(R.drawable.appointment_card_green));
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.setMargins(7, 0, 0, 0);
+
+        infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
+        infoLayout.setLayoutParams(clParams);
+        infoLayout.setPadding(5, 5, 5, 5);
+
+        // Append number of appointments
+        TextView titleApt = (TextView) findViewById(R.id.aptTitle);
+        titleApt.append(" " + getString(R.string.l_par) + patientAptsLst.size() + getString(R.string.r_par));
+
+        // Create the sub text views
+        TextView nameTV = new TextView(this);
+        nameTV.setId(View.generateViewId());
+        TextView hourTV = new TextView(this);
+        hourTV.setId(View.generateViewId());
+        TextView dateTV = new TextView(this);
+        dateTV.setId(View.generateViewId());
+
+        // Create the title teext views:
+        TextView nameTitle = new TextView(this);
+        nameTitle.setId(View.generateViewId());
+        TextView hourTitle = new TextView(this);
+        hourTitle.setId(View.generateViewId());
+        TextView dateTitle = new TextView(this);
+        dateTitle.setId(View.generateViewId());
+
+        Typeface fontSub = Typeface.createFromAsset(
+                getAssets(),
+                "font/manrope_light.ttf"
+        );
+
+        dateTV.setText(upcomingAptLst.get(0));
+        dateTV.setTextSize(15);
+        dateTV.setTypeface(fontSub);
+
+        hourTV.setText(upcomingAptLst.get(1));
+        hourTV.setTextSize(15);
+        hourTV.setTypeface(fontSub);
+
+        nameTV.setText(upcomingAptLst.get(2));
+        nameTV.setTextSize(15);
+        nameTV.setTypeface(fontSub);
+
+        Typeface fontTitle = Typeface.createFromAsset(
+                getAssets(),
+                "font/manrope_extra_bold.ttf"
+        );
+
+        nameTitle.setText(R.string.patientsname);
+        nameTitle.setTextSize(13);
+        nameTitle.setTypeface(fontTitle);
+
+        hourTitle.setText(R.string.time);
+        hourTitle.setTextSize(13);
+        hourTitle.setTypeface(fontTitle);
+
+        dateTitle.setText(R.string.day);
+        dateTitle.setTextSize(13);
+        dateTitle.setTypeface(fontTitle);
+
+        infoLayout.addView(nameTitle);
+        infoLayout.addView(hourTitle);
+        infoLayout.addView(dateTitle);
+
+        infoLayout.addView(nameTV);
+        infoLayout.addView(hourTV);
+        infoLayout.addView(dateTV);
+
+        // Create the constraints inside the card view:
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.setMargins( 0, 3, 0, 12);
+        clParams.topToBottom = nameTitle.getId();
+        clParams.startToStart = infoLayout.getId();
+        clParams.bottomToTop = dateTitle.getId();
+
+        nameTV.setLayoutParams(clParams);
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.setMargins( 0, 3, 0, 0);
+        clParams.topToBottom = dateTitle.getId();
+        clParams.startToStart = infoLayout.getId();
+
+        dateTV.setLayoutParams(clParams);
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.setMargins( 0, 3, 0, 12);
+        clParams.topToBottom = hourTitle.getId();
+        clParams.endToEnd = infoLayout.getId();
+
+        hourTV.setLayoutParams(clParams);
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.topToTop = infoLayout.getId();
+
+        nameTitle.setLayoutParams(clParams);
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.setMargins(0, 40, 0, 0);
+        clParams.topToBottom = nameTV.getId();
+        clParams.startToStart = infoLayout.getId();
+        clParams.bottomToTop = dateTV.getId();
+
+        dateTitle.setLayoutParams(clParams);
+
+        clParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        clParams.topToTop = infoLayout.getId();
+        clParams.endToEnd = infoLayout.getId();
+        clParams.bottomToBottom = infoLayout.getId();
+
+        hourTitle.setLayoutParams(clParams);
+
+        // Add the card view in the screen
+        colorLayout.addView(infoLayout);
+        cv.addView(colorLayout);
+
+        outerLL.addView(cv, LinearLayout.FOCUS_BACKWARD);
+    }
+
+    private void createTransactionView(int pid) {
 
         ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
 
