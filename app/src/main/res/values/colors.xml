@@ -20,5 +20,10 @@
         <item>@color/buttons</item>
         <item>@color/green_ripple</item>
         <item>@color/greenButton</item>
+        <item>#a4c639</item>
+        <item>#788b28</item>
+        <item>#59c639</item>
+        <item>#c6b739</item>
+        <item>#8b8028</item>
     </array>
 </resources>
