@@ -21,4 +21,7 @@ public class AppConfig {
     public static final String API_GET_AVAILABLE_PHYSIOS = "/getAvailablePhysios.php";
     public static final String API_GET_UPCOMING_PATIENT_APPOINTMENT = "/getUpcomingPatientAppointment.php";
     public static final String API_GET_PATIENT_APPOINTMENTS = "/getPatientAppointments.php";
+    public static final String API_CREATE_PHYSIO = "/createPhysio.php";
+    public static final String API_GET_PHYSIOS_COUNT = "/getPhysiosCount.php";
+    public static final String API_GET_PHYSIOS = "/getPhysios.php";
 }
