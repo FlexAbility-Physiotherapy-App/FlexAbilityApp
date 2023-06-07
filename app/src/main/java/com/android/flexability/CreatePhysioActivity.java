@@ -15,7 +15,7 @@ public class CreatePhysioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_physio);
+        setContentView(R.layout.activity_create_new_physio);
 
         Button btnBack = findViewById(R.id.backButton);
         Button btnCancel = findViewById(R.id.btnCancel);
