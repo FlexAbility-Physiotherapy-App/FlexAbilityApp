@@ -30,7 +30,9 @@ Thumbs.db
 build/
 .navigation
 captures/
-output.json 
+output.json
+app/src/main/java/com/android/flexability/AppConfig.java
+app/src/main/res/xml/network_security_config.xml
     
 #NDK
 obj/
