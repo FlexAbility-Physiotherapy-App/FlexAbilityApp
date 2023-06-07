@@ -38,12 +38,12 @@ public class PhysioMainScreen extends AppCompatActivity {
         });
 
         // Load 2 physios for the preview list
-        int limit = 2;
-        LinearLayout cardsContainer = findViewById(R.id.previewPhysioCardContainer);
-        LayoutInflater inflater = LayoutInflater.from(this);
+        int limitP = 2;
+        LinearLayout cardsContainerP = findViewById(R.id.previewPhysioCardContainer);
+        LayoutInflater inflaterP = LayoutInflater.from(this);
 
         try {
-            json_response = new OkHttpHandler().getPhysios(limit);
+            json_response = new OkHttpHandler().getPhysios(limitP);
             System.out.println("HTTP Response received successfully");
         }
         catch (Exception e) {
@@ -52,8 +52,44 @@ public class PhysioMainScreen extends AppCompatActivity {
 
         ArrayList<Physio> previewPhysios = PhysioCardAdapter.parseJson(json_response);
         for (Physio physio : previewPhysios) {
-            View convertView = inflater.inflate(R.layout.physio_card_layout, cardsContainer, false);
+            View convertView = inflaterP.inflate(R.layout.physio_card_layout, cardsContainerP, false);
             PhysioCardAdapter.setCardData(physio, convertView, this);
+            cardsContainerP.addView(convertView);
+        }
+
+        // Code for R2
+        // Get total number of amenities and update the title accordingly
+        updateAmenityCount();
+
+        Button btnCreateAmenity = findViewById(R.id.btnCreateAmenity);
+        btnCreateAmenity.setOnClickListener(view -> {
+            Intent intent = new Intent(PhysioMainScreen.this, CreateAmenityActivity.class);
+            startActivity(intent);
+        });
+
+        Button btnShowAllAmenities = findViewById(R.id.btnShowAllAmenities);
+        btnShowAllAmenities.setOnClickListener(view -> {
+            Intent intent = new Intent(PhysioMainScreen.this, DisplayAmenitiesScreenActivity.class);
+            startActivity(intent);
+        });
+
+        // Load 2 amenities for the preview list
+        int limit = 2;
+        LinearLayout cardsContainer = findViewById(R.id.previewCardsContainer);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        try {
+            json_response = new OkHttpHandler().getAmenities(limit);
+            System.out.println("HTTP Response received successfully");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Amenity> previewAmenities = AmenityCardAdapter.parseJson(json_response);
+        for (Amenity amenity: previewAmenities) {
+            View convertView = inflater.inflate(R.layout.amenity_card_layout, cardsContainer, false);
+            AmenityCardAdapter.setCardData(amenity, convertView, this);
             cardsContainer.addView(convertView);
         }
     }
@@ -77,5 +113,18 @@ public class PhysioMainScreen extends AppCompatActivity {
         String physiosString = getResources().getString(R.string.physios, totalPhysios);
         TextView physiosTitle = findViewById(R.id.textViewPhysios);
         physiosTitle.setText(physiosString);
+    }
+
+    private void updateAmenityCount() {
+        int totalAmenities = 0;
+        try {
+            totalAmenities = new OkHttpHandler().getAmenitiesCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String amenitiesString = getResources().getString(R.string.amenities, totalAmenities);
+        TextView amenitiesTitle = findViewById(R.id.txtViewAmenities);
+        amenitiesTitle.setText(amenitiesString);
+
     }
 }

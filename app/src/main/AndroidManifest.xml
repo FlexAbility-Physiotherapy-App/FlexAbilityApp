@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayPhysiosScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".GraphView"
             android:exported="false" />
         <activity

@@ -1,8 +1,6 @@
 package com.android.flexability;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,24 +8,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
-
-    String amkaList[] = {"18920365429", "01629354107", "01918273026"};
-    String nameList[] = {"Γιάννης Ράφτης", "Γιώργος Ψωμάς", "Ντάλια Βεντάλια"};
-    String timeList[] = {"14:00-15:00", "15:00-16:00", "16:00-18:00"};
     ListView listView1, listView2, listView3, listView4, listView5, listView6,listView7;
     TextView textView;
+    String json_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_appointments_screen);
-
         listView1 = (ListView) findViewById(R.id.appointmentsList1);
         listView2 = (ListView) findViewById(R.id.appointmentsList2);
         listView3 = (ListView) findViewById(R.id.appointmentsList3);
@@ -36,23 +29,143 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         listView6 = (ListView) findViewById(R.id.appointmentsList6);
         listView7 = (ListView) findViewById(R.id.appointmentsList7);
 
-        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, nameList, amkaList, timeList, 1);
-        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, nameList, amkaList, timeList, 2);
+        int id = -1;
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle != null) {
+            id = bundle.getInt("id");
+        }
 
+        //today
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        Calendar c = Calendar.getInstance();
+        String date = sdf.format(c.getTime());
+        String date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date1);
+        textView.setText(date2);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter1 = new CustomBasedAdapter(this, json_response, 1, id);
         listView1.setAdapter(customBasedAdapter1);
-        listView2.setAdapter(customBasedAdapter2);
-        listView3.setAdapter(customBasedAdapter2);
-        listView4.setAdapter(customBasedAdapter2);
-        listView5.setAdapter(customBasedAdapter2);
-        listView6.setAdapter(customBasedAdapter2);
-        listView7.setAdapter(customBasedAdapter2);
-
         Utility.setListViewHeightBasedOnChildren(listView1);
+
+        //tomorrow
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date2);
+        textView.setText(date2);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView2.setAdapter(customBasedAdapter2);
         Utility.setListViewHeightBasedOnChildren(listView2);
+        textView.setText(date);
+
+        String daysArray[] = {"Κυριακή","Δευτέρα","Τρίτη", "Τετάρτη","Πέμπτη","Παρασκευή", "Σάββατο"};
+
+        //day3
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date3);
+        textView.setText(date2);
+        textView = (TextView) findViewById(R.id.day3);
+        int day = c.get(Calendar.DAY_OF_WEEK);
+        textView.setText(daysArray[day - 1]);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter3 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView3.setAdapter(customBasedAdapter3);
         Utility.setListViewHeightBasedOnChildren(listView3);
+
+        //day4
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date4);
+        textView.setText(date2);
+        textView = (TextView) findViewById(R.id.day4);
+        day = c.get(Calendar.DAY_OF_WEEK);
+        textView.setText(daysArray[day - 1]);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter4 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView4.setAdapter(customBasedAdapter4);
         Utility.setListViewHeightBasedOnChildren(listView4);
+
+        //day5
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date5);
+        textView.setText(date2);
+        textView = (TextView) findViewById(R.id.day5);
+        day = c.get(Calendar.DAY_OF_WEEK);
+        textView.setText(daysArray[day - 1]);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter5 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView5.setAdapter(customBasedAdapter5);
         Utility.setListViewHeightBasedOnChildren(listView5);
+
+        //day6
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date6);
+        textView.setText(date2);
+        textView = (TextView) findViewById(R.id.day6);
+        day = c.get(Calendar.DAY_OF_WEEK);
+        textView.setText(daysArray[day - 1]);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter6 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView6.setAdapter(customBasedAdapter6);
         Utility.setListViewHeightBasedOnChildren(listView6);
+
+        //day7
+        c.add(Calendar.DAY_OF_YEAR, 1);
+        date = sdf.format(c.getTime());
+        date2 = sdf2.format(c.getTime());
+        textView = (TextView) findViewById(R.id.date7);
+        textView.setText(date2);
+        textView = (TextView) findViewById(R.id.day7);
+        day = c.get(Calendar.DAY_OF_WEEK);
+        textView.setText(daysArray[day - 1]);
+        try {
+            json_response = new OkHttpHandler().getAppointments(id, date);
+            System.out.println("HTTP Response received successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        CustomBasedAdapter customBasedAdapter7 = new CustomBasedAdapter(this, json_response, 2, id);
+        listView7.setAdapter(customBasedAdapter7);
         Utility.setListViewHeightBasedOnChildren(listView7);
 
         String text = "("+ listView1.getAdapter().getCount()+")";
@@ -76,65 +189,6 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         text = "("+ listView7.getAdapter().getCount()+")";
         textView = (TextView) findViewById(R.id.counter7);
         textView.setText(text);
-
-        //today
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        Calendar c = Calendar.getInstance();
-        String date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date1);
-        textView.setText(date);
-
-        //tomorrow
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date2);
-        textView.setText(date);
-
-        String daysArray[] = {"Κυριακή","Δευτέρα","Τρίτη", "Τετάρτη","Πέμπτη","Παρασκευή", "Σάββατο"};
-        //day3
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date3);
-        textView.setText(date);
-        textView = (TextView) findViewById(R.id.day3);
-        int day = c.get(Calendar.DAY_OF_WEEK);
-        textView.setText(daysArray[day - 1]);
-
-        //day4
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date4);
-        textView.setText(date);
-        textView = (TextView) findViewById(R.id.day4);
-        day = c.get(Calendar.DAY_OF_WEEK);
-        textView.setText(daysArray[day - 1]);
-
-        //day5
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date5);
-        textView.setText(date);
-        textView = (TextView) findViewById(R.id.day5);
-        day = c.get(Calendar.DAY_OF_WEEK);
-        textView.setText(daysArray[day - 1]);
-
-        //day6
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date6);
-        textView.setText(date);
-        textView = (TextView) findViewById(R.id.day6);
-        day = c.get(Calendar.DAY_OF_WEEK);
-        textView.setText(daysArray[day - 1]);
-
-        //day7
-        c.add(Calendar.DAY_OF_YEAR, 1);
-        date = sdf.format(c.getTime());
-        textView = (TextView) findViewById(R.id.date7);
-        textView.setText(date);
-        textView = (TextView) findViewById(R.id.day7);
-        day = c.get(Calendar.DAY_OF_WEEK);
-        textView.setText(daysArray[day - 1]);
 
         ConstraintLayout constraintLayout1 = (ConstraintLayout) findViewById(R.id.part1);
         ConstraintLayout constraintLayout2 = (ConstraintLayout) findViewById(R.id.part2);
@@ -216,7 +270,6 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
                 }
             }
         };
-
         constraintLayout1.setOnClickListener(onClickListener);
         constraintLayout2.setOnClickListener(onClickListener);
         constraintLayout3.setOnClickListener(onClickListener);
@@ -225,13 +278,12 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         constraintLayout6.setOnClickListener(onClickListener);
         constraintLayout7.setOnClickListener(onClickListener);
 
-        Button backBtn = (Button)findViewById(R.id.backButton);
+        Button backBtn = (Button)findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DoctorAppointmentsScreenActivity.this, DoctorMainScreenActivity.class));
+                finish();
             }
         });
     }
-
 }
