@@ -101,6 +101,7 @@
     <string name="physionSSNExample">π.χ. 123456789</string>
     <string name="physioPhoneTitle">Αριθμός Τηλεφώνου</string>
     <string name="physiosTitle">Φυσιοθεραπευτήρια</string>
+    <string name="zero">0</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

@@ -40,8 +40,35 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // the data we got
         pid = (Integer) getIntent().getSerializableExtra("id");
 
-        createUpcomingAppointmentView();
-        createTransactionView();
+        // Gte data from API:
+        getUpcomingAppointment();
+        transactionsParser(new OkHttpHandler().getTransactions(pid));
+
+        TextView tv;
+        if(upcomingAptLst.size() != 0)
+            createUpcomingAppointmentView();
+        else {
+            tv = (TextView) findViewById(R.id.aptTitle);
+
+            tv.append(
+                    getString(R.string.l_par)
+                    + getString(R.string.zero)
+                    + getString(R.string.r_par)
+            );
+        }
+
+        if(transactionsData.size() != 0)
+            createTransactionView();
+        else {
+            tv = (TextView) findViewById(R.id.transactionTitle);
+
+            tv.append(
+                    getString(R.string.l_par)
+                    + getString(R.string.zero)
+                    + getString(R.string.r_par)
+            );
+        }
+
         createAmenitySearchButton();
 
     }
@@ -61,8 +88,8 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         upcomingAptLst = gson.fromJson(upcomingApt, ArrayList.class);
     }
 
-    private ArrayList<TransactionInfo> transactionsParser(String json) {
-        ArrayList<TransactionInfo> transactionData = new ArrayList<>();
+    private void transactionsParser(String json) {
+        ArrayList<TransactionInfo> transactionsData = new ArrayList<>();
 
         try {
             JSONObject transactionsJSONObj = new JSONObject(json);
@@ -78,12 +105,12 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                 int id = elmObj.getInt("id");
 
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-                    transactionData.add(new TransactionInfo(date, phName, prName, id, (float) cost));
+                    transactionsData.add(new TransactionInfo(date, phName, prName, id, (float) cost));
             }
         } catch (JSONException e) {
         }
 
-        return transactionData;
+        this.transactionsData = transactionsData;
     }
 
     public void OnClickShowTransactions(View view) {
@@ -138,7 +165,6 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
     private void createUpcomingAppointmentView() {
 
-        getUpcomingAppointment();
         getPatientAppointments();
 
         ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
@@ -328,8 +354,6 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
 
         // This is for the transactions part:
-        // Extract JSON data, from the database, concerning user transactions:
-        transactionsData = transactionsParser(new OkHttpHandler().getTransactions(pid));
 
         TextView title = (TextView) findViewById(R.id.transactionTitle);
         title.append(" " + getString(R.string.l_par)
