@@ -2,8 +2,6 @@ package com.android.flexability;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -31,8 +29,9 @@ public class SearchAppointment extends AppCompatActivity {
         Button searchBtn = findViewById(R.id.searchBtn);
         Button backBtn = findViewById(R.id.backBtn);
 
-        //TO-DO: CHANGE PATIENT_ID WITH ACTUAL VALUE FROM DB.
-        int patient_id = 3;
+        Intent intent = getIntent();
+        String patientIdString = intent.getStringExtra("pid");
+        int patient_id = Integer.parseInt(patientIdString);
 
         class FullDate {
             String day;
@@ -94,23 +93,21 @@ public class SearchAppointment extends AppCompatActivity {
                     Toast usedToast = Toast.makeText(this, toastMsg, Toast.LENGTH_LONG);
                     usedToast.show();
                 } else {
-                    Intent intent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
-                    intent.putExtra("day", day);
-                    intent.putExtra("date", date);
-                    intent.putExtra("hour", hour);
-                    startActivity(intent);
+                    Intent resultsIntent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
+                    resultsIntent.putExtra("day", day);
+                    resultsIntent.putExtra("date", date);
+                    resultsIntent.putExtra("hour", hour);
+                    startActivity(resultsIntent);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        //TO-DO: Add Intent for previous activity when backBtn is pressed
-        //backBtn.setOnClickListener(new View.OnClickListener() {});
-    }
-
-    public void OnClickBackToMainPatient(View view) {
-        finish();
+        backBtn.setOnClickListener(v -> {
+            Intent backIntent = new Intent(SearchAppointment.this, PatientMainScreenActivity.class);
+            startActivity(backIntent);
+        });
     }
 
 }

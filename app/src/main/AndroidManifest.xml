@@ -41,7 +41,7 @@
             android:exported="false" />
         <activity
             android:name=".SearchAppointment"
-            android:exported="true" />
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"
