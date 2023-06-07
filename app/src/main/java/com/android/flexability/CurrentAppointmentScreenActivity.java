@@ -20,8 +20,8 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_current_appointment_screen);
 
         Intent intent = getIntent();
-        int physio_id = Integer.parseInt(intent.getStringExtra("physioId"));
-        int patient_id = Integer.parseInt(intent.getStringExtra("patientId"));
+        int physio_id = intent.getIntExtra("physioId", -1);
+        int patient_id = intent.getIntExtra("patientId", -1);
         String timestamp = intent.getStringExtra("timestamp");
 
         btnBack = findViewById(R.id.btnBack);
