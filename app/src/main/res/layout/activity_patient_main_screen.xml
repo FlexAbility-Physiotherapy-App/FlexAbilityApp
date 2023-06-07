@@ -54,7 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/manrope_light"
-                    android:onClick="OnClickShowAppointments"
                     android:text="@string/showAll"
                     android:textColor="@color/greenButton"
                     android:textSize="16sp"

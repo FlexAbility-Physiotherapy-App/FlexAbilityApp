@@ -33,6 +33,7 @@
                 android:contentDescription="@string/backButtonDescription"
                 android:drawableLeft="@drawable/angle_left_solid"
                 android:drawableTint="@color/white"
+                android:onClick="OnClickBackToMainPatient"
                 android:paddingStart="17dp"
                 android:paddingEnd="17dp"
                 android:textColor="@color/white"
