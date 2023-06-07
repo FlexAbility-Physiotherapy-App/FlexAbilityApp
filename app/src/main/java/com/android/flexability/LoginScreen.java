@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class LoginScreen extends AppCompatActivity {
-    String json_response;
+    private String json_response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class LoginScreen extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     json_response = new OkHttpHandler().getUser(textView_username.getText().toString(), textView_password.getText().toString());
-                    System.out.println("HTTP Response received successfully: " + json_response);
+                    System.out.println("HTTP Response received successfully");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -45,6 +46,8 @@ public class LoginScreen extends AppCompatActivity {
                     Intent intent = new Intent(LoginScreen.this, PatientMainScreenActivity.class);
                     intent.putExtra("id", user.getId());
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Λανθασμένα πιστοποιητικά εισόδου", Toast.LENGTH_SHORT).show();
                 }
             }
         });
