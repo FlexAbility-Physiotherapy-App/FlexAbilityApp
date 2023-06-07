@@ -3,6 +3,7 @@ package com.android.flexability;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -107,4 +108,9 @@ public class SearchAppointment extends AppCompatActivity {
         //TO-DO: Add Intent for previous activity when backBtn is pressed
         //backBtn.setOnClickListener(new View.OnClickListener() {});
     }
+
+    public void OnClickBackToMainPatient(View view) {
+        finish();
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.android.flexability;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -21,6 +24,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_appointments_screen);
+
         listView1 = (ListView) findViewById(R.id.appointmentsList1);
         listView2 = (ListView) findViewById(R.id.appointmentsList2);
         listView3 = (ListView) findViewById(R.id.appointmentsList3);
@@ -32,7 +36,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         int id = -1;
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        if(bundle != null) {
+        if(bundle != null){
             id = bundle.getInt("id");
         }
 
@@ -69,7 +73,6 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         CustomBasedAdapter customBasedAdapter2 = new CustomBasedAdapter(this, json_response, 2, id);
         listView2.setAdapter(customBasedAdapter2);
         Utility.setListViewHeightBasedOnChildren(listView2);
-        textView.setText(date);
 
         String daysArray[] = {"Κυριακή","Δευτέρα","Τρίτη", "Τετάρτη","Πέμπτη","Παρασκευή", "Σάββατο"};
 
@@ -270,6 +273,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
                 }
             }
         };
+
         constraintLayout1.setOnClickListener(onClickListener);
         constraintLayout2.setOnClickListener(onClickListener);
         constraintLayout3.setOnClickListener(onClickListener);
@@ -286,4 +290,5 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -1,4 +1,5 @@
 package com.android.flexability;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ public class CustomBasedAdapter extends BaseAdapter {
     LayoutInflater inflater;
     int physioId;
 
-    public CustomBasedAdapter(Context ctx, String response, int type, int id) {
+    public CustomBasedAdapter(Context ctx, String response, int type, int id){
         this.context = ctx;
         this.appointments = parseJson(response);
         this.type = type;
@@ -36,7 +37,7 @@ public class CustomBasedAdapter extends BaseAdapter {
 
     public static ArrayList<Appointment> parseJson(String response) {
         ArrayList<Appointment> appointments = new ArrayList<>();
-        try {
+        try{
             JSONObject jsonObject = new JSONObject(response);
             JSONArray appointmentsArray = jsonObject.getJSONArray("appointments");
 
@@ -53,7 +54,8 @@ public class CustomBasedAdapter extends BaseAdapter {
                     appointments.add(appointment);
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
         return appointments;
@@ -76,10 +78,12 @@ public class CustomBasedAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         View row;
-        if (position == 0 && type == 1) {
+        if(position == 0 && type == 1) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.activity_custom_list_view_green, parent, false);
+
             Button btn = (Button) row.findViewById(R.id.button2);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,10 +95,12 @@ public class CustomBasedAdapter extends BaseAdapter {
                     context.startActivity(intent);
                 }
             });
-        } else if (position == 1 && type == 1) {
+        }
+        else if(position == 1 && type == 1){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.activity_custom_list_view_orange, parent, false);
-        } else {
+        }
+        else{
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = layoutInflater.inflate(R.layout.activity_custom_list_view_black, parent, false);
         }
@@ -102,18 +108,18 @@ public class CustomBasedAdapter extends BaseAdapter {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             LocalDateTime ldt = LocalDateTime.parse(appointments.get(position).getTimestamp().replace(" ", "T"));
-            OffsetDateTime odt = ldt.atOffset(ZoneOffset.UTC);
+            OffsetDateTime odt = ldt.atOffset( ZoneOffset.UTC );
             LocalTime beginTime = odt.toLocalTime();
             LocalTime endTime = beginTime.plus(1, ChronoUnit.HOURS);
             String beginTimeString = beginTime.toString();
             String endTimeString = endTime.toString();
-            String time = beginTimeString.substring(0, 5) + " - " + endTimeString.substring(0, 5);
+            String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
 
-            TextView txtView = (TextView) row.findViewById(R.id.nameText);
+            TextView txtView = (TextView)row.findViewById(R.id.nameText);
             txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
-            txtView = (TextView) row.findViewById(R.id.phoneText);
+            txtView = (TextView)row.findViewById(R.id.phoneText);
             txtView.setText(appointments.get(position).getAmka());
-            txtView = (TextView) row.findViewById(R.id.hourText);
+            txtView = (TextView)row.findViewById(R.id.hourText);
             txtView.setText(time);
         }
 

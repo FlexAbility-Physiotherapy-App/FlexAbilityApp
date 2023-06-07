@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class RequestedAppointments extends AppCompatActivity {
     LinearLayout reqAppointmentList;
@@ -47,12 +48,12 @@ public class RequestedAppointments extends AppCompatActivity {
 
 
         // For x amount of days ahead.
-        for(int i = 0; i < 7; i++){
+        for(int i = 0; i < DayConverter.values().length; i++){
             Calendar c = Calendar.getInstance();
             c.add(Calendar.DATE, i);
 
-            String day = new SimpleDateFormat("EEEE").format(c.getTime());
-            String date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+            String day = new SimpleDateFormat("EEEE", Locale.getDefault()).format(c.getTime());
+            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(c.getTime());
 
             ImageView arrowImg = new ImageView(this);
             TextView dayLabel = new TextView(this);
@@ -60,51 +61,36 @@ public class RequestedAppointments extends AppCompatActivity {
             TextView counterLabel = new TextView(this);
 
 
+            // Window density.
+            float density = this.getResources().getDisplayMetrics().density;
+
+
             // arrowImg Parameters.
             arrowImg.setImageResource(R.drawable.angle_right_solid);
-            arrowImg.setPadding(
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density),
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density)
-            );
+            arrowImg.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
 
             // dayLabel Parameters.
             dayLabel.setText(DayConverter.convertToGreek(day));
             dayLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-            dayLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
+            dayLabel.setTextColor(getColor(R.color.titleDark));
             dayLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-            dayLabel.setPadding(
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density),
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density)
-            );
+            dayLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
 
             // dateLabel Parameters.
             dateLabel.setText(date);
             dateLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             dateLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_regular));
-            dateLabel.setPadding(
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density),
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density)
-            );
+            dateLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
 
             // counterLabel Parameters.
             counterLabel.setText("(#)"); // Default value. Changes when appointments are loaded.
             counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-            counterLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
+            counterLabel.setTextColor(getColor(R.color.titleDark));
             counterLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-            counterLabel.setPadding(
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density),
-                    (int) (7 * this.getResources().getDisplayMetrics().density),
-                    (int) (10 * this.getResources().getDisplayMetrics().density)
+            counterLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density)
             );
 
 
@@ -141,14 +127,14 @@ public class RequestedAppointments extends AppCompatActivity {
                     recreate();
                 });
 
-                TextView txtView = appointmentRequest.findViewById(R.id.amkaTextView);
-                txtView.setText(a.getAmka()); // Updates AMKA.
+                TextView amkaTextView = appointmentRequest.findViewById(R.id.amkaTextView);
+                amkaTextView.setText(a.getAmka()); // Updates AMKA.
 
-                txtView = appointmentRequest.findViewById(R.id.nameTextView);
-                txtView.setText(a.getName_()); // Updates Name.
+                TextView nameTextView = appointmentRequest.findViewById(R.id.nameTextView);
+                nameTextView.setText(a.getName_()); // Updates Name.
 
-                txtView = appointmentRequest.findViewById(R.id.timeTextView);
-                txtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
+                TextView timeTxtView = appointmentRequest.findViewById(R.id.timeTextView);
+                timeTxtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
 
                 list.addView(appointmentRequest);
             }

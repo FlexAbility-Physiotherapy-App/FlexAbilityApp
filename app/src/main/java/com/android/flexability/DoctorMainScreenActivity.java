@@ -150,11 +150,15 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         // Appointments Header.
         LinearLayout listDataContainer = new LinearLayout(this);
         listDataContainer.setOrientation(LinearLayout.HORIZONTAL);
-        listDataContainer.setGravity(Gravity.CENTER_VERTICAL);
+        listDataContainer.setGravity(Gravity.END);
 
         TextView appointmentsLabel = new TextView(this);
         TextView counterLabel = new TextView(this);
-        TextView viewAllLabel = new TextView(this);
+        TextView viewAllLabel = new TextView(this, null, 0, androidx.appcompat.R.style.Base_Widget_AppCompat_Button_Borderless);
+
+
+        // Window density.
+        float density = this.getResources().getDisplayMetrics().density;
 
 
         // AppointmentsLabel Parameters.
@@ -162,50 +166,35 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         appointmentsLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         appointmentsLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
         appointmentsLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-        appointmentsLabel.setPadding(
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density),
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density)
-        );
+        appointmentsLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
 
         // counterLabel Parameters.
         counterLabel.setText("(#)"); // Default value. Changes when appointments are loaded.
         counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+        counterLabel.setLayoutParams(new LinearLayout.LayoutParams( // Fills space between counterLabel and viewAllLabel to position viewAllLabel to the right of the View.
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                1.0f));
         counterLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
         counterLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-        counterLabel.setPadding(
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density),
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density)
-        );
+        counterLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
 
         // viewAllLabel Parameters.
         viewAllLabel.setText(R.string.showAll);
         viewAllLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        viewAllLabel.setLayoutParams(new ViewGroup.LayoutParams( // Set to position the TextView to the right of the LinearLayout.
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        viewAllLabel.setGravity(Gravity.END);
         viewAllLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-        viewAllLabel.setTextColor(ContextCompat.getColor(this, R.color.greenButton));
+        viewAllLabel.setTextColor(getColor(R.color.greenButton));
         viewAllLabel.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        viewAllLabel.setPadding(
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density),
-                (int) (7 * this.getResources().getDisplayMetrics().density),
-                (int) (10 * this.getResources().getDisplayMetrics().density)
-        );
+        viewAllLabel.setAllCaps(false);
+        viewAllLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
         viewAllLabel.setOnClickListener(v ->{
             Intent navToReqAppointments = new Intent(DoctorMainScreenActivity.this, RequestedAppointments.class);
             navToReqAppointments.putExtra("id", userID);
             startActivity(navToReqAppointments);
         });
-
 
         listDataContainer.addView(appointmentsLabel);
         listDataContainer.addView(counterLabel);
@@ -237,12 +226,12 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
 
         rejectButton.setOnClickListener(v -> {
-            new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
+            new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
             recreate();
         });
 
         acceptButton.setOnClickListener(v -> {
-            new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp()); // TODO Replace TEMP_PHYSIO_ID
+            new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
             recreate();
         });
 

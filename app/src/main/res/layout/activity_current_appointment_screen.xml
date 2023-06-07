@@ -76,7 +76,7 @@
                 android:padding="30dp"
                 android:gravity="top"
                 android:background="@drawable/comments_edittext"
-                android:text="@string/commentsExample"/>
+                android:hint="@string/commentsExample"/>
 
         </com.google.android.flexbox.FlexboxLayout>
 

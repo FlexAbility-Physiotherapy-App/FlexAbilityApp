@@ -29,7 +29,8 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
     private ArrayList<String> upcomingAptLst;
     private ArrayList<TransactionInfo> transactionsData;
-    private ArrayList<String> patientAptsLst;
+    private ArrayList<String> patientAppointmentsLst;
+    private int pid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +40,23 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // This is for the Appointments part:
         // Get the id from the login screen and fill the text views with
         // the data we got
-        int pid = (Integer) getIntent().getSerializableExtra("id");
+        pid = (Integer) getIntent().getSerializableExtra("id");
 
-        createUpcamingAppointmentView(pid);
-        createTransactionView(pid);
+        createUpcomingAppointmentView();
+        createTransactionView();
         createAmenitySearchButton();
 
     }
 
-    private void getPatientAppointments(int id) {
-        String patientApts = (new OkHttpHandler().getPatientAppointments(id));
+    private void getPatientAppointments() {
+        String patientAppointments = (new OkHttpHandler().getPatientAppointments(pid));
 
         Gson gson = new Gson();
-        patientAptsLst = gson.fromJson(patientApts, ArrayList.class);
+        patientAppointmentsLst = gson.fromJson(patientAppointments, ArrayList.class);
     }
 
-    private void getUpcomingAppointment(int id) {
-        String upcomingApt = (new OkHttpHandler().getUpcomingPatientAppointment(id));
+    private void getUpcomingAppointment() {
+        String upcomingApt = (new OkHttpHandler().getUpcomingPatientAppointment(pid));
 
         // Parse the json like object to a java ArrayList
         Gson gson = new Gson();
@@ -87,13 +88,6 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         return transactionData;
     }
 
-    public void OnClickShowAppointments(View view) {
-        Intent appointments = new Intent(PatientMainScreenActivity.this,
-                SearchAppointment.class
-        );
-        startActivity(appointments);
-    }
-
     public void OnClickShowTransactions(View view) {
          if(transactionsData != null) {
              Intent transactions = new Intent(PatientMainScreenActivity.this,
@@ -111,7 +105,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         // Get the outer Linear Layout.
         LinearLayout outerLL = (LinearLayout) findViewById(R.id.outterMainPatientScreen);
 
-        Button amntBtn = new Button(this);
+        Button amenityBtn = new Button(this);
 
         LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
                 275,
@@ -119,25 +113,35 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         );
         llParams.setMargins(100, 25, 0, 100);
 
-        amntBtn.setLayoutParams(llParams);
+        amenityBtn.setLayoutParams(llParams);
 
-        amntBtn.setText(getString(R.string.amenitySearch));
+        amenityBtn.setText(getString(R.string.amenitySearch));
 
         GradientDrawable gd = new GradientDrawable();
 
         gd.setCornerRadius(6);
         gd.setColor(getColor(R.color.buttons));
 
-        amntBtn.setBackground(gd);
-        amntBtn.setTextColor(getColor(R.color.white));
+        amenityBtn.setBackground(gd);
+        amenityBtn.setTextColor(getColor(R.color.white));
+        amenityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent appointments = new Intent(PatientMainScreenActivity.this,
+                        SearchAppointment.class
+                );
+                appointments.putExtra("pid", pid);
+                startActivity(appointments);
+            }
+        });
 
-        outerLL.addView(amntBtn);
+        outerLL.addView(amenityBtn);
     }
 
-    private void createUpcamingAppointmentView(int pid) {
+    private void createUpcomingAppointmentView() {
 
-        getUpcomingAppointment(pid);
-        getPatientAppointments(pid);
+        getUpcomingAppointment();
+        getPatientAppointments();
 
         ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
 
@@ -190,7 +194,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
         // Append number of appointments
         TextView titleApt = (TextView) findViewById(R.id.aptTitle);
-        titleApt.append(" " + getString(R.string.l_par) + patientAptsLst.size() + getString(R.string.r_par));
+        titleApt.append(" " + getString(R.string.l_par) + patientAppointmentsLst.size() + getString(R.string.r_par));
 
         // Create the sub text views
         TextView nameTV = new TextView(this);
@@ -200,7 +204,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         TextView dateTV = new TextView(this);
         dateTV.setId(View.generateViewId());
 
-        // Create the title teext views:
+        // Create the title text views:
         TextView nameTitle = new TextView(this);
         nameTitle.setId(View.generateViewId());
         TextView hourTitle = new TextView(this);
@@ -318,7 +322,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         outerLL.addView(cv, LinearLayout.FOCUS_BACKWARD);
     }
 
-    private void createTransactionView(int pid) {
+    private void createTransactionView() {
 
         ScrollView sv = (ScrollView) findViewById(R.id.mainPatientScreen);
 
