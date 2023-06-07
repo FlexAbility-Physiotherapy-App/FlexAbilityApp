@@ -19,14 +19,10 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_appointment_screen);
 
-        int physio_id = 8;
-        int patient_id = 3;
-        String timestamp = "2023-05-19 00:01:00";
-
-//        Intent intent = getIntent();
-//        int physio_id = Integer.parseInt(intent.getStringExtra("physioId"));
-//        int patient_id = Integer.parseInt(intent.getStringExtra("patientId"));
-//        String timestamp = intent.getStringExtra("timestamp");
+        Intent intent = getIntent();
+        int physio_id = Integer.parseInt(intent.getStringExtra("physioId"));
+        int patient_id = Integer.parseInt(intent.getStringExtra("patientId"));
+        String timestamp = intent.getStringExtra("timestamp");
 
         btnBack = findViewById(R.id.btnBack);
         editTextComments = findViewById(R.id.editTextComments);
