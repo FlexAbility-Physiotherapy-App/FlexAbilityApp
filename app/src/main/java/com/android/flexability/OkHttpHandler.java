@@ -25,6 +25,58 @@ public class OkHttpHandler {
         StrictMode.setThreadPolicy(policy);
     }
 
+    public String getPhysios() {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PHYSIOS;
+        return apiRequest(url, "GET");
+    }
+
+    public String getPhysios(int limit) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PHYSIOS + "?" +
+                "limit=" + limit;
+        return apiRequest(url, "GET");
+    }
+
+    public int getPhysiosCount() {
+        String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PHYSIOS_COUNT;
+        String response = apiRequest(url, "GET");
+        try{
+            JSONObject jsonObject = new JSONObject(response);
+            return jsonObject.getInt("totalphysios");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public void Physio(int id, String name, String address, String phone, String ssn) {
+        String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_CREATE_PHYSIO + "?" +
+                "&id=" + id +
+                "&address=" + address +
+                "&name=" + name +
+                "&afm=" + ssn +
+                "&phone=" + phone;
+        String response = apiRequest(url, "POST");
+        System.out.println("Physio created successfully. Response: " + response);
+    }
+
+//    private String apiRequest(String url, String method) {
+//        OkHttpClient client = new OkHttpClient().newBuilder().build();
+//        RequestBody requestBody = RequestBody.create("", MediaType.parse("text/plain"));
+//        if (method.equals("GET")) {
+//            requestBody = null;
+//        }
+//        Request request = new Request.Builder().url(url).method(method, requestBody).build();
+//        try (Response response = client.newCall(request).execute()) {
+//            assert response.body() != null;
+//            return response.body().string();
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            return "";
+//        }
+//    }
+
     public String getAmenities() {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_PROVISIONS;
         return apiRequest(url, "GET");
@@ -59,7 +111,7 @@ public class OkHttpHandler {
         System.out.println("Amenity created successfully. Response: " + response);
     }
 
-     public void createPatient(String name, String surname, String address, String phone, String amka, String sex) {
+    public void createPatient(String name, String surname, String address, String phone, String amka, String sex) {
         String url= AppConfig.BACKEND_SERVER_IP + AppConfig.API_CREATE_PATIENT + "?" +
                 "name=" + name +
                 "&surname=" + surname +
@@ -190,8 +242,10 @@ public class OkHttpHandler {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 int id = jsonObject.getInt("id");
                 String name = jsonObject.getString("name");
+                String address = jsonObject.getString("address");
                 String phone = jsonObject.getString("phone_number");
-                Physio physio = new Physio(id, name, phone);
+                String ssn = jsonObject.getString("afm");
+                Physio physio = new Physio(id, name, address, phone, ssn);
                 physios.add(physio);
             }
         } catch (JSONException e) {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +16,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class LoginScreen extends AppCompatActivity {
-    String json_response;
+    private String json_response;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,8 @@ public class LoginScreen extends AppCompatActivity {
                     Intent intent = new Intent(LoginScreen.this, PatientMainScreenActivity.class);
                     intent.putExtra("id", user.getId());
                     startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Λανθασμένα πιστοποιητικά εισόδου", Toast.LENGTH_SHORT).show();
                 }
             }
         });

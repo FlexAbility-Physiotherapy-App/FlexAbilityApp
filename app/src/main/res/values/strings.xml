@@ -3,7 +3,7 @@
     <string name="register">Εγγραφή</string>
     <string name="login">Σύνδεση</string>
     <string name="back">Πίσω</string>
-    <string name="physios">Φυσιοθεραπευτήρια (6)</string>
+    <string name="physios">Φυσιοθεραπευτήρια (%1$d)</string>
     <string name="amenities">Παροχές (%1$d)</string>
     <string name="create">Δημιουργία</string>
     <string name="showAll"><u>Προβολή όλων ></u></string>
@@ -34,7 +34,7 @@
     <string name="amkaFound">Βρέθηκε ασθενής που να αντιστοιχεί στο δοσμένο ΑΜΚΑ:</string>
     <string name="showHistory">Προβολή Ιστορικού</string>
     <string name="fatherName">Πατρώνυμο</string>
-    <string name="newPhysio">Νέο Φυσιοθεραπευτήριο</string>
+    <string name="newPhysio">Νέο\nΦυσιοθεραπευτήριο</string>
     <string name="physioNameHint">π.χ. Body Care ||</string>
     <string name="physioName">Όνομα Φυσιοθεραπευτηρίου</string>
     <string name="addressHint">π.χ. Εγραντία 111</string>
@@ -91,6 +91,16 @@
     <string name="l_par">(</string>
     <string name="r_par">)</string>
     <string name="next">Επερχόμενο</string>
+    <string name="createNewPhysio">Νέο Φυσιοθεραπευτήριο</string>
+    <string name="PhysioNameTitle">Όνομα Φυσιοθεραπευτηρίου</string>
+    <string name="physioNameExample">π.χ. BodyCare II</string>
+    <string name="physioAdress">Διεύθυνση</string>
+    <string name="physioAdressExample">π.χ. Εγνατία 111</string>
+    <string name="physioPhoneExample">π.χ. 2310444443</string>
+    <string name="physioSSNTitle">ΑΦΜ</string>
+    <string name="physionSSNExample">π.χ. 123456789</string>
+    <string name="physioPhoneTitle">Αριθμός Τηλεφώνου</string>
+    <string name="physiosTitle">Φυσιοθεραπευτήρια</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>

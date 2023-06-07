@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
-
     ListView listView1, listView2, listView3, listView4, listView5, listView6,listView7;
     TextView textView;
     String json_response;

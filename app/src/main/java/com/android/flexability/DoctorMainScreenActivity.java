@@ -52,7 +52,6 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
             id = bundle.getInt("id");
         }
 
-
         int limit = 3;
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.US);

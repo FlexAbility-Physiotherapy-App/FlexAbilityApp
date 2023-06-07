@@ -5,208 +5,259 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMainColor"
-    tools:context=".CreateNewPhysio">
+    tools:context=".CreatePhysioActivity">
 
-    <com.google.android.flexbox.FlexboxLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="25dp"
-        app:flexDirection="column"
-        app:justifyContent="space_between">
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/topPart"
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
 
-            <TextView
-                android:id="@+id/appointment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/newPhysio"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/back_button"
+            <Button
+                android:id="@+id/backButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="48dp"
+                android:layout_height="58dp"
+                android:backgroundTint="@color/greenButton"
+                android:contentDescription="@string/backButtonDescription"
+                android:drawableLeft="@drawable/angle_left_solid"
+                android:drawableTint="@color/white"
+                android:paddingLeft="17dp"
+                android:textColor="@color/white"
+                app:cornerRadius="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/white_ripple"
+                app:strokeColor="@android:color/transparent" />
 
-                <androidx.constraintlayout.utils.widget.ImageFilterView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:padding="7dp"
-                    android:src="@drawable/angle_left_solid"
-                    android:tint="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/manrope_extra_light"
+                android:inputType="text|textMultiLine"
+                android:lines="2"
+                android:maxLines="2"
+                android:text="@string/newPhysio"
+                android:textAlignment="viewStart"
+                android:textColor="@color/titleDark"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.965"
+                app:layout_constraintStart_toEndOf="@+id/backButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.flexbox.FlexboxLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:flexDirection="column">
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/txtPhysioName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/physioName"
-                android:layout_marginBottom="5dp"
-                android:textSize="16sp"/>
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/PhysioNameTitle"
+                android:textColor="@color/titleDark"
+                android:textSize="15sp" />
 
             <EditText
+                android:id="@+id/editTextPhysioName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/physioNameHint"
+                android:layout_height="48dp"
+                android:background="@drawable/rounded_input_field_layout"
+                android:ems="10"
+                android:fontFamily="@font/manrope_regular"
+                android:hint="@string/physioNameExample"
                 android:inputType="text"
-                android:background="@drawable/input_textview"
-                android:layout_marginBottom="15dp"
-                android:textSize="16sp"/>
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/titleDark"
+                android:textColorHint="@color/gray"
+                android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/addressPrompt"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                android:textSize="16sp"/>
+        </LinearLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/addressHint"
-                android:inputType="text"
-                android:background="@drawable/input_textview"
-                android:layout_marginBottom="15dp"
-                android:textSize="16sp"/>
-
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:justifyContent="space_between">
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:flexDirection="column">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phoneNumber"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="16sp"/>
-
-                    <EditText
-                        android:layout_width="160dp"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/phoneNumberHint"
-                        android:inputType="text"
-                        android:background="@drawable/input_textview"
-                        android:textSize="16sp"/>
-                </com.google.android.flexbox.FlexboxLayout>
-
-
-                <com.google.android.flexbox.FlexboxLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:flexDirection="column">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/afm"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="16sp"/>
-
-                    <EditText
-                        android:layout_width="160dp"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/afmHint"
-                        android:inputType="text"
-                        android:background="@drawable/input_textview"
-                        android:textSize="16sp"/>
-
-                </com.google.android.flexbox.FlexboxLayout>
-
-            </com.google.android.flexbox.FlexboxLayout>
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-        <com.google.android.flexbox.FlexboxLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:justifyContent="space_between">
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnCreatePhysio"
-                android:layout_width="160dp"
+            <TextView
+                android:id="@+id/txtPhysioAdress"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/green_border_button"
-                android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/physioAdress"
+                android:textColor="@color/titleDark"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/editTextPhysioAddress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/rounded_input_field_layout"
+                android:ems="10"
+                android:fontFamily="@font/manrope_regular"
+                android:hint="@string/physioAdressExample"
+                android:inputType="text"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:textColor="@color/titleDark"
+                android:textColorHint="@color/gray"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtViewCancel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtPhysioPhoneTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/physioPhoneTitle"
+                    android:textColor="@color/titleDark"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/editTextPhysioPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_input_field_layout"
+                    android:ems="10"
+                    android:fontFamily="@font/manrope_regular"
+                    android:hint="@string/physioPhoneExample"
+                    android:inputType="number"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textColor="@color/titleDark"
+                    android:textColorHint="@color/gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtPhysioSSN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/manrope_bold"
+                    android:text="@string/physioSSNTitle"
+                    android:textColor="@color/titleDark"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/editTextPhysioSSN"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/rounded_input_field_layout"
+                    android:ems="10"
+                    android:fontFamily="@font/manrope_regular"
+                    android:hint="@string/physionSSNExample"
+                    android:inputType="number"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textColor="@color/titleDark"
+                    android:textColorHint="@color/gray"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="0.5"
+                    android:height="58dp"
+                    android:backgroundTint="@color/white"
                     android:fontFamily="@font/manrope_bold"
                     android:text="@string/cancel"
+                    android:textAllCaps="false"
                     android:textColor="@color/greenButton"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:cornerRadius="6dp"
+                    app:rippleColor="@color/green_ripple"
+                    app:strokeColor="@color/greenButton" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnCreateNewPhysio"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_create"
-                android:padding="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/txtViewCreateNewPhysio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/btnCreate"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="0.5"
+                    android:height="58dp"
+                    android:backgroundTint="@color/greenButton"
                     android:fontFamily="@font/manrope_bold"
                     android:text="@string/create"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:cornerRadius="6dp"
+                    app:rippleColor="@color/white_ripple"
+                    app:strokeColor="@color/greenButton" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.flexbox.FlexboxLayout>
-
-    </com.google.android.flexbox.FlexboxLayout>
-
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
