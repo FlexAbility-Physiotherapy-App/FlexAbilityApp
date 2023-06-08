@@ -17,7 +17,7 @@ public class Appointment {
 
     public String getTimestamp(){return this.timestamp;}
 
-    public String getName_(){return this.name;}
+    public String getName(){return this.name;}
 
     public String getSurname(){return this.surname;}
 

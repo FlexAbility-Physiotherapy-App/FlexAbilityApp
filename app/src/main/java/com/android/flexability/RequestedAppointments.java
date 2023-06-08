@@ -1,5 +1,6 @@
 package com.android.flexability;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
@@ -21,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -28,7 +32,6 @@ import java.util.Locale;
 public class RequestedAppointments extends AppCompatActivity {
     LinearLayout reqAppointmentList;
     ImageFilterView backButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,40 +108,15 @@ public class RequestedAppointments extends AppCompatActivity {
             ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(userID, date));
 
 
+            // Loads all appointments of the day.
+            for(Appointment a : appointments){
+                View v = loadAppointmentCard(a, userID, this);
+                list.addView(v);
+            }
+
+
             // Updates Counter value.
             counterLabel.setText("(" + appointments.size() + ")");
-
-
-            // Loads all appointments of the day.
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            for(Appointment a : appointments){
-                View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
-
-                Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
-                Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
-
-                rejectButton.setOnClickListener(v -> {
-                    new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
-                    recreate();
-                });
-
-                acceptButton.setOnClickListener(v -> {
-                    new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
-                    recreate();
-                });
-
-                TextView amkaTextView = appointmentRequest.findViewById(R.id.amkaTextView);
-                amkaTextView.setText(a.getAmka()); // Updates AMKA.
-
-                TextView nameTextView = appointmentRequest.findViewById(R.id.nameTextView);
-                nameTextView.setText(a.getName_()); // Updates Name.
-
-                TextView timeTxtView = appointmentRequest.findViewById(R.id.timeTextView);
-                timeTxtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
-
-                list.addView(appointmentRequest);
-            }
 
 
             // Container that holds date, counter and arrow down.
@@ -179,6 +157,45 @@ public class RequestedAppointments extends AppCompatActivity {
         // Sets back button to return to the physios main screen.
         backButton = findViewById(R.id.backButtonView);
         backButton.setOnClickListener(v -> finish());
+    }
+
+    public View loadAppointmentCard(Appointment a, int userID, Context context){
+        // Loads all appointments of the day.
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
+
+        Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
+        Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
+
+        rejectButton.setOnClickListener(v -> {
+            String response = new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
+            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+            ((Activity) context).recreate();
+        });
+
+        acceptButton.setOnClickListener(v -> {
+            String response = new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
+            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+            ((Activity) context).recreate();
+        });
+
+
+        // Generates time range of the appointment, startTime + 1 hour.
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime startTime = LocalTime.parse(a.getTimestamp().split(" ")[1], formatter);
+        LocalTime endTime = startTime.plusHours(1);
+
+        TextView amkaTextView = appointmentRequest.findViewById(R.id.amkaTextView);
+        amkaTextView.setText(a.getAmka()); // Updates AMKA.
+
+        TextView nameTextView = appointmentRequest.findViewById(R.id.nameTextView);
+        nameTextView.setText(a.getName() + " " + a.getSurname()); // Updates Name.
+
+        TextView timeTxtView = appointmentRequest.findViewById(R.id.timeTextView);
+        timeTxtView.setText(startTime + " - " + endTime); // Updates Time.
+
+        return appointmentRequest;
     }
 
     public static ArrayList<Appointment> reqAppointmentsParser(String json) {

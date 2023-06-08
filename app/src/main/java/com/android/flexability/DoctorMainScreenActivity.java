@@ -4,13 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -136,8 +134,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         });
     }
 
-    private void loadRequestedAppointments(){
-
+    private void loadRequestedAppointments(){ // TODO Automatically reload when returning to Activity.
         // Retrieves userID.
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -147,7 +144,6 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
         LinearLayout reqAppointmentsLayout = findViewById(R.id.reqAppointmentsLayout);
 
-
         // Appointments Header.
         LinearLayout listDataContainer = new LinearLayout(this);
         listDataContainer.setOrientation(LinearLayout.HORIZONTAL);
@@ -155,7 +151,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
         TextView appointmentsLabel = new TextView(this);
         TextView counterLabel = new TextView(this);
-        TextView viewAllLabel = new TextView(this, null, 0, androidx.appcompat.R.style.Base_Widget_AppCompat_Button_Borderless);
+        TextView viewAllLabel = new TextView(this, null, 0, androidx.appcompat.R.style.Base_Widget_AppCompat_Button_Borderless); // Touch effect.
 
 
         // Window density.
@@ -192,7 +188,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         viewAllLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
 
         viewAllLabel.setOnClickListener(v ->{
-            Intent navToReqAppointments = new Intent(DoctorMainScreenActivity.this, RequestedAppointments.class);
+            Intent navToReqAppointments = new Intent(this, RequestedAppointments.class);
             navToReqAppointments.putExtra("id", userID);
             startActivity(navToReqAppointments);
         });
@@ -220,31 +216,9 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         // Gets first appointment.
         Appointment a = appointments.get(0);
 
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
 
-        Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
-        Button acceptButton = appointmentRequest.findViewById(R.id.acceptButton);
-
-        rejectButton.setOnClickListener(v -> {
-            new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
-            recreate();
-        });
-
-        acceptButton.setOnClickListener(v -> {
-            new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
-            recreate();
-        });
-
-        TextView txtView = appointmentRequest.findViewById(R.id.amkaTextView);
-        txtView.setText(a.getAmka()); // Updates AMKA.
-
-        txtView = appointmentRequest.findViewById(R.id.nameTextView);
-        txtView.setText(a.getName_()); // Updates Name.
-
-        txtView = appointmentRequest.findViewById(R.id.timeTextView);
-        txtView.setText(a.getTimestamp().split(" ")[1]); // Updates Time.
-
+        // Inflates and initializes a requested appointment card.
+        View appointmentRequest = new RequestedAppointments().loadAppointmentCard(a, userID, this);
 
         reqAppointmentsLayout.addView(appointmentRequest);
     }

@@ -116,7 +116,7 @@ public class CustomBasedAdapter extends BaseAdapter {
             String time  = beginTimeString.substring(0,5) + " - " + endTimeString.substring(0,5);
 
             TextView txtView = (TextView)row.findViewById(R.id.nameText);
-            txtView.setText(appointments.get(position).getName_() + " " + appointments.get(position).getSurname());
+            txtView.setText(appointments.get(position).getName() + " " + appointments.get(position).getSurname());
             txtView = (TextView)row.findViewById(R.id.phoneText);
             txtView.setText(appointments.get(position).getAmka());
             txtView = (TextView)row.findViewById(R.id.hourText);
