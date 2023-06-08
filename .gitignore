@@ -31,9 +31,6 @@ build/
 .navigation
 captures/
 output.json
-.idea/misc.xml
-app/src/main/java/com/android/flexability/AppConfig
-app/src/main/res/xml/network_security_config
     
 #NDK
 obj/
