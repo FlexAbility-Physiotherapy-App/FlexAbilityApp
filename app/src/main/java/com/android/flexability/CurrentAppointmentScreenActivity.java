@@ -30,7 +30,6 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(view -> {
             finish();
-            startActivity(new Intent(CurrentAppointmentScreenActivity.this, DoctorMainScreenActivity.class));
         });
 
         btnComplete.setOnClickListener(view -> {
@@ -45,7 +44,9 @@ public class CurrentAppointmentScreenActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             finish();
-            startActivity(new Intent(CurrentAppointmentScreenActivity.this, DoctorMainScreenActivity.class));
+            Intent returnAndRefresh = new Intent(CurrentAppointmentScreenActivity.this, DoctorMainScreenActivity.class);
+            returnAndRefresh.putExtra("id", physio_id);
+            startActivity(returnAndRefresh);
         });
     }
 }
