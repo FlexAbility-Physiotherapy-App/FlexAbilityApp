@@ -151,6 +151,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
 
         amenityBtn.setBackground(gd);
         amenityBtn.setTextColor(getColor(R.color.white));
+        amenityBtn.setAllCaps(false);
         amenityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
