@@ -23,6 +23,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
         setContentView(R.layout.activity_search_appointment_results);
 
         Intent intent = getIntent();
+        int patient_id = intent.getIntExtra("id", -1);
         String day = intent.getStringExtra("day");
         String date = intent.getStringExtra("date");
         String hour = intent.getStringExtra("hour");
@@ -50,6 +51,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
             hourTextView.setText(hour);
             nameTextView.setText(physio.getName());
             phoneTextView.setText(physio.getPhone());
+            int physio_id = physio.getId();
 
             Button requestBtn = cardView.findViewById(R.id.sendRequestBtn);
             requestBtn.setOnClickListener(v -> {
@@ -58,7 +60,12 @@ public class SearchAppointmentResults extends AppCompatActivity {
                 requestBtn.setEnabled(false);
                 requestBtn.setTextColor(ContextCompat.getColor(this, R.color.white));
 
-                //TO-DO: Make a new patient_physio record in db
+                try {
+                    OkHttpHandler okHttpHandler = new OkHttpHandler();
+                    okHttpHandler.makeAppointmentRequest(patient_id, physio_id, timestamp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             });
 
@@ -67,6 +74,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
 
         backBtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(SearchAppointmentResults.this, SearchAppointment.class);
+            backIntent.putExtra("pid", patient_id);
             startActivity(backIntent);
         });
     }

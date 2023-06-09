@@ -30,8 +30,7 @@ public class SearchAppointment extends AppCompatActivity {
         Button backBtn = findViewById(R.id.backBtn);
 
         Intent intent = getIntent();
-        String patientIdString = intent.getStringExtra("pid");
-        int patient_id = Integer.parseInt(patientIdString);
+        int patient_id = intent.getIntExtra("pid", -1);
 
         class FullDate {
             String day;
@@ -94,6 +93,7 @@ public class SearchAppointment extends AppCompatActivity {
                     usedToast.show();
                 } else {
                     Intent resultsIntent = new Intent(SearchAppointment.this, SearchAppointmentResults.class);
+                    resultsIntent.putExtra("id", patient_id);
                     resultsIntent.putExtra("day", day);
                     resultsIntent.putExtra("date", date);
                     resultsIntent.putExtra("hour", hour);
@@ -106,6 +106,7 @@ public class SearchAppointment extends AppCompatActivity {
 
         backBtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(SearchAppointment.this, PatientMainScreenActivity.class);
+            backIntent.putExtra("pid", patient_id);
             startActivity(backIntent);
         });
     }

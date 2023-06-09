@@ -1,8 +1,6 @@
 package com.android.flexability;
 
-import android.net.Uri;
-import android.os.*;
-import android.util.Log;
+import android.os.StrictMode;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -257,5 +255,12 @@ public class OkHttpHandler {
         }
 
         return physios;
+    }
+
+    public void makeAppointmentRequest(int patient_id, int physio_id, String timestamp) {
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_MAKE_APPOINTMENT_REQUEST + "?"
+                + "patient_id=" + patient_id + "&physio_id=" + physio_id + "&timestamp=" + timestamp;
+
+        String response = apiRequest(url, "GET");
     }
 }

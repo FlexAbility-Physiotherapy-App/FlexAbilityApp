@@ -2,7 +2,7 @@ package com.android.flexability;
 
 public class AppConfig {
     // Backend server API endpoint
-    public static final String BACKEND_SERVER_IP = "http://192.168.1.8/flexability/";
+    public static final String BACKEND_SERVER_IP = "http://192.168.1.7/flexability/";
     public static final String API_CREATE_PROVISION = "/createProvision.php";
     public static final String API_CREATE_PATIENT = "/createPatient.php";
     public static final String API_GET_PROVISION_COUNT = "/getProvisionsCount.php";
@@ -22,6 +22,7 @@ public class AppConfig {
     public static final String API_ALREADY_USED_TIMESTAMP = "/alreadyUsedTimestamp.php";
     public static final String API_GET_AVAILABLE_PHYSIOS = "/getAvailablePhysios.php";
     public static final String API_GET_UPCOMING_PATIENT_APPOINTMENT = "/getUpcomingPatientAppointment.php";
+    public static final String API_MAKE_APPOINTMENT_REQUEST = "/makeAppointmentRequest.php";
     public static final String API_GET_PATIENT_APPOINTMENTS = "/getPatientAppointments.php";
     public static final String API_CREATE_PHYSIO = "/createPhysio.php";
     public static final String API_GET_PHYSIOS_COUNT = "/getPhysiosCount.php";

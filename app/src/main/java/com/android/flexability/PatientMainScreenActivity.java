@@ -1,9 +1,5 @@
 package com.android.flexability;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -15,6 +11,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.gson.Gson;
 
@@ -158,7 +158,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                 Intent appointments = new Intent(PatientMainScreenActivity.this,
                         SearchAppointment.class
                 );
-                appointments.putExtra("pid", Integer.toString(pid));
+                appointments.putExtra("pid", pid);
                 startActivity(appointments);
             }
         });
