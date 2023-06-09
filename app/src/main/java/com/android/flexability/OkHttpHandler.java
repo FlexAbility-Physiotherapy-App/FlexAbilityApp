@@ -125,6 +125,10 @@ public class OkHttpHandler {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENTS + "?" + "date=" + date + "&id=" + id;
         return apiRequest(url, "GET");
     }
+    public String getCompletedAppointments(String amka){
+        String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_COMPLETED_APPOINTMENTS + "?" + "amka=" + amka;
+        return apiRequest(url, "GET");
+    }
 
     public String getAppointments(int id, String date, int limit){
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_GET_APPOINTMENTS + "?" + "date=" + date + "&id=" + id + "&limit=" + limit;

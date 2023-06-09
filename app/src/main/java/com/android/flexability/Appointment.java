@@ -6,13 +6,24 @@ public class Appointment {
     private final String surname;
     private final String amka;
     private final int patientId;
+    private final String comment;
 
-    public Appointment( String name, String surname, String amka, String timestamp, int patientId){
+    public Appointment(String name, String surname, String amka, String timestamp, int patientId){
         this.timestamp = timestamp;
         this.name = name;
         this.surname = surname;
         this.amka = amka;
         this.patientId = patientId;
+        this.comment = "";
+    }
+
+    public Appointment(String name, String surname, String amka, String timestamp, int patientId, String comment){
+        this.timestamp = timestamp;
+        this.name = name;
+        this.surname = surname;
+        this.amka = amka;
+        this.patientId = patientId;
+        this.comment = comment;
     }
 
     public String getTimestamp(){return this.timestamp;}
@@ -24,4 +35,6 @@ public class Appointment {
     public String getAmka(){return this.amka;}
 
     public int getPatientId(){return this.patientId;}
+
+    public String getComment() {return comment;}
 }

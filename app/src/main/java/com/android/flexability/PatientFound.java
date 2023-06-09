@@ -1,6 +1,7 @@
 package com.android.flexability;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class PatientFound extends AppCompatActivity {
     // Attribues
     Button btnAddPatient;
     Button btnBack;
+
+    ConstraintLayout btnViewHistory;
     ImageButton btnSearchPatient;
     EditText inputAMKA;
 
@@ -67,6 +70,12 @@ public class PatientFound extends AppCompatActivity {
 
         createSearchButton();
 
+        btnViewHistory = findViewById(R.id.btnCreateNewPhysio);
+        btnViewHistory.setOnClickListener(v -> {
+            Intent navToReqAppointments = new Intent(PatientFound.this, PatientHistory.class);
+            navToReqAppointments.putExtra("amka", prevAmka);
+            startActivity(navToReqAppointments);
+        });
     }
 
     private void createSearchButton(){
