@@ -86,7 +86,7 @@ public class Transactions extends AppCompatActivity {
 
             infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
             infoLayout.setLayoutParams(clParams);
-            infoLayout.setPadding(5, 5, 5, 5);
+            infoLayout.setPadding(12, 12, 12, 12);
 
             // Now insert the text views in the last layout:
             TextView phName = new TextView(this);
@@ -113,7 +113,7 @@ public class Transactions extends AppCompatActivity {
             );
 
             date.setTextSize(20);
-            date.setText(ti.getDate());
+            date.setText(ti.getDate().split(" ")[0]);
             date.setTypeface(fontDate);
 
             Typeface fontPrice = Typeface.createFromAsset(

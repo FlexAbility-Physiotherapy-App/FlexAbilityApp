@@ -437,7 +437,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
             phName.setTypeface(fontSub);
 
             date.setTextSize(22);
-            date.setText(ti.getDate());
+            date.setText(ti.getDate().split(" ")[0]);
             date.setTypeface(fontSub);
 
             price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));

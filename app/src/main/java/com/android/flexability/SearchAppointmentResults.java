@@ -73,9 +73,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
         }
 
         backBtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(SearchAppointmentResults.this, SearchAppointment.class);
-            backIntent.putExtra("pid", patient_id);
-            startActivity(backIntent);
+            finish();
         });
     }
 }
