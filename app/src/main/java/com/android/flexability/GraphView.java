@@ -83,6 +83,7 @@ public class GraphView extends AppCompatActivity {
 
         pie.setData(data);
         pie.animateY(1000);
+        dataSet.setValueTextSize(18);
 
         // Chnage legent direction:
         Legend legend = pie.getLegend();

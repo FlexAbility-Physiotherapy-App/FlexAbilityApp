@@ -80,9 +80,9 @@ public class Transactions extends AppCompatActivity {
 
             clParams = new ConstraintLayout.LayoutParams(
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    80
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
             );
-            clParams.setMargins(7, 0, 0, 0);
+            clParams.setMargins(12, 0, 0, 0);
 
             infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
             infoLayout.setLayoutParams(clParams);
@@ -104,15 +104,15 @@ public class Transactions extends AppCompatActivity {
             );
 
             phName.setText(ti.getPhysioName());
-            phName.setTextSize(18);
+            phName.setTextSize(24);
             phName.setTypeface(fontName);
 
             Typeface fontDate = Typeface.createFromAsset(
                     getAssets(),
-                    "font/manrope_extra_light.ttf"
+                    "font/manrope_light.ttf"
             );
 
-            date.setTextSize(14);
+            date.setTextSize(20);
             date.setText(ti.getDate());
             date.setTypeface(fontDate);
 
@@ -122,7 +122,7 @@ public class Transactions extends AppCompatActivity {
             );
 
             price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));
-            price.setTextSize(20);
+            price.setTextSize(26);
             price.setTypeface(fontPrice);
 
             infoLayout.addView(phName);
@@ -133,7 +133,7 @@ public class Transactions extends AppCompatActivity {
                     ConstraintLayout.LayoutParams.WRAP_CONTENT,
                     ConstraintLayout.LayoutParams.WRAP_CONTENT
             );
-
+            clParams.bottomToTop = date.getId();
             clParams.startToStart = infoLayout.getId();
             clParams.topToTop = infoLayout.getId();
 
@@ -143,6 +143,7 @@ public class Transactions extends AppCompatActivity {
                     ConstraintLayout.LayoutParams.WRAP_CONTENT,
                     ConstraintLayout.LayoutParams.WRAP_CONTENT
             );
+            clParams.topToBottom = phName.getId();
             clParams.bottomToBottom = infoLayout.getId();
 
             date.setLayoutParams(clParams);

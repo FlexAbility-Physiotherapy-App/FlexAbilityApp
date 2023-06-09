@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -133,12 +134,13 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         Button amenityBtn = new Button(this);
 
         LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
-                275,
-                60
+                800,
+                150
         );
-        llParams.setMargins(100, 25, 0, 100);
+        llParams.setMargins(0, 100, 0, 0);
 
         amenityBtn.setLayoutParams(llParams);
+        outerLL.setGravity(Gravity.CENTER_HORIZONTAL);
 
         amenityBtn.setText(getString(R.string.amenitySearch));
 
@@ -210,11 +212,11 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
         );
-        clParams.setMargins(7, 0, 0, 0);
+        clParams.setMargins(12, 0, 0, 0);
 
         infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
         infoLayout.setLayoutParams(clParams);
-        infoLayout.setPadding(5, 5, 5, 5);
+        infoLayout.setPadding(7, 7, 7, 7);
 
         // Append number of appointments
         TextView titleApt = (TextView) findViewById(R.id.aptTitle);
@@ -242,15 +244,15 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         );
 
         dateTV.setText(upcomingAptLst.get(0));
-        dateTV.setTextSize(15);
+        dateTV.setTextSize(22);
         dateTV.setTypeface(fontSub);
 
         hourTV.setText(upcomingAptLst.get(1));
-        hourTV.setTextSize(15);
+        hourTV.setTextSize(22);
         hourTV.setTypeface(fontSub);
 
         nameTV.setText(upcomingAptLst.get(2));
-        nameTV.setTextSize(15);
+        nameTV.setTextSize(22);
         nameTV.setTypeface(fontSub);
 
         Typeface fontTitle = Typeface.createFromAsset(
@@ -259,15 +261,15 @@ public class PatientMainScreenActivity extends AppCompatActivity {
         );
 
         nameTitle.setText(R.string.patientsname);
-        nameTitle.setTextSize(13);
+        nameTitle.setTextSize(20);
         nameTitle.setTypeface(fontTitle);
 
         hourTitle.setText(R.string.time);
-        hourTitle.setTextSize(13);
+        hourTitle.setTextSize(20);
         hourTitle.setTypeface(fontTitle);
 
         dateTitle.setText(R.string.day);
-        dateTitle.setTextSize(13);
+        dateTitle.setTextSize(20);
         dateTitle.setTypeface(fontTitle);
 
         infoLayout.addView(nameTitle);
@@ -399,11 +401,11 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
                     ConstraintLayout.LayoutParams.WRAP_CONTENT
             );
-            clParams.setMargins(7, 0, 0, 0);
+            clParams.setMargins(12, 0, 0, 0);
 
             infoLayout.setBackgroundColor(getColor(androidx.cardview.R.color.cardview_light_background));
             infoLayout.setLayoutParams(clParams);
-            infoLayout.setPadding(5, 5, 5, 5);
+            infoLayout.setPadding(7, 7, 7, 7);
 
             // Now insert the text views in the last layout:
             TextView phName = new TextView(this);
@@ -430,19 +432,19 @@ public class PatientMainScreenActivity extends AppCompatActivity {
             );
 
             phName.setText(ti.getPhysioName());
-            phName.setTextSize(15);
+            phName.setTextSize(22);
             phName.setTypeface(fontSub);
 
-            date.setTextSize(15);
+            date.setTextSize(22);
             date.setText(ti.getDate());
             date.setTypeface(fontSub);
 
             price.setText(getString(R.string.price_mark) + Double.toString(ti.getCost()));
-            price.setTextSize(15);
+            price.setTextSize(22);
             price.setTypeface(fontSub);
 
             amenity.setText(ti.getProvisionName());
-            amenity.setTextSize(15);
+            amenity.setTextSize(22);
             amenity.setTypeface(fontSub);
 
             Typeface fontTitle = Typeface.createFromAsset(
@@ -451,19 +453,19 @@ public class PatientMainScreenActivity extends AppCompatActivity {
             );
 
             phTitle.setText(getString(R.string.physioHeader));
-            phTitle.setTextSize(13);
+            phTitle.setTextSize(20);
             phTitle.setTypeface(fontTitle);
 
             dateTitle.setText(getString(R.string.dateHeader));
-            dateTitle.setTextSize(13);
+            dateTitle.setTextSize(20);
             dateTitle.setTypeface(fontTitle);
 
             priceTitle.setText(getString(R.string.costHeader));
-            priceTitle.setTextSize(13);
+            priceTitle.setTextSize(20);
             priceTitle.setTypeface(fontTitle);
 
             amenityTitle.setText(getString(R.string.amenityHeader));
-            amenityTitle.setTextSize(13);
+            amenityTitle.setTextSize(20);
             amenityTitle.setTypeface(fontTitle);
 
             infoLayout.addView(phName);
