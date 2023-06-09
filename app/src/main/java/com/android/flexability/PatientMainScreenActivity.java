@@ -155,7 +155,7 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                 Intent appointments = new Intent(PatientMainScreenActivity.this,
                         SearchAppointment.class
                 );
-                appointments.putExtra("pid", pid);
+                appointments.putExtra("pid", Integer.toString(pid));
                 startActivity(appointments);
             }
         });
