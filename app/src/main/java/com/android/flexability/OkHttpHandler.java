@@ -167,9 +167,9 @@ public class OkHttpHandler {
         return 0;
     }
 
-    public void completeAppointment(int physio_id, int patient_id, String timestamp, String comment) {
+    public void completeAppointment(int physio_id, int patient_id, String timestamp, String comment, String code, double cost) {
         String url = AppConfig.BACKEND_SERVER_IP + AppConfig.API_POST_COMPLETE_APPOINTMENT +
-                "?physio_id=" + physio_id + "&patient_id=" + patient_id + "&timestamp=" + timestamp + "&comment=" + comment ;
+                "?physio_id=" + physio_id + "&patient_id=" + patient_id + "&timestamp=" + timestamp + "&comment=" + comment + "&code=" + code + "&cost=" + cost;
         String response = apiRequest(url, "GET");
         System.out.println("Appointment completed and DB was updated. Response: " + response);
     }
