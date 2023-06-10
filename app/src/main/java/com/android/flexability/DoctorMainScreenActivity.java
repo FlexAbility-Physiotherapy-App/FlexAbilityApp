@@ -134,7 +134,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         });
     }
 
-    private void loadRequestedAppointments(){ // TODO Automatically reload when returning to Activity.
+    private void loadRequestedAppointments(){
         // Retrieves userID.
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -151,7 +151,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
         TextView appointmentsLabel = new TextView(this);
         TextView counterLabel = new TextView(this);
-        TextView viewAllLabel = new TextView(this, null, 0, androidx.appcompat.R.style.Base_Widget_AppCompat_Button_Borderless); // Touch effect.
+        TextView viewAllLabel = new TextView(this, null, 0, androidx.appcompat.R.style.Base_Widget_AppCompat_Button_Borderless); // Tap effect.
 
 
         // Window density.
@@ -159,7 +159,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
 
         // AppointmentsLabel Parameters.
-        appointmentsLabel.setText("Αιτήματα"); // TODO Replace with static string.
+        appointmentsLabel.setText(R.string.requests);
         appointmentsLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         appointmentsLabel.setTextColor(ContextCompat.getColor(this, R.color.titleDark));
         appointmentsLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
@@ -167,7 +167,7 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
 
 
         // counterLabel Parameters.
-        counterLabel.setText("(#)"); // Default value. Changes when appointments are loaded.
+        counterLabel.setText(R.string.counter); // Default value. Changes when appointments are loaded.
         counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         counterLabel.setLayoutParams(new LinearLayout.LayoutParams( // Fills space between counterLabel and viewAllLabel to position viewAllLabel to the right of the View.
                 ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -211,6 +211,28 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
         // Stop execution if no appointment is found.
         if(appointments.size() == 0)
             return;
+
+
+        // Loads new appointment when the last one is accepted. Updates the Counter value.
+        reqAppointmentsLayout.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+            }
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+                appointments.remove(0);
+
+                if(appointments.size() > 0){
+                    View appointmentRequest = new RequestedAppointments().loadAppointmentCard(appointments.get(0), userID, parent.getContext());
+                    reqAppointmentsLayout.addView(appointmentRequest);
+                }
+
+                counterLabel.setText("(" + appointments.size() + ")"); // Updates Counter value.
+
+                recreate(); // To load accepted appointments.
+            }
+        });
 
 
         // Gets first appointment.

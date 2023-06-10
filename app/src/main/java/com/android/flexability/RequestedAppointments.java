@@ -1,6 +1,5 @@
 package com.android.flexability;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -94,8 +94,15 @@ public class RequestedAppointments extends AppCompatActivity {
             counterLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
             counterLabel.setTextColor(getColor(R.color.titleDark));
             counterLabel.setTypeface(ResourcesCompat.getFont(this, R.font.manrope_bold));
-            counterLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density)
-            );
+            counterLabel.setPadding((int) (7 * density), (int) (10 * density), (int) (7 * density), (int) (10 * density));
+
+
+            // Loads all given appointment requests for the given day.
+            ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(userID, date));
+
+
+            // Updates Counter value.
+            counterLabel.setText("(" + appointments.size() + ")");
 
 
             // LinearLayout list for requested appointments.
@@ -104,19 +111,24 @@ public class RequestedAppointments extends AppCompatActivity {
             list.setVisibility(View.GONE);
 
 
-            // Loads all given appointment requests for the given day.
-            ArrayList<Appointment> appointments = reqAppointmentsParser(new OkHttpHandler().getRequestedAppointments(userID, date));
+            // Updates Counter value when an appointment card is removed.
+            list.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+                @Override
+                public void onChildViewAdded(View parent, View child) {
+                }
+                @Override
+                public void onChildViewRemoved(View parent, View child) {
+                    appointments.remove(0);
+                    counterLabel.setText("(" + appointments.size() + ")"); // Updates Counter value.
+                }
+            });
 
 
             // Loads all appointments of the day.
             for(Appointment a : appointments){
-                View v = loadAppointmentCard(a, userID, this);
-                list.addView(v);
+                View view = loadAppointmentCard(a, userID, this);
+                list.addView(view);
             }
-
-
-            // Updates Counter value.
-            counterLabel.setText("(" + appointments.size() + ")");
 
 
             // Container that holds date, counter and arrow down.
@@ -160,9 +172,8 @@ public class RequestedAppointments extends AppCompatActivity {
     }
 
     public View loadAppointmentCard(Appointment a, int userID, Context context){
-        // Loads all appointments of the day.
+        // Inflates a Requested Appointment Card.
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View appointmentRequest = inflater.inflate(R.layout.activity_requested_appointment, null);
 
         Button rejectButton = appointmentRequest.findViewById(R.id.rejectButton);
@@ -170,14 +181,14 @@ public class RequestedAppointments extends AppCompatActivity {
 
         rejectButton.setOnClickListener(v -> {
             String response = new OkHttpHandler().rejectAppointment(userID, a.getPatientId(), a.getTimestamp());
-            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-            ((Activity) context).recreate();
+            Toast.makeText(context, response, Toast.LENGTH_SHORT).show(); // Popup message.
+            ((ViewGroup) appointmentRequest.getParent()).removeView(appointmentRequest); // Finds parent of View and removes it from the parent.
         });
 
         acceptButton.setOnClickListener(v -> {
             String response = new OkHttpHandler().acceptAppointment(userID, a.getPatientId(), a.getTimestamp());
-            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-            ((Activity) context).recreate();
+            Toast.makeText(context, response, Toast.LENGTH_SHORT).show(); // Popup message.
+            ((ViewGroup) appointmentRequest.getParent()).removeView(appointmentRequest); // Finds parent of View and removes it from the parent.
         });
 
 

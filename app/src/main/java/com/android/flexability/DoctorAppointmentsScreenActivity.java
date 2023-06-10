@@ -1,6 +1,7 @@
 package com.android.flexability;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
@@ -282,7 +283,7 @@ public class DoctorAppointmentsScreenActivity extends AppCompatActivity {
         constraintLayout6.setOnClickListener(onClickListener);
         constraintLayout7.setOnClickListener(onClickListener);
 
-        Button backBtn = (Button)findViewById(R.id.backBtn);
+        ImageFilterView backBtn = (ImageFilterView)findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -104,6 +104,7 @@
     <string name="zero">0</string>
     <string name="patienthistory">Ιστορικό Ασθενή</string>
     <string name="general">Γενικά</string>
+    <string name="requests">Αιτήματα</string>
     <string-array name="availableDays">
         <item>Δευτέρα</item>
         <item>Τρίτη</item>
