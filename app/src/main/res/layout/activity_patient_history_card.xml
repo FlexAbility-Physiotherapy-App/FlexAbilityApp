@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="start|top"
-                    android:inputType="textMultiLine"
+                    android:inputType="text|textMultiLine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/dateLabel"
                     app:layout_constraintTop_toBottomOf="@+id/dateLabel" />

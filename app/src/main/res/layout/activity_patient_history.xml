@@ -114,14 +114,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="55dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/genderLayout"
                                     app:layout_constraintVertical_bias="0.0">
 
                                     <TextView
                                         android:id="@+id/textView14"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="28dp"
                                         android:fontFamily="@font/manrope"
                                         android:text="@string/amka"
@@ -133,7 +132,7 @@
 
                                     <TextView
                                         android:id="@+id/amka"
-                                        android:layout_width="match_parent"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="28dp"
                                         android:fontFamily="@font/manrope"
                                         android:text="@string/amkanumbers"
@@ -164,10 +163,11 @@
                                         app:layout_constraintTop_toTopOf="parent" />
 
                                     <TextView
-                                        android:id="@+id/patientName"
+                                        android:id="@+id/name"
                                         android:layout_width="wrap_content"
                                         android:layout_height="28dp"
                                         android:fontFamily="@font/manrope"
+                                        android:text="Όνομα"
                                         android:textColor="@color/black"
                                         android:textSize="16sp"
                                         app:layout_constraintStart_toStartOf="parent"
@@ -245,22 +245,12 @@
                 tools:fontFamily="@font/manrope_bold" />
 
             <TextView
-                android:id="@+id/patientAdress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/address"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-            <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
-                app:layout_constraintStart_toStartOf="@+id/patientAdress"
-                app:layout_constraintTop_toBottomOf="@+id/patientAdress" />
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -270,13 +260,23 @@
                 android:text="Συνεδρίες"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                app:layout_constraintTop_toBottomOf="@+id/phone"
                 tools:fontFamily="@font/manrope_bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:text="Τηλέφωνο: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="342dp"
             android:layout_height="wrap_content">
 
             <LinearLayout

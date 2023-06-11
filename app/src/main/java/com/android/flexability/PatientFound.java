@@ -20,11 +20,9 @@ public class PatientFound extends AppCompatActivity {
     // Attribues
     Button btnAddPatient;
     Button btnBack;
-
     ConstraintLayout btnViewHistory;
     ImageButton btnSearchPatient;
     EditText inputAMKA;
-
     TextView nameText;
     TextView fathersNameText;
 
@@ -53,8 +51,8 @@ public class PatientFound extends AppCompatActivity {
             JSONObject patient = new JSONObject(patientJson);
             String test = patient.getString("name");
             nameText.setText(test);
-//            nameText.setText(patient.getString("name"));
-//            fathersNameText.setText(patient.getString("surname"));
+            nameText.setText(patient.getString("name"));
+            fathersNameText.setText(patient.getString("surname"));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
