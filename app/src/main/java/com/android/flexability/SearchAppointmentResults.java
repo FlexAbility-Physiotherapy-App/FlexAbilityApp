@@ -35,7 +35,7 @@ public class SearchAppointmentResults extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        LinearLayout container = findViewById(R.id.requestsLayout);
+        LinearLayout container = findViewById(R.id.requestApointmentsLayout);
         LayoutInflater inflater = LayoutInflater.from(container.getContext());
         Button backBtn = findViewById(R.id.backBtn);
 

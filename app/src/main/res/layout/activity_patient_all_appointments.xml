@@ -5,26 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMainColor"
-    tools:context=".SearchAppointmentResults">
+    tools:context=".PatientAllAppointments">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="0dp">
+            android:layout_margin="25dp">
 
             <Button
                 android:id="@+id/backBtn"
@@ -35,6 +33,7 @@
                 android:contentDescription="@string/backButtonDescription"
                 android:drawableLeft="@drawable/angle_left_solid"
                 android:drawableTint="@color/white"
+                android:onClick="OnClickBackToMainPatient"
                 android:paddingStart="17dp"
                 android:paddingEnd="17dp"
                 android:textColor="@color/white"
@@ -52,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/manrope_extra_light"
-                android:text="@string/searchBtnText"
+                android:text="Όλα τα ραντεβού"
                 android:textAlignment="center"
                 android:textColor="@color/titleDark"
                 android:textSize="26sp"
@@ -64,19 +63,18 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
-            android:id="@+id/requestAppointmentScrollView"
+            android:id="@+id/allAppointmentScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             android:importantForAccessibility="no"
             android:paddingStart="8dp"
-            android:paddingTop="32dp"
             android:paddingEnd="8dp"
             android:paddingBottom="32dp">
 
             <LinearLayout
-                android:id="@+id/requestApointmentsLayout"
+                android:id="@+id/allApointmentsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
@@ -86,6 +84,6 @@
                 android:background="@color/backgroundMainColor"
                 android:orientation="vertical"></LinearLayout>
         </ScrollView>
-    </LinearLayout>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

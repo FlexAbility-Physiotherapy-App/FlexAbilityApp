@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".PatientAllAppointments"
+            android:exported="false" />
+        <activity
             android:name=".PatientHistory"
             android:exported="false" />
         <activity

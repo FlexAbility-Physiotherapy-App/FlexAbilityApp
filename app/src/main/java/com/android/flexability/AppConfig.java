@@ -2,7 +2,7 @@ package com.android.flexability;
 
 public class AppConfig {
     // Backend server API endpoint
-    public static final String BACKEND_SERVER_IP = "http://192.168.1.8/flexability/";
+    public static final String BACKEND_SERVER_IP = "http://192.168.1.10/flexability/";
     public static final String API_CREATE_PROVISION = "/createProvision.php";
     public static final String API_CREATE_PATIENT = "/createPatient.php";
     public static final String API_GET_PROVISION_COUNT = "/getProvisionsCount.php";
