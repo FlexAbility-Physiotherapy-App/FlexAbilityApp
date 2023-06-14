@@ -65,11 +65,9 @@ public class PatientNotFound extends AppCompatActivity {
                         startActivity(newIntent);
                     }
                     else{
-                        newIntent = new Intent(this, PatientFound.class);
-                        newIntent.putExtra("AMKA", amka);
-                        newIntent.putExtra("PATIENT_JSON", jsonString);
-                        finish();
-                        startActivity(newIntent);
+                        Intent navToReqAppointments = new Intent(PatientNotFound.this, PatientHistory.class);
+                        navToReqAppointments.putExtra("amka", amka);
+                        startActivity(navToReqAppointments);
                     }
                 } catch (Exception e){
                     e.printStackTrace();

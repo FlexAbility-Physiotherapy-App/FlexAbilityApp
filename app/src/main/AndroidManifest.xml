@@ -49,9 +49,6 @@
             android:name=".Transactions"
             android:exported="false" />
         <activity
-            android:name=".PatientFound"
-            android:exported="false" />
-        <activity
             android:name=".SearchAppointment"
             android:exported="false" />
 

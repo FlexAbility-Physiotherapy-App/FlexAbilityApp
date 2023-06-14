@@ -117,10 +117,9 @@ public class DoctorMainScreenActivity extends AppCompatActivity {
                         startActivity(newIntent);
                     }
                     else{
-                        newIntent = new Intent(this, PatientFound.class);
-                        newIntent.putExtra("AMKA", amka);
-                        newIntent.putExtra("PATIENT_JSON", jsonString);
-                        startActivity(newIntent);
+                        Intent navToReqAppointments = new Intent(DoctorMainScreenActivity.this, PatientHistory.class);
+                        navToReqAppointments.putExtra("amka", amka);
+                        startActivity(navToReqAppointments);
                     }
 
                 } catch (Exception e){
