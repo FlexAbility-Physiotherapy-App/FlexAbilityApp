@@ -87,8 +87,8 @@ public class GraphView extends AppCompatActivity {
 
         // Chnage legent direction:
         Legend legend = pie.getLegend();
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
         legend.setXEntrySpace(4f);
         legend.setYEntrySpace(0f);

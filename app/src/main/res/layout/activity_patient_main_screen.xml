@@ -10,10 +10,8 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="128dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/manrope_extra_light"
-                android:text="(0)"
+                android:text="@string/zero"
                 android:textAlignment="center"
                 android:textColor="@color/titleDark"
                 android:textSize="32sp"
@@ -62,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Επερχόμενο"
+                android:text="@string/next"
                 android:textAllCaps="false"
                 android:textColor="@color/titleDark"
                 android:textSize="20sp"
@@ -76,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:text="Προβολή όλων >"
+                android:text="@string/showAll"
                 android:textAllCaps="false"
                 android:textColor="@color/greenButton"
                 android:textSize="16sp"
@@ -97,6 +95,70 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/transactionHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/transactionCnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/manrope_extra_light"
+                android:text="@string/zero"
+                android:textSize="32sp"
+                app:layout_constraintStart_toEndOf="@+id/transactionHeader"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/transactionHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/manrope_extra_light"
+                android:text="@string/title_activity_transactions"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/seeAllTransactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/showAll"
+                android:textAllCaps="false"
+                android:textColor="@color/greenButton"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/transactionLatest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/searchAptBtn"
         android:layout_width="0dp"
@@ -111,7 +173,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
