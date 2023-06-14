@@ -71,7 +71,8 @@ public class PatientMainScreenActivity extends AppCompatActivity {
                         new OkHttpHandler().getTransactions(patient_id)
                 );
 
-        createEarliestTransactionCard(transactionsData);
+        if(transactionsData.size() > 0)
+            createEarliestTransactionCard(transactionsData);
 
         seeAllApts.setOnClickListener(v -> {
             Intent seeAllAptsIntent = new Intent(PatientMainScreenActivity.this, PatientAllAppointments.class);
