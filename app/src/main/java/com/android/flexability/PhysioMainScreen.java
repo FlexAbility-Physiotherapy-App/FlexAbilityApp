@@ -39,23 +39,7 @@ public class PhysioMainScreen extends AppCompatActivity {
 
         // Load 2 physios for the preview list
         int limitP = 2;
-        LinearLayout cardsContainerP = findViewById(R.id.previewPhysioCardContainer);
-        LayoutInflater inflaterP = LayoutInflater.from(this);
-
-        try {
-            json_response = new OkHttpHandler().getPhysios(limitP);
-            System.out.println("HTTP Response received successfully");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<Physio> previewPhysios = PhysioCardAdapter.parseJson(json_response);
-        for (Physio physio : previewPhysios) {
-            View convertView = inflaterP.inflate(R.layout.physio_card_layout, cardsContainerP, false);
-            PhysioCardAdapter.setCardData(physio, convertView, this);
-            cardsContainerP.addView(convertView);
-        }
+        loadPhysiosLimit(limitP);
 
         // Code for R2
         // Get total number of amenities and update the title accordingly
@@ -75,6 +59,48 @@ public class PhysioMainScreen extends AppCompatActivity {
 
         // Load 2 amenities for the preview list
         int limit = 2;
+        loadAmenitiesLimit(limit);
+    }
+
+    private void loadPhysiosLimit(int limitP) {
+        LinearLayout cardsContainerP = findViewById(R.id.previewPhysioCardContainer);
+        LayoutInflater inflaterP = LayoutInflater.from(this);
+
+        try {
+            json_response = new OkHttpHandler().getPhysios(limitP);
+            System.out.println("HTTP Response received successfully");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cardsContainerP.removeAllViews();
+        ArrayList<Physio> previewPhysios = PhysioCardAdapter.parseJson(json_response);
+        for (Physio physio : previewPhysios) {
+            View convertView = inflaterP.inflate(R.layout.physio_card_layout, cardsContainerP, false);
+            PhysioCardAdapter.setCardData(physio, convertView, this);
+            cardsContainerP.addView(convertView);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Update the total number of physios after returning to this screen
+        updatePhysioCount();
+        updateAmenityCount();
+
+        // Load 2 physios for the preview list
+        int limitP = 2;
+        loadPhysiosLimit(limitP);
+
+        // Load 2 amenities for the preview list
+        int limit = 2;
+        loadAmenitiesLimit(limit);
+    }
+
+    private void loadAmenitiesLimit(int limit) {
         LinearLayout cardsContainer = findViewById(R.id.previewCardsContainer);
         LayoutInflater inflater = LayoutInflater.from(this);
 
@@ -86,20 +112,13 @@ public class PhysioMainScreen extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        cardsContainer.removeAllViews();
         ArrayList<Amenity> previewAmenities = AmenityCardAdapter.parseJson(json_response);
         for (Amenity amenity: previewAmenities) {
             View convertView = inflater.inflate(R.layout.amenity_card_layout, cardsContainer, false);
             AmenityCardAdapter.setCardData(amenity, convertView, this);
             cardsContainer.addView(convertView);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Update the total number of physios after returning to this screen
-        updatePhysioCount();
     }
 
     private void updatePhysioCount() {
