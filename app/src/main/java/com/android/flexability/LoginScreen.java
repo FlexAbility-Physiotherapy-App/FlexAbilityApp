@@ -36,18 +36,22 @@ public class LoginScreen extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 User user = parseJson(json_response);
-                if(user.getCategory().equals("admin")){
-                    startActivity(new Intent(LoginScreen.this, PhysioMainScreen.class));
-                } else if (user.getCategory().equals("physio")) {
-                    Intent intent = new Intent(LoginScreen.this, DoctorMainScreenActivity.class);
-                    intent.putExtra("id", user.getId());
-                    startActivity(intent);
-                } else if (user.getCategory().equals("patient")){
-                    Intent intent = new Intent(LoginScreen.this, PatientMainScreenActivity.class);
-                    intent.putExtra("id", user.getId());
-                    startActivity(intent);
+                if(user == null){
+                    Toast.makeText(getApplicationContext(), "Server's down", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Λανθασμένα πιστοποιητικά εισόδου", Toast.LENGTH_SHORT).show();
+                    if(user.getCategory().equals("admin")){
+                        startActivity(new Intent(LoginScreen.this, PhysioMainScreen.class));
+                    } else if (user.getCategory().equals("physio")) {
+                        Intent intent = new Intent(LoginScreen.this, DoctorMainScreenActivity.class);
+                        intent.putExtra("id", user.getId());
+                        startActivity(intent);
+                    } else if (user.getCategory().equals("patient")){
+                        Intent intent = new Intent(LoginScreen.this, PatientMainScreenActivity.class);
+                        intent.putExtra("id", user.getId());
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Λανθασμένα πιστοποιητικά εισόδου", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
