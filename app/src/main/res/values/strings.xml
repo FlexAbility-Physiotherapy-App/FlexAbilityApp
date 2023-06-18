@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FlexAbility</string>
     <string name="register">Εγγραφή</string>
-    <string name="login">Σύνδεση</string>
+    <string name="login">Συνδεση</string>
     <string name="back">Πίσω</string>
     <string name="physios">Φυσιοθεραπευτήρια (%1$d)</string>
     <string name="amenities">Παροχές (%1$d)</string>
