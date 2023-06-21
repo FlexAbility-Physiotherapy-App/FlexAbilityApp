@@ -230,7 +230,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="342dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/appointment_card">
+            android:background="@drawable/appointment_card"
+            android:outlineProvider="bounds">
 
             <TextView
                 android:id="@+id/textView13"
@@ -259,9 +260,11 @@
                 android:layout_marginTop="10dp"
                 android:text="Συνεδρίες"
                 android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/phone"
-                tools:fontFamily="@font/manrope_bold" />
+                tools:fontFamily="@font/manrope_bold"
+                tools:layout_marginBottom="8dp" />
 
             <TextView
                 android:id="@+id/textView"
